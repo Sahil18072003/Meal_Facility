@@ -1,29 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './header.component';
-import { AboutComponent } from './about/about.component';
-import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
-
-const routes: Routes = [
-  {
-    path: '/about',
-    component: AboutComponent,
-  },
-  {
-    path: '/privacy-policy',
-    component: PrivacyPolicyComponent,
-  },
-  {
-    path: '/terms-and-condition',
-    component: TermsAndConditionComponent,
-  },
-];
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  declarations: [HeaderComponent, AboutComponent],
-  exports: [RouterModule],
+  declarations: [
+    HeaderComponent,
+    LoginComponent,
+    SignupComponent,
+    ForgetPasswordComponent,
+  ],
+  imports: [CommonModule],
 })
 export class HeaderModule {}
