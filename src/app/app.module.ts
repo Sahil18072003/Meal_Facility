@@ -3,22 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderModule } from './header/header.module';
 import { HomeModule } from './home/home.module';
-import { FooterModule } from './footer/footer.module';
+import { HeaderFooterModule } from './header-footer/header-footer.module';
 
 @NgModule({
   // components directly define which have parent app
   declarations: [AppComponent],
 
   // imports all the modules which have parent app
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HeaderModule,
-    HomeModule,
-    FooterModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, HeaderFooterModule, HomeModule],
   providers: [],
   bootstrap: [AppComponent],
 })

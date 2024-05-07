@@ -12,7 +12,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 75px;
+    height: 80px;
     display: flex;
     align-items: center;
     background-color: rgb(16, 5, 100);
@@ -22,17 +22,6 @@
 
 .toolbar img {
     margin: 0 16px;
-}
-
-.toolbar #twitter-logo,
-.toolbar #youtube-logo {
-    height: 40px;
-    margin: 0 8px;
-}
-
-.toolbar #twitter-logo:hover,
-.toolbar #youtube-logo:hover {
-    opacity: 0.8;
 }
 
 .content {
@@ -106,9 +95,46 @@ a:hover {
 }
 
 .title {
-    font-size: x-large
+    font-size: xx-large
 }
 
 .list-items {
     color: white;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(16, 5, 100);
+    color: white;
+    font-weight: 600;
+}
+
+.footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.footer .list-items {
+    margin-left: 20px;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.footer .list-items:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
