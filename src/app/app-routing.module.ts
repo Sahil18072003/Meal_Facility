@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HeaderFooterComponent } from './header-footer/header-footer.component';
+import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HeaderFooterComponent,
+    component: HeaderComponent,
   },
-  // {
-  //   path: '',
-  //   component: HomeComponent,
-  // },
 ];
 
 @NgModule({
