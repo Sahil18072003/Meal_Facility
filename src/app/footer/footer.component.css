@@ -1,5 +1,7 @@
+/* Font Awesome */
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
+/* Global Styles */
 :host {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
@@ -7,33 +9,6 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-.content {
-    display: flex;
-    margin: 82px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-}
-
-.terminal {
-    position: relative;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 6px;
-    padding-top: 45px;
-    margin-top: 8px;
-    overflow: hidden;
-    background-color: rgb(15, 15, 16);
-}
-
-.terminal pre {
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-    color: white;
-    /* padding: 0 1rem 1rem; */
-    margin: 0;
 }
 
 a,
@@ -47,19 +22,19 @@ a:hover {
     color: #125699;
 }
 
-@media screen and (max-width: 575px) {
-    svg#rocket-smoke {
-        display: none;
-        visibility: hidden;
-    }
-}
-
-.title {
-    font-size: xx-large
-}
-
-.list-items {
+/* Footer Styles */
+.footer {
+    position: sticky;
+    top: 80px;
+    left: 0;
+    right: 0;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(16, 5, 100);
     color: white;
+    font-weight: 500;
 }
 
 .footer ul {
@@ -71,21 +46,7 @@ a:hover {
     justify-content: center;
 }
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 55px;
-    display: flex;
-    justify-content: center;
-    background-color: rgb(16, 5, 100);
-    color: white;
-    font-weight: 500;
-}
-
 .footer .list-items {
-    margin-left: 20px;
     color: white;
     font-size: 15px;
     text-decoration: none;
@@ -94,39 +55,21 @@ a:hover {
     transition: background-color 0.3s ease;
 }
 
-.footer .social {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 10px 0 10px;
-}
-
-@media (max-width: 991.98px) {
-    .footer .social {
-        width: 100%;
-        justify-content: center;
-        order: 1;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+.footer .list-items:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .footer .social a {
-    margin-right: 30px;
     color: white;
     text-decoration: none;
-    padding: 0 5px 0 5px;
+    padding: 0 1rem 0 1rem;
 }
 
 .footer .social a:hover {
     color: white;
-    text-decoration: none;
 }
 
 .footer .social a i {
     font-size: 20px;
-}
-
-.footer .social a:last-child {
-    margin-right: 0;
+    transition: color 0.3s ease;
 }

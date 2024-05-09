@@ -1,5 +1,3 @@
-@import '~@fortawesome/fontawesome-free/css/all.css';
-
 :host {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
@@ -10,7 +8,7 @@
 }
 
 .toolbar {
-    position: absolute;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;

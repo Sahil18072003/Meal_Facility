@@ -1,0 +1,72 @@
+/* Font Awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+/* Google Fonts - Montserrat for headings and Open Sans for paragraphs */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+.terms-and-condition {
+    font-family: 'Open Sans', sans-serif;
+    /* Changed font family to Open Sans */
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    margin-bottom: 1.5rem;
+}
+
+.head-point {
+    font-family: 'Montserrat', sans-serif;
+    /* Changed font family to Montserrat */
+    color: #101964;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.mycard {
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0px 4px 42px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 2rem;
+    border: 2px solid #101964;
+}
+
+.t-title {
+    font-family: 'Montserrat', sans-serif;
+    /* Changed font family to Montserrat */
+    color: #101964;
+    text-align: center;
+    font-size: 36px;
+    padding: 10px 0;
+}
+
+.first {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.sentance {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.point {
+    color: #101964;
+    margin-right: 5px;
+    font-size: 12px;
+}
+
+.fa-circle {
+    color: #007bff;
+}
+
+.terms-and-condition strong {
+    color: #101964;
+    font-weight: bold;
+}
+
+.t-footer {
+    text-align: center;
+    padding: 10px;
+}
