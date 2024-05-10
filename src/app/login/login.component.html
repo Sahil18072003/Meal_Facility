@@ -1,0 +1,67 @@
+<body class="mt-0">
+    <div class="main">
+        <section class="login-content">
+            <div class="login-content-lt"></div>
+            <div class="login-content-rt">
+                <div class="login-box">
+                    <form class="login-form" [formGroup]="loginForm">
+                        <div class="logo-wrapper">
+                            <img src="../../assets/Images/logo.svg" alt="Rishabh Software">
+                            <span>Meal Facility</span>
+                        </div>
+                        <h3 class="login-head">Sign in to your account</h3>
+                        <p class="login-text">Enter your credentials to access your account.</p>
+
+                        <div class="form-group">
+                            <label class="control-label">User Name</label>
+                            <div class="input-addon"
+                                [class.error]="loginForm.controls['username'].dirty && loginForm.hasError('required','username')">
+                                <input formControlName="Username" class="form-control" type="text"
+                                    placeholder="Enter Username" autofocus>
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <small
+                                *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required','username')"
+                                class="text-danger">*Username is Required</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Password</label>
+                            <div class="input-addon"
+                                [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required','password')">
+                                <input formControlName="Password" id="password-field" class="form-control" [type]="type"
+                                    placeholder="Password" autofocus>
+                                <i class="fa" [ngClass]="{'fa-eye': !hide, 'fa-eye-slash': hide}"
+                                    (click)="toggleVisibility()"></i>
+                            </div>
+                            <small
+                                *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')"
+                                class="text-danger">*Password is Required</small>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="form-group mb-0">
+                                <!-- <label class="custom-checkbox mb-0"><span class="checkbox__title">Remember Me</span>
+                  <input class="checkbox__input" type="checkbox"/><span class="checkbox__checkmark"></span>
+                </label> -->
+                            </div>
+                            <div class="form-group mb-0">
+                                <div class="utility">
+                                    <p><a href="/forgot-password" class="form-link">Forgot Password?</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-0">
+                            <div class="utility">
+                                <p>Don't have a account? <a href="/Singup" class="form-link">Sing Up</a> </p>
+                            </div>
+                        </div>
+                        <div class="form-group btn-container">
+                            <button class="btn btn-xl btn-primary" (click)="onSubmite()">Sign in</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>

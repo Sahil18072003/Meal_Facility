@@ -1,30 +1,72 @@
+/* Font Awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+/* Google Fonts - Montserrat for headings and Open Sans for paragraphs */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+.privacy {
+    font-family: 'Open Sans', sans-serif;
+    /* Changed font family to Open Sans */
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    margin-bottom: 1.5rem;
+}
+
 .head-point {
+    font-family: 'Montserrat', sans-serif;
+    /* Changed font family to Montserrat */
     color: rgb(16, 5, 100);
-    text-decoration: solid;
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
 .mycard {
-    align-items: flex-start;
     width: 80%;
-    margin: 1rem auto;
+    margin: 0 auto;
     box-shadow: 0px 4px 42px 0px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     padding: 2rem;
     border: 2px solid rgb(16, 5, 100);
 }
 
-.t-title {
+.pp-title {
+    font-family: 'Montserrat', sans-serif;
+    /* Changed font family to Montserrat */
     color: rgb(16, 5, 100);
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 36px;
+    padding: 10px 0;
 }
 
 .first {
-    font-size: larger;
+    font-size: 18px;
+    margin-bottom: 15px;
 }
 
 .sentance {
-    font-size: medium;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.point {
+    color: rgb(16, 5, 100);
+    margin-right: 5px;
+    font-size: 12px;
+}
+
+.fa-circle {
+    color: #173d67;
+}
+
+.privacy strong {
+    color: rgb(16, 5, 100);
+    font-weight: bold;
+}
+
+.pp-footer {
+    text-align: center;
+    padding: 10px;
 }
