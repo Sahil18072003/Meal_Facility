@@ -22,8 +22,9 @@
     width: 65%;
     background-size: cover !important;
     height: 100vh;
+    top: 0;
+    position: sticky;
     overflow: hidden;
-    position: relative;
     background: url(./../../assets/bg.jpg) no-repeat top center;
 }
 
@@ -51,7 +52,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: #666b7a rgba(33, 37, 41, 0);
 }

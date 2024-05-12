@@ -8,6 +8,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,11 @@ const routes: Routes = [
   {
     path: 'otp-verification',
     component: OtpVerificationComponent,
+    data: { hideHeaderFooter: true },
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
     data: { hideHeaderFooter: true },
   },
   {
