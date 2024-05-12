@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 
 const routes: Routes = [
   {
@@ -24,18 +25,27 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    data: { hideHeaderFooter: true },
   },
   {
     path: 'signup',
     component: SignupComponent,
+    data: { hideHeaderFooter: true },
   },
   {
     path: 'forget-password',
     component: ForgetPasswordComponent,
+    data: { hideHeaderFooter: true },
+  },
+  {
+    path: 'otp-verification',
+    component: OtpVerificationComponent,
+    data: { hideHeaderFooter: true },
   },
   {
     path: 'change-password',
     component: ChangePasswordComponent,
+    data: { hideHeaderFooter: true },
   },
 ];
 
