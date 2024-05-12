@@ -1,15 +1,7 @@
-@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
-
-@font-face {
-    font-family: "meal-admin";
-    src: url("./../../fonts/meal-admin.eot?b7a8ot");
-    src: url("./../../fonts/meal-admin.eot?b7a8ot#iefix") format("embedded-opentype"), url("./../../fonts/meal-admin.ttf?b7a8ot") format("truetype"), url("./../../fonts/meal-admin.woff?b7a8ot") format("woff"), url("./../../fonts/meal-admin.svg?b7a8ot#meal-admin") format("svg");
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-}
+@import '~@fortawesome/fontawesome-free/css/all.css';
 
 .login-content {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -27,7 +19,7 @@
     background-size: cover !important;
     height: 100vh;
     position: relative;
-    background: url(./../../assets/bg.jpg) no-repeat top center;
+    background: url(./../../assets/Foody.jpg) no-repeat top center;
 }
 
 @media (max-width: 991.98px) {
@@ -108,7 +100,7 @@
 .login-content .login-content-rt .login-box .logo-wrapper {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     margin-bottom: 48px;
 }
 
@@ -117,13 +109,13 @@
 }
 
 .login-content .login-content-rt .login-box .logo-wrapper span {
-    color: #E23E3F;
+    color: #e23e3f;
     font-size: 34px;
     font-weight: 700;
 }
 
 .login-content .login-content-rt .login-box .form-group {
-    margin-bottom: 30px;
+    margin: 10px 10px 10px 10px;
 }
 
 .login-content .login-content-rt .login-box .login-head {
@@ -151,12 +143,12 @@
 }
 
 .login-content .login-content-rt .login-box label .extric {
-    color: #D13434;
+    color: #d13434;
 }
 
 .login-content .login-content-rt .login-box .form-control {
-    border: 1px solid #C9C9C9;
-    height: 57px;
+    border: 1px solid #c9c9c9;
+    height: 40px;
     border-radius: 8px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -182,15 +174,15 @@
     -ms-transform: translate(0, -50%);
     -o-transform: translate(0, -50%);
     font-size: 20px;
-    color: #3E3D47;
+    color: #3e3d47;
 }
 
 .login-content .login-content-rt .login-box .input-addon .icon-after.icon-green {
-    color: #34BF00;
+    color: #34bf00;
 }
 
 .login-content .login-content-rt .login-box .input-addon .icon-after.icon-red {
-    color: #D13434;
+    color: #d13434;
 }
 
 .login-content .login-content-rt .login-box .utility {
@@ -204,12 +196,12 @@
 }
 
 .login-content .login-content-rt .login-box .utility p a {
-    color: #3377C5;
+    color: #3377c5;
     text-decoration: underline;
 }
 
 .login-content .login-content-rt .login-box .utility p a:hover {
-    color: #3377C5;
+    color: #3377c5;
     text-decoration: underline;
 }
 
@@ -220,84 +212,28 @@
 
 .login-content .login-content-rt .login-box .btn-container .btn {
     width: 100%;
+    height: 50px;
+    color: white;
+    background-color: rgba(255, 0, 0, 0.774);
 }
 
-.login-content .login-content-rt .login-box .login-form {
-    position: relative;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    transition: all 0.5s ease-in-out;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    font-size: 16px;
-    font-weight: 500;
-    color: #000;
-    margin-bottom: 12px;
-}
-
-.form-group .form-control {
-    height: 48px;
-    border: 1px solid #C9C9C9;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
-    font-size: 16px;
-    color: #000;
-    font-weight: 400;
-    padding: 6px 12px 6px 20px;
-}
-
-.form-group input[type=text]::-moz-placeholder,
-.form-group input[type=number]::-moz-placeholder,
-.form-group input[type=password]::-moz-placeholder,
-.form-group input[type=date]::-moz-placeholder,
-.form-group input[type=email]::-moz-placeholder,
-.form-group input[type=tel]::-moz-placeholder,
-.form-group select::-moz-placeholder {
-    font-size: 13px;
-    color: rgba(0, 0, 0, 0.6);
-    font-weight: 400;
-}
-
-.form-group input[type=text]::placeholder,
-.form-group input[type=number]::placeholder,
-.form-group input[type=password]::placeholder,
-.form-group input[type=date]::placeholder,
-.form-group input[type=email]::placeholder,
-.form-group input[type=tel]::placeholder,
-.form-group select::placeholder {
-    font-size: 13px;
-    color: rgba(0, 0, 0, 0.6);
-    font-weight: 400;
-}
-
-.form-group .search-wrapper {
-    position: relative;
-}
-
-.form-group .search-wrapper .search-icon {
+.fa-solid {
     position: absolute;
-    font-size: 18px;
-    left: 0;
-    top: 50%;
-    transform: translate(15px, -50%);
-    -webkit-transform: translate(15px, -50%);
-    -moz-transform: translate(15px, -50%);
-    -ms-transform: translate(15px, -50%);
-    -o-transform: translate(15px, -50%);
+    top: 28%;
+    right: 4%;
+    cursor: pointer;
 }
 
-.form-group .search-wrapper .form-control {
-    padding: 6px 12px 6px 45px;
+.fa-eye .fa {
+    position: absolute;
+    top: 28%;
+    right: 4%;
+    cursor: pointer;
+}
+
+.fa {
+    position: absolute;
+    top: 28%;
+    right: 4%;
+    cursor: pointer;
 }

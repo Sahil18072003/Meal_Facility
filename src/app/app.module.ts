@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,10 +9,10 @@ import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   // components directly define which have parent app
@@ -22,14 +23,14 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     AboutComponent,
     TermsAndConditionComponent,
     PrivacyPolicyComponent,
-    LoginComponent,
     SignupComponent,
     ForgetPasswordComponent,
     ChangePasswordComponent,
+    LoginComponent,
   ],
 
   // imports all the modules which have parent app
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
