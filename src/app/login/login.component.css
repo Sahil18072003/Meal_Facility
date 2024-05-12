@@ -1,3 +1,9 @@
+/* Body */
+.login-page {
+    margin-top: 0;
+}
+
+/* Login Content */
 .login-content {
     display: flex;
     align-items: flex-start;
@@ -10,13 +16,14 @@
     }
 }
 
+/* Left Content */
 .login-content .login-content-lt {
     flex: 0 0 65%;
     width: 65%;
     background-size: cover !important;
     height: 100vh;
     position: relative;
-    background: url(../../assets/bg.jpg) no-repeat top center;
+    background: url(./../../assets/bg.jpg) no-repeat top center;
 }
 
 @media (max-width: 991.98px) {
@@ -24,7 +31,7 @@
         flex: 0 0 100%;
         width: 100%;
         height: 50vh;
-        background: url(../../assets/bg.jpg) no-repeat top center;
+        background: url(./../../assets//bg-sm.jpg) no-repeat top center;
     }
 }
 
@@ -34,6 +41,7 @@
     }
 }
 
+/* Right Content */
 .login-content .login-content-rt {
     flex: 0 0 35%;
     width: 35%;
@@ -55,21 +63,14 @@
     }
 }
 
+/* Login Box */
 .login-content .login-content-rt .login-box {
     min-width: 480px;
     max-width: 480px;
     background-color: #fff;
     perspective: 800px;
     transition: all 0.5s ease-in-out;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
     border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
     padding: 20px;
     margin: 40px 0;
 }
@@ -94,6 +95,7 @@
     }
 }
 
+/* Logo Wrapper */
 .login-content .login-content-rt .login-box .logo-wrapper {
     display: flex;
     align-items: center;
@@ -106,15 +108,17 @@
 }
 
 .login-content .login-content-rt .login-box .logo-wrapper span {
-    color: #e23e3f;
+    color: #E23E3F;
     font-size: 34px;
     font-weight: 700;
 }
 
+/* Form Group */
 .login-content .login-content-rt .login-box .form-group {
     margin-bottom: 30px;
 }
 
+/* Login Head */
 .login-content .login-content-rt .login-box .login-head {
     margin-top: 0;
     margin-bottom: 22px;
@@ -124,6 +128,7 @@
     font-weight: 700;
 }
 
+/* Login Text */
 .login-content .login-content-rt .login-box .login-text {
     color: rgba(0, 0, 0, 0.6);
     text-align: left;
@@ -132,6 +137,7 @@
     margin-bottom: 60px;
 }
 
+/* Label */
 .login-content .login-content-rt .login-box label {
     color: #000;
     font-weight: 500;
@@ -139,57 +145,43 @@
     margin-bottom: 15px;
 }
 
-.login-content .login-content-rt .login-box label .extric {
-    color: #d13434;
-}
-
+/* Form Control */
 .login-content .login-content-rt .login-box .form-control {
-    border: 1px solid #c9c9c9;
+    border: 1px solid #C9C9C9;
     height: 57px;
     border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
     font-size: 16px;
     color: #000;
     font-weight: 400;
     padding: 6px 12px 6px 24px;
 }
 
+/* Input Addon */
 .login-content .login-content-rt .login-box .input-addon {
     position: relative;
+    display: flex;
+    align-items: flex-end;
 }
 
-.login-content .login-content-rt .login-box .input-addon i {
-    position: absolute;
-    top: 57%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    z-index: 1;
-}
-
+/* Icon After */
 .login-content .login-content-rt .login-box .input-addon .icon-after {
     position: absolute;
-    right: 18px;
+    right: 12px;
     top: 50%;
-    transform: translate(0, -50%);
-    -webkit-transform: translate(0, -50%);
-    -moz-transform: translate(0, -50%);
-    -ms-transform: translate(0, -50%);
-    -o-transform: translate(0, -50%);
+    transform: translateY(-50%);
     font-size: 20px;
-    color: #3e3d47;
+    color: #3E3D47;
 }
 
 .login-content .login-content-rt .login-box .input-addon .icon-after.icon-green {
-    color: #34bf00;
+    color: #34BF00;
 }
 
 .login-content .login-content-rt .login-box .input-addon .icon-after.icon-red {
-    color: #d13434;
+    color: #D13434;
 }
 
+/* Utility */
 .login-content .login-content-rt .login-box .utility {
     text-align: right;
 }
@@ -201,15 +193,16 @@
 }
 
 .login-content .login-content-rt .login-box .utility p a {
-    color: #3377c5;
+    color: #3377C5;
     text-decoration: underline;
 }
 
 .login-content .login-content-rt .login-box .utility p a:hover {
-    color: #3377c5;
+    color: #3377C5;
     text-decoration: underline;
 }
 
+/* Button Container */
 .login-content .login-content-rt .login-box .btn-container {
     margin-top: 35px;
     margin-bottom: 0;
@@ -217,25 +210,110 @@
 
 .login-content .login-content-rt .login-box .btn-container .btn {
     width: 100%;
+}
+
+/* Login Form */
+.login-content .login-content-rt .login-box .login-form {
+    position: relative;
+    backface-visibility: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Form Control Styles */
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-family: "Roboto", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #FFF;
+    background-clip: padding-box;
+    border: 2px solid #C9C9C9;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-control {
+        transition: none;
+    }
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #FFF;
+    border-color: #E23E3F;
+    outline: 0;
+    box-shadow: none;
+}
+
+.form-control::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+/* Checkbox Styles */
+.checkbox__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox__checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #ccc;
+}
+
+.checkbox__title {
+    margin-left: 25px;
+}
+
+/* Link Styles */
+.form-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.form-link:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+/* Button Styles */
+.btn-container {
+    margin-top: 35px;
+    margin-bottom: 0;
+}
+
+.btn-container .btn {
+    width: 100%;
     height: 50px;
     color: white;
-    background-color: rgba(255, 0, 0, 0.774);
+    background-color: rgba(255, 0, 0, 0.9);
+    font-weight: 500;
 }
 
-.fa-solid {
-    position: absolute;
-    top: 28%;
-    right: 4%;
-    cursor: pointer;
+.btn-container .btn:hover {
+    background-color: rgba(236, 3, 3, 0.895);
 }
 
-.fa-eye .fa {
-    position: absolute;
-    top: 28%;
-    right: 4%;
-    cursor: pointer;
-}
-
+/* Icon Styles */
+.fa-solid,
+.fa-eye .fa,
 .fa {
     position: absolute;
     top: 28%;

@@ -6,7 +6,6 @@
 
 .terms-and-condition {
     font-family: 'Open Sans', sans-serif;
-    /* Changed font family to Open Sans */
     font-size: 16px;
     color: #333;
     line-height: 1.6;
@@ -16,7 +15,6 @@
 
 .head-point {
     font-family: 'Montserrat', sans-serif;
-    /* Changed font family to Montserrat */
     color: rgb(16, 5, 100);
     font-size: 24px;
     font-weight: bold;
@@ -27,18 +25,19 @@
     width: 80%;
     margin: 0 auto;
     box-shadow: 0px 4px 42px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+    border-radius: 24px;
     padding: 2rem;
     border: 2px solid rgb(16, 5, 100);
+    background-color: #cbe2fb;
 }
 
 .t-title {
     font-family: 'Montserrat', sans-serif;
-    /* Changed font family to Montserrat */
     color: rgb(16, 5, 100);
     text-align: center;
     font-size: 36px;
     padding: 10px 0;
+    font-weight: 700;
 }
 
 .first {
