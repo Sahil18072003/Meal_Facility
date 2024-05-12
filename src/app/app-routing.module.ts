@@ -5,9 +5,9 @@ import { TermsAndConditionComponent } from './terms-and-condition/terms-and-cond
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -33,8 +33,8 @@ const routes: Routes = [
     data: { hideHeaderFooter: true },
   },
   {
-    path: 'forget-password',
-    component: ForgetPasswordComponent,
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
     data: { hideHeaderFooter: true },
   },
   {

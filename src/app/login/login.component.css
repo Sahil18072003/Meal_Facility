@@ -1,7 +1,4 @@
-@import '~@fortawesome/fontawesome-free/css/all.css';
-
 .login-content {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -19,7 +16,7 @@
     background-size: cover !important;
     height: 100vh;
     position: relative;
-    background: url(./../../assets/Foody.jpg) no-repeat top center;
+    background: url(../../assets/bg.jpg) no-repeat top center;
 }
 
 @media (max-width: 991.98px) {
@@ -27,7 +24,7 @@
         flex: 0 0 100%;
         width: 100%;
         height: 50vh;
-        background: url(./../../assets/bg-sm.jpg) no-repeat top center;
+        background: url(../../assets/bg.jpg) no-repeat top center;
     }
 }
 
@@ -100,7 +97,7 @@
 .login-content .login-content-rt .login-box .logo-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin-bottom: 48px;
 }
 
@@ -115,7 +112,7 @@
 }
 
 .login-content .login-content-rt .login-box .form-group {
-    margin: 10px 10px 10px 10px;
+    margin-bottom: 30px;
 }
 
 .login-content .login-content-rt .login-box .login-head {
@@ -148,7 +145,7 @@
 
 .login-content .login-content-rt .login-box .form-control {
     border: 1px solid #c9c9c9;
-    height: 40px;
+    height: 57px;
     border-radius: 8px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -162,6 +159,14 @@
 
 .login-content .login-content-rt .login-box .input-addon {
     position: relative;
+}
+
+.login-content .login-content-rt .login-box .input-addon i {
+    position: absolute;
+    top: 57%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 1;
 }
 
 .login-content .login-content-rt .login-box .input-addon .icon-after {

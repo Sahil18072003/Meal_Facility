@@ -10,10 +10,10 @@ import { AboutComponent } from './about/about.component';
 import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { SignupComponent } from './signup/signup.component';
-import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginComponent } from './login/login.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   // components directly define which have parent app
@@ -25,10 +25,10 @@ import { OtpVerificationComponent } from './otp-verification/otp-verification.co
     TermsAndConditionComponent,
     PrivacyPolicyComponent,
     SignupComponent,
-    ForgetPasswordComponent,
     ChangePasswordComponent,
     LoginComponent,
     OtpVerificationComponent,
+    ForgotPasswordComponent,
   ],
 
   // imports all the modules which have parent app
