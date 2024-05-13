@@ -12,15 +12,15 @@
                     <p class="login-text">Enter your credentials to access your account.</p>
 
                     <div class="form-group">
-                        <label class="control-label">User Name</label>
+                        <label class="control-label">Email</label>
                         <div class="input-addon"
-                            [class.error]="loginForm.controls['username'].dirty && loginForm.hasError('required','username')">
-                            <input formControlName="Username" class="form-control" type="text"
-                                placeholder="Robert Smith" autofocus>
+                            [class.error]="loginForm.controls['email'].dirty && loginForm.hasError('required','email')">
+                            <input formControlName="Email" class="form-control" type="text"
+                                placeholder="robertsmith@rishabhsoft.com" autofocus>
                             <!-- <div class="icon-after icon-green"><i class="fa fa-check" aria-hidden="true"></i></div> -->
                         </div>
-                        <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required','username')"
-                            class="text-danger">Username is Required</small>
+                        <small *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')"
+                            class="text-danger">Email is Required</small>
                     </div>
 
                     <div class="form-group">
@@ -56,7 +56,7 @@
 
                     <div class="form-group mb-0">
                         <div class="utility padding">
-                            <p>Don't have a account? <a routerLink="/signup" class="form-link">Sing Up</a> </p>
+                            <p>Don't have a account? <a routerLink="/signup" class="form-link">Sign Up</a> </p>
                         </div>
                     </div>
                 </form>

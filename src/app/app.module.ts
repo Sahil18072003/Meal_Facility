@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   // components directly define which have parent app
@@ -31,6 +32,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     OtpVerificationComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    HomeComponent,
   ],
 
   // imports all the modules which have parent app

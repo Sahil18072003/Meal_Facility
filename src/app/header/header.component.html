@@ -1,36 +1,56 @@
 <div class="toolbar" role="banner">
-    <img width="55" alt="Rise Logo" src="./../../assets/logo-white.svg" />
-    <span class="title">Meal Facility</span>
-    <div class="spacer"></div>
-    <ul>
-        <li><a routerLink="/about" class="list-items" routerLinkActive="active" ariaCurrentWhenActive="page">About</a>
-        </li>
-        <li><a routerLink="/terms-and-condition" class="list-items" routerLinkActive="active"
-                ariaCurrentWhenActive="page">Terms And Condition</a></li>
-        <li><a routerLink="/privacy-policy" class="list-items" routerLinkActive="active"
-                ariaCurrentWhenActive="page">Privacy Policy</a></li>
-        <li><a routerLink="/login" class="list-items" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a>
-        </li>
-        <li><a routerLink="/signup" class="list-items" routerLinkActive="active" ariaCurrentWhenActive="page">Signup</a>
-        </li>
-        <li><a routerLink="/forgot-password" class="list-items" routerLinkActive="active"
-                ariaCurrentWhenActive="page">Forgot Password</a>
-        </li>
-        <li><a routerLink="/change-password" class="list-items" routerLinkActive="active"
-                ariaCurrentWhenActive="page">Change Password</a>
-        </li>
-        <div class="social">
-            <a routerLink="/terms-and-condition" aria-label="Notification"><i
-                    class="fa-sharp fa-regular fa-bell"></i></a>
-
-            <a class="app-nav__item dropdown-toggle" data-toggle="modal" data-target="#sidemenu"
-                aria-label="side menu"><i class="fa fa-bars" aria-hidden="true"></i></a>
-        </div>
-    </ul>
+        <img width="55" alt="Rise Logo" src="./../../assets/logo-white.svg" />
+        <span class="title">Meal Facility</span>
+        <div class="spacer"></div>
+        <ul class="social">
+                <!-- <li><a routerLink="/about" class="list-items" routerLinkActive="active"
+                                ariaCurrentWhenActive="page">About</a>
+                </li> -->
+                <!-- <li><a routerLink="/terms-and-condition" class="list-items" routerLinkActive="active"
+                                ariaCurrentWhenActive="page">Terms And Condition</a></li> -->
+                <li><a routerLink="/privacy-policy" class="list-items" routerLinkActive="active"
+                                ariaCurrentWhenActive="page">Privacy Policy</a></li>
+                <li><a routerLink="/login" class="list-items" routerLinkActive="active"
+                                ariaCurrentWhenActive="page">Login</a>
+                </li>
+                <li><a routerLink="/signup" class="list-items" routerLinkActive="active"
+                                ariaCurrentWhenActive="page">Signup</a>
+                </li>
+                <li><a routerLink="/forgot-password" class="list-items" routerLinkActive="active"
+                                ariaCurrentWhenActive="page">Forgot Password</a>
+                </li>
+                <li><a routerLink="/change-password" class="list-items" routerLinkActive="active"
+                                ariaCurrentWhenActive="page">Change Password</a>
+                </li>
+                <li><a routerLink="/home" class="list-items" routerLinkActive="active"
+                                ariaCurrentWhenActive="page">Home</a>
+                </li>
+                <li><a routerLink="/reset-password" class="list-items" routerLinkActive="active"
+                                ariaCurrentWhenActive="page">Reset Password</a>
+                </li>
+                <!-- <li><a routerLink="/terms-and-condition" aria-label="Notification" class="list-items"><i
+                                        class="fa-sharp fa-regular fa-bell"></i></a></li> -->
+                <li><a class="list-items" data-toggle="modal" data-target="#sidemenu" (click)="openSidebar()"
+                                aria-label="side menu"><i class="fa fa-bars" aria-hidden="true"></i></a></li>
+        </ul>
 </div>
 
 <div class="modal fade side-modal" id="sidemenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog modal-md" role="document">
-
-    </div>
+        <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Side Menu</h5>
+                                <button type="button" class="btn-close" data-dismiss="modal"
+                                        aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                                <!-- Your modal content goes here -->
+                                <p>This is some placeholder content for your modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                </div>
+        </div>
 </div>
