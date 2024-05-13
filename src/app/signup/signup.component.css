@@ -52,8 +52,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow-y: scroll;
-    overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: #666b7a rgba(33, 37, 41, 0);
 }
@@ -76,6 +74,7 @@
     border-radius: 12px;
     padding: 20px;
     margin: 40px 0;
+    overflow-y: scroll;
 }
 
 @media (max-width: 1500px) {
@@ -99,14 +98,12 @@
 }
 
 /* Logo Wrapper */
-/* Logo Wrapper */
 .signup-content .signup-content-rt .signup-box .logo-wrapper {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     margin-bottom: 48px;
     z-index: 1;
-    /* Add this line */
 }
 
 .signup-content .signup-content-rt .signup-box .logo-wrapper img {
@@ -190,7 +187,8 @@
 
 /* Utility */
 .signup-content .signup-content-rt .signup-box .utility {
-    text-align: right;
+    text-align: center;
+    padding: 1rem 0 0 0;
 }
 
 .signup-content .signup-content-rt .signup-box .utility p {
@@ -201,7 +199,7 @@
 
 .signup-content .signup-content-rt .signup-box .utility p a {
     color: #3377C5;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .signup-content .signup-content-rt .signup-box .utility p a:hover {
@@ -268,26 +266,6 @@
     opacity: 1;
 }
 
-/* Checkbox Styles */
-.checkbox__input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.checkbox__checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #ccc;
-}
-
-.checkbox__title {
-    margin-left: 25px;
-}
-
 /* Link Styles */
 .form-link {
     color: blue;
@@ -315,7 +293,7 @@
 }
 
 .btn-container .btn:hover {
-    background-color: rgba(236, 3, 3, 0.895);
+    background-color: rgba(214, 3, 3, 0.895);
 }
 
 /* Icon Styles */
