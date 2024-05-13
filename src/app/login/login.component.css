@@ -165,11 +165,15 @@
     align-items: flex-end;
 }
 
+.login-content .login-content-rt .login-box .input-addon.error {
+    border: 1px solid red;
+    border-radius: 8px;
+}
+
 /* Icon After */
 .login-content .login-content-rt .login-box .input-addon .icon-after {
     position: absolute;
-    right: 12px;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     font-size: 20px;
     color: #3E3D47;
@@ -183,6 +187,13 @@
     color: #D13434;
 }
 
+.login-content .login-content-rt .login-box .input-addon i {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 10px;
+}
+
 /* Utility */
 .login-content .login-content-rt .login-box .utility {
     text-align: center;
@@ -194,7 +205,7 @@
     margin-bottom: 0;
 }
 
-.padding{
+.padding {
     padding: 1rem 0 0 0;
 }
 
@@ -254,6 +265,19 @@
     border-color: #E23E3F;
     outline: 0;
     box-shadow: none;
+}
+
+.form-control.error {
+    border: 1px solid red;
+    color: red;
+}
+
+input[type='text'],
+input[type='password'] {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
 }
 
 .form-control::placeholder {
@@ -365,9 +389,12 @@
 /* Icon Styles */
 .fa-solid,
 .fa-eye .fa,
+.fa-eye-slash .fa,
+.fa-check .fa,
 .fa {
     position: absolute;
-    top: 28%;
-    right: 4%;
+    top: 20%;
+    left: 95%;
+    right: 10%;
     cursor: pointer;
 }

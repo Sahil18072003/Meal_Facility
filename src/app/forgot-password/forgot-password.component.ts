@@ -13,7 +13,6 @@ import {
 })
 export class ForgotPasswordComponent {
   forgotPasswordForm!: FormGroup;
-
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
@@ -24,12 +23,12 @@ export class ForgotPasswordComponent {
 
   onSubmite() {
     if (this.forgotPasswordForm.valid) {
-      console.log(this.forgotPasswordForm.value);
-      alert('Form Login successfully.');
       //send data to database
+      console.log(this.forgotPasswordForm.value);
+      alert('Otp sent successfully.');
     } else {
+      //throw a error using toaster and with  required fields
       console.log('Form is not valid');
-      //throw a error using toaster and with  required fileds
       this.validdateAllFromFileds(this.forgotPasswordForm);
       alert('Your form is invalid');
     }

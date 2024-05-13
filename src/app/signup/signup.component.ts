@@ -12,16 +12,17 @@ import {
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
-  hide = true;
-  type = 'password';
+  type: string = 'password';
+  isText: boolean = false;
+  eyeIcon: string = 'fa-eye-slash';
 
   toggleVisibility(): void {
-    this.hide = !this.hide;
-    this.type == 'password' ? (this.type = 'text') : (this.type = 'password');
+    this.isText = !this.isText;
+    this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
+    this.isText ? (this.type = 'text') : (this.type = 'password');
   }
 
   signupForm!: FormGroup;
-
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
@@ -37,12 +38,12 @@ export class SignupComponent {
 
   onSubmite() {
     if (this.signupForm.valid) {
+      //Send the obj to database
       console.log(this.signupForm.value);
       alert('Form signup successfully.');
-      //send data to database
     } else {
-      console.log('form is not valid');
       //throw a error using toaster and with  required fileds
+      console.log('form is not valid');
       this.validdateAllFromFileds(this.signupForm);
       alert('Your form is invalid');
     }

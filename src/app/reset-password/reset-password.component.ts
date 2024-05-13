@@ -12,13 +12,22 @@ import {
   styleUrls: ['./reset-password.component.css'],
 })
 export class ResetPasswordComponent {
-  resetPasswordForm!: FormGroup;
+  type: string = 'password';
+  isText: boolean = false;
+  eyeIcon: string = 'fa-eye-slash';
 
+  toggleVisibility(): void {
+    this.isText = !this.isText;
+    this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
+    this.isText ? (this.type = 'text') : (this.type = 'password');
+  }
+
+  resetPasswordForm!: FormGroup;
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.resetPasswordForm = this.fb.group({
-      newPassword: ['', Validators.required],
+      password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
     });
   }
@@ -26,7 +35,7 @@ export class ResetPasswordComponent {
   onSubmite() {
     if (this.resetPasswordForm.valid) {
       console.log(this.resetPasswordForm.value);
-      alert('Form Login successfully.');
+      alert('Password reset successfully.');
       //send data to database
     } else {
       console.log('Form is not valid');

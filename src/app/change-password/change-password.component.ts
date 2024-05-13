@@ -12,8 +12,17 @@ import {
   styleUrls: ['./change-password.component.css'],
 })
 export class ChangePasswordComponent {
-  changePasswordForm!: FormGroup;
+  type: string = 'password';
+  isText: boolean = false;
+  eyeIcon: string = 'fa-eye-slash';
 
+  toggleVisibility(): void {
+    this.isText = !this.isText;
+    this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
+    this.isText ? (this.type = 'text') : (this.type = 'password');
+  }
+
+  changePasswordForm!: FormGroup;
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
@@ -26,7 +35,7 @@ export class ChangePasswordComponent {
   onSubmite() {
     if (this.changePasswordForm.valid) {
       console.log(this.changePasswordForm.value);
-      alert('Form Login successfully.');
+      alert('Password change successfully.');
       //send data to database
     } else {
       console.log('Form is not valid');

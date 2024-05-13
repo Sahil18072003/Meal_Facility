@@ -18,14 +18,14 @@ export class OtpVerificationComponent {
 
   ngOnInit(): void {
     this.otpVerificationForm = this.fb.group({
-      email: ['', Validators.required],
+      otp: ['', Validators.required],
     });
   }
 
   onSubmite() {
     if (this.otpVerificationForm.valid) {
       console.log(this.otpVerificationForm.value);
-      alert('Form Login successfully.');
+      alert('Otp verification successfully.');
       //send data to database
     } else {
       console.log('Form is not valid');

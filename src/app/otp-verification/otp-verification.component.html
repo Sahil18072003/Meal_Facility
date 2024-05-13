@@ -12,15 +12,16 @@
                     <p class="otp-text">Enter the OTP below to continue.</p>
 
                     <div class="form-group">
-                        <label class="control-label">OTP</label>
+                        <label class="control-label">Enter Otp</label>
                         <div class="input-addon"
-                            [class.error]="otpVerificationForm.controls['OtpVerification'].dirty && otpVerificationForm.hasError('required', 'OtpVerification')">
-                            <input formControlName="OtpVerification" class="form-control" type="password"
-                                placeholder="Enter Otp" required />
-                            <small
-                                *ngIf="otpVerificationForm.controls['OtpVerification'].dirty && otpVerificationForm.hasError('required', 'OtpVerification')"
-                                class="text-danger">Enter Otp again</small>
+                            [class.error]="otpVerificationForm.controls['otp'].dirty && otpVerificationForm.hasError('required', 'otp')">
+                            <input formControlName="otp" class="form-control" type="text" placeholder="Enter Otp"
+                                autofocus />
+                            <i class='fa fa-check icon-after icon-green'></i>
                         </div>
+                        <small
+                            *ngIf="otpVerificationForm.controls['otp'].dirty && otpVerificationForm.hasError('required', 'otp')"
+                            class="text-danger">*Otp is required</small>
                     </div>
 
                     <div class="form-group btn-container">

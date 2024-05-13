@@ -12,33 +12,34 @@ import {
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  hide = true;
-  type = 'password';
+  type: string = 'password';
+  isText: boolean = false;
+  eyeIcon: string = 'fa-eye-slash';
 
   toggleVisibility(): void {
-    this.hide = !this.hide;
-    this.type == 'password' ? (this.type = 'text') : (this.type = 'password');
+    this.isText = !this.isText;
+    this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
+    this.isText ? (this.type = 'text') : (this.type = 'password');
   }
 
   loginForm!: FormGroup;
-
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
 
   onSubmite() {
     if (this.loginForm.valid) {
+      //Send the obj to database
       console.log(this.loginForm.value);
       alert('Form Login successfully.');
-      //send data to database
     } else {
+      //throw a error using toaster and with required fields
       console.log('form is not valid');
-      //throw a error using toaster and with  required fileds
       this.validdateAllFromFileds(this.loginForm);
       alert('Your form is invalid');
     }

@@ -48,7 +48,7 @@
     flex: 0 0 35%;
     width: 35%;
     background-color: #fff;
-    height: 145vh;
+    height: 160vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -116,7 +116,6 @@
     font-weight: 700;
 }
 
-
 /* Form Group */
 .signup-content .signup-content-rt .signup-box .form-group {
     margin-bottom: 30px;
@@ -167,11 +166,15 @@
     align-items: flex-end;
 }
 
+.signup-content .signup-content-rt .signup-box .input-addon.error {
+    border: 1px solid red;
+    border-radius: 8px;
+}
+
 /* Icon After */
 .signup-content .signup-content-rt .signup-box .input-addon .icon-after {
     position: absolute;
-    right: 12px;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     font-size: 20px;
     color: #3E3D47;
@@ -183,6 +186,13 @@
 
 .signup-content .signup-content-rt .signup-box .input-addon .icon-after.icon-red {
     color: #D13434;
+}
+
+.signup-content .signup-content-rt .signup-box .input-addon i {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 10px;
 }
 
 /* Utility */
@@ -299,9 +309,12 @@
 /* Icon Styles */
 .fa-solid,
 .fa-eye .fa,
+.fa-eye-slash .fa,
+.fa-check .fa,
 .fa {
     position: absolute;
-    top: 28%;
-    right: 4%;
+    top: 20%;
+    left: 95%;
+    right: 10%;
     cursor: pointer;
 }
