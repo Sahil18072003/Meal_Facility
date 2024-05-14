@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,11 @@ export class LoginComponent {
   }
 
   loginForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -33,11 +38,22 @@ export class LoginComponent {
     });
   }
 
-  onSubmite() {
+  onLogin() {
     if (this.loginForm.valid) {
       //Send the obj to database
+      // alert('Form Login successfully.');
+      this.auth.login(this.loginForm.value).subscribe({
+        next: (res) => {
+          alert(res.message);
+          this.loginForm.reset();
+          this.router.navigate(['home']);
+        },
+        error: (err) => {
+          alert(err?.error.message);
+        },
+      });
+
       console.log(this.loginForm.value);
-      alert('Form Login successfully.');
     } else {
       //throw a error using toaster and with required fields
       console.log('form is not valid');
