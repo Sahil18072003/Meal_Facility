@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import ValidateForm from '../helpers/validateform';
 
 @Component({
   selector: 'app-signup',
@@ -23,13 +20,12 @@ export class SignupComponent {
   }
 
   signupForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      userName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
@@ -40,23 +36,12 @@ export class SignupComponent {
     if (this.signupForm.valid) {
       //Send the obj to database
       console.log(this.signupForm.value);
-      alert('Form signup successfully.');
+      this.toastr.success('Form submitted successfully.', 'Success');
     } else {
-      //throw a error using toaster and with  required fileds
-      console.log('form is not valid');
-      this.validdateAllFromFileds(this.signupForm);
-      alert('Your form is invalid');
+      //throw an error using toaster and with required fields
+      console.log('Form is not valid');
+      ValidateForm.validdateAllFromFileds(this.signupForm);
+      this.toastr.error('Your form is invalid.', 'Error');
     }
-  }
-
-  private validdateAllFromFileds(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach((field) => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsDirty({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validdateAllFromFileds(control);
-      }
-    });
   }
 }

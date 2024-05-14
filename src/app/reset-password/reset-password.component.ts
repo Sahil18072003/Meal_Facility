@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import ValidateForm from '../helpers/validateform';
 
 @Component({
   selector: 'app-login',
@@ -40,19 +41,8 @@ export class ResetPasswordComponent {
     } else {
       console.log('Form is not valid');
       //throw a error using toaster and with  required fileds
-      this.validdateAllFromFileds(this.resetPasswordForm);
+      ValidateForm.validdateAllFromFileds(this.resetPasswordForm);
       alert('Your form is invalid');
     }
-  }
-
-  private validdateAllFromFileds(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach((field) => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsDirty({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validdateAllFromFileds(control);
-      }
-    });
   }
 }

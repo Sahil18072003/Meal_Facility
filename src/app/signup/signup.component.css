@@ -103,7 +103,6 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 48px;
-    z-index: 1;
 }
 
 .signup-content .signup-content-rt .signup-box .logo-wrapper img {
@@ -263,6 +262,19 @@
     border-color: #E23E3F;
     outline: 0;
     box-shadow: none;
+}
+
+.form-control.error {
+    border: 1px solid red;
+    color: red;
+}
+
+input[type='text'],
+input[type='password'] {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
 }
 
 .form-control::placeholder {
