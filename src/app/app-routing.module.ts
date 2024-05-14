@@ -29,6 +29,11 @@ const routes: Routes = [
     component: PrivacyPolicyComponent,
   },
   {
+    path: '',
+    component: LoginComponent,
+    data: { hideHeaderFooter: true },
+  },
+  {
     path: 'login',
     component: LoginComponent,
     data: { hideHeaderFooter: true },
