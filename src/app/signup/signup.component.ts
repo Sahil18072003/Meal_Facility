@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-signup',
@@ -24,7 +25,8 @@ export class SignupComponent {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -33,22 +35,29 @@ export class SignupComponent {
       lastName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      // confirmPassword: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
     });
   }
 
   onSubmite() {
     if (this.signupForm.valid) {
       // Send only necessary fields to the database
-      // alert('User created successfully.');
       this.auth.signUp(this.signupForm.value).subscribe({
         next: (res) => {
-          alert(res.message);
           this.signupForm.reset();
+          this.toast.success({
+            detail: 'success',
+            summary: res.message,
+            duration: 3000,
+          });
           this.router.navigate(['login']);
         },
         error: (err) => {
-          alert(err?.error.message);
+          this.toast.success({
+            detail: 'error',
+            summary: err?.error.message,
+            duration: 3000,
+          });
         },
       });
 
@@ -57,7 +66,11 @@ export class SignupComponent {
       //throw an error using toaster and with required fields
       console.log('Form is not valid');
       ValidateForm.validdateAllFromFileds(this.signupForm);
-      alert('Your form is invalid.');
+      this.toast.success({
+        detail: 'warn',
+        summary: 'Your form is invalid',
+        duration: 3000,
+      });
     }
   }
 }

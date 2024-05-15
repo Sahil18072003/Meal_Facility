@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrModule } from "ngx-toastr"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,7 @@ import { OtpVerificationComponent } from './otp-verification/otp-verification.co
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomeComponent } from './home/home.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   // components directly define which have parent app
@@ -36,6 +37,7 @@ import { HomeComponent } from './home/home.component';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     HomeComponent,
+    NotificationComponent,
   ],
 
   // imports all the modules which have parent app
@@ -45,14 +47,9 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-top-right',
-      preventDuplicates: true,
-      closeButton: true,
-      progressBar: true,
-    }),
+    ToastrModule.forRoot({})
   ],
-  providers: [ToastrService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

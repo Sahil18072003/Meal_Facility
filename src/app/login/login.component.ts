@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +25,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private toast: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -41,15 +39,16 @@ export class LoginComponent {
   onLogin() {
     if (this.loginForm.valid) {
       //Send the obj to database
-      // alert('Form Login successfully.');
       this.auth.login(this.loginForm.value).subscribe({
         next: (res) => {
-          alert(res.message);
+          // alert(res.message);
           this.loginForm.reset();
+          this.toast.success("Success");
           this.router.navigate(['home']);
         },
         error: (err) => {
-          alert(err?.error.message);
+          // alert(err?.error.message);
+          this.toast.error(err?.error.message);
         },
       });
 
@@ -58,7 +57,11 @@ export class LoginComponent {
       //throw a error using toaster and with required fields
       console.log('form is not valid');
       ValidateForm.validdateAllFromFileds(this.loginForm);
-      alert('Your form is invalid');
+      // this.toast.warning({
+      //   detail: 'warn',
+      //   summary: 'Your form is invalid',
+      //   duration: 3000,
+      // });
     }
   }
 }
