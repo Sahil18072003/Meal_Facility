@@ -1,4 +1,5 @@
 import { Component, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import { Component, Renderer2, ViewChild, ElementRef } from '@angular/core';
 export class HeaderComponent {
   @ViewChild('sidemenu') sidemenu!: ElementRef;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private auth: AuthService) {}
 
   openSidebar() {
     const modal = this.sidemenu.nativeElement;
@@ -31,5 +32,9 @@ export class HeaderComponent {
         modalBackdrop.remove();
       }
     }
+  }
+
+  Logout() {
+    this.auth.signOut();
   }
 }

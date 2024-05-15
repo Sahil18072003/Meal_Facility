@@ -44,29 +44,30 @@ export class SignupComponent {
       // Send only necessary fields to the database
       this.auth.signUp(this.signupForm.value).subscribe({
         next: (res) => {
+          alert(res.message);
           this.signupForm.reset();
-          this.toast.success({
-            detail: 'success',
-            summary: res.message,
-            duration: 3000,
-          });
+          // this.toast.success(res.message, 'success');
+          // this.toast.success({
+          //   detail: 'success',
+          //   summary: res.message,
+          //   duration: 3000,
+          // });
           this.router.navigate(['login']);
         },
         error: (err) => {
-          this.toast.success({
-            detail: 'error',
-            summary: err?.error.message,
-            duration: 3000,
-          });
+          alert(err?.error.message);
+          // this.toast.error(err?.error.message);
+          // this.toast.error({
+          //   detail: 'error',
+          //   summary: err?.error.message,
+          //   duration: 3000,
+          // });
         },
       });
-
-      console.log(this.signupForm.value);
     } else {
       //throw an error using toaster and with required fields
-      console.log('Form is not valid');
       ValidateForm.validdateAllFromFileds(this.signupForm);
-      this.toast.success({
+      this.toast.warning({
         detail: 'warn',
         summary: 'Your form is invalid',
         duration: 3000,
