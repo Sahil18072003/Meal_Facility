@@ -43,3 +43,6 @@ body {
     border-radius: 10px;
     border: 0px none #ffffff;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

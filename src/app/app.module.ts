@@ -21,6 +21,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HomeComponent } from './home/home.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { MaterialModule } from './material-module';
 
 @NgModule({
   // components directly define which have parent app
@@ -49,6 +50,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     HttpClientModule,
     ToastrModule.forRoot({}),
     NgToastModule,
+    MaterialModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
