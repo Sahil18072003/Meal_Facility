@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+// import { ToastrService } from 'ngx-toastr';
 import { NgToastService } from 'ng-angular-popup';
 
 @Component({
@@ -28,7 +28,7 @@ export class LoginComponent {
     private auth: AuthService,
     private router: Router,
     // private toast: ToastrService,
-    private toast: NgToastService
+    private toastr: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -46,22 +46,22 @@ export class LoginComponent {
           alert(res.message);
           this.loginForm.reset();
           this.auth.storeTokan(res.token);
-          // this.toast.success(res.message, 'success');
-          // this.toast.success({
-          //   detail: 'success',
-          //   summary: res.message,
-          //   duration: 3000,
-          // });
+          // this.toastr.success(res.message, 'success');
+          this.toastr.success({
+            detail: 'success',
+            summary: res.message,
+            duration: 3000,
+          });
           this.router.navigate(['home']);
         },
         error: (err) => {
           alert(err?.error.message);
           // this.toast.error(err?.error.message);
-          // this.toast.error({
-          //   detail: 'error',
-          //   summary: err?.error.message,
-          //   duration: 3000,
-          // });
+          this.toastr.error({
+            detail: 'error',
+            summary: err?.error.message,
+            duration: 3000,
+          });
         },
       });
     } else {

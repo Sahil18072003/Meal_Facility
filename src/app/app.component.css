@@ -1,18 +1,9 @@
-/* Custom styles for ng-toast */
-.ng-toast {
-    /* Your custom styles here */
-    position: fixed;
-    margin-top: 20px;
-    margin-right: 20px;
-    z-index: 1000;
-    /* Ensure it's above other content */
+/* Initially hide the ng-toast */
+ng-toast {
+    display: none;
 }
 
-/* Example styling for toast message */
-.ng-toast-message {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+/* Show the ng-toast when a message occurs */
+.ng-toast.show {
+    display: block;
 }

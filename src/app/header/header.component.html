@@ -25,28 +25,178 @@
                 <li><a routerLink="/reset-password" class="list-items" routerLinkActive="active"
                                 ariaCurrentWhenActive="page">Reset Password</a>
                 </li> -->
-                <ul *ngIf="let user of users">
-                        <!-- <li>{{user.firstName}}</li> -->
-                </ul>
+                <button (click)="addBooking()" class="btn btn-primary" data-toggle="modal"
+                        data-target="#addBookingModal">Add Booking</button>
                 <button (click)="Logout()" class="btn btn-secondary btn-danger">Logout</button>
                 <li><a routerLink="/terms-and-condition" aria-label="Notification" class="list-items"><i
                                         class="fa-sharp fa-regular fa-bell"></i></a></li>
                 <li><a class="list-items" data-toggle="modal" data-target="#sidemenu" aria-label="side menu"><i
                                         class="fa fa-bars" aria-hidden="true"></i></a></li>
-                <div class="sidenav">
-                        <div class="logo-container">
-                                <button class="logo"></button>
-                                <div class="logo-text"></div>
-                                <button class="btn-close"></button>
-                        </div>
-                        <ul class="sidenav-nav">
-                                <li class="sidenav-nav-item">
-                                        <a href="" class="sidenav-nav-link">
-                                                <i class="sidnav-link-icon"></i>
-                                                <span class="sidenav-link-text"></span>
-                                        </a>
-                                </li>
-                        </ul>
-                </div>
         </ul>
+</div>
+
+<div class="modal fade side-modal" id="addBookingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Book a Meal</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                                <div class="form-group custom-radio">
+                                        <label>Select Catagory</label>
+                                        <div class="d-flex align-content-center justify-content-start">
+                                                <div class="radio-block">
+                                                        <input type="radio" id="test1" name="radio-group" checked>
+                                                        <label for="test1" class="mr-0">Employees</label>
+                                                </div>
+                                                <div class="radio-block">
+                                                        <input type="radio" id="test2" name="radio-group" checked>
+                                                        <label for="test2" class="mr-0">Non Employees</label>
+                                                </div>
+                                                <div class="radio-block">
+                                                        <input type="radio" id="test3" name="radio-group" checked>
+                                                        <label for="test3" class="mr-0">Custom Booking</label>
+                                                </div>
+                                        </div>
+
+                                </div>
+                                <div class="form-group custom-radio">
+                                        <label>Select Catagory</label>
+                                        <div class="d-flex align-content-center justify-content-start">
+                                                <div class="radio-block">
+                                                        <input type="radio" id="test4" name="radio-group" checked>
+                                                        <label for="test4" class="mr-0">Lunch</label>
+                                                </div>
+                                                <div class="radio-block">
+                                                        <input type="radio" id="test5" name="radio-group" checked>
+                                                        <label for="test5" class="mr-0">Dinner</label>
+                                                </div>
+                                        </div>
+
+                                </div>
+                                <div class="form-group mb-30">
+                                        <label class="custom-checkbox mb-0"><span class="checkbox__title">Weekend</span>
+                                                <input class="checkbox__input" type="checkbox" /><span
+                                                        class="checkbox__checkmark"></span>
+                                        </label>
+                                </div>
+                                <div class="form-group">
+                                        <label>Select Date (s)</label>
+                                        <div class="input-group date-picker-input">
+                                                <input type="text" class="form-control border-right-0"
+                                                        placeholder="Select Date" id="demoDate">
+                                                <div class="input-group-append bg-transparent">
+                                                        <span class="input-group-text bg-transparent"
+                                                                id="basic-addon2"><i class="icon-calendar"></i></span>
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                        <label>Select Account</label>
+                                        <div class="search-wrapper">
+                                                <input type="text" class="form-control"
+                                                        placeholder="Search Department..">
+                                                <i class="icon-search search-icon"></i>
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                        <label>Notes</label>
+                                        <textarea class="form-control" rows="4" placeholder="Type here.."></textarea>
+                                </div>
+                                <div class="form-group">
+                                        <label>Booking Count</label>
+                                        <input type="text" class="form-control" placeholder="100">
+                                </div>
+                                <div class="form-group">
+                                        <label>Select Employees</label>
+                                </div>
+                                <div class="table-responsive">
+                                        <table class="table table-hover responsive nowrap table-bordered">
+                                                <thead>
+                                                        <tr>
+                                                                <th>
+                                                                        <div class="form-group mb-0">
+                                                                                <label class="custom-checkbox">
+                                                                                        <input class="checkbox__input"
+                                                                                                type="checkbox" /><span
+                                                                                                class="checkbox__checkmark"></span>
+                                                                                </label>
+                                                                        </div>
+                                                                </th>
+                                                                <th>Employee ID</th>
+                                                                <th>Employee Name</th>
+                                                                <th>Department</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                        <tr>
+                                                                <td>
+                                                                        <div class="form-group mb-0">
+                                                                                <label class="custom-checkbox m-0">
+                                                                                        <input class="checkbox__input"
+                                                                                                type="checkbox" /><span
+                                                                                                class="checkbox__checkmark"></span>
+                                                                                </label>
+                                                                        </div>
+                                                                </td>
+                                                                <td>2001</td>
+                                                                <td>Thomas</td>
+                                                                <td>Analytics</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>
+                                                                        <div class="form-group mb-0">
+                                                                                <label class="custom-checkbox m-0">
+                                                                                        <input class="checkbox__input"
+                                                                                                type="checkbox" /><span
+                                                                                                class="checkbox__checkmark"></span>
+                                                                                </label>
+                                                                        </div>
+                                                                </td>
+                                                                <td>2001</td>
+                                                                <td>Thomas</td>
+                                                                <td>Analytics</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>
+                                                                        <div class="form-group mb-0">
+                                                                                <label class="custom-checkbox m-0">
+                                                                                        <input class="checkbox__input"
+                                                                                                type="checkbox" /><span
+                                                                                                class="checkbox__checkmark"></span>
+                                                                                </label>
+                                                                        </div>
+                                                                </td>
+                                                                <td>2001</td>
+                                                                <td>Thomas</td>
+                                                                <td>Analytics</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>
+                                                                        <div class="form-group mb-0">
+                                                                                <label class="custom-checkbox m-0">
+                                                                                        <input class="checkbox__input"
+                                                                                                type="checkbox" /><span
+                                                                                                class="checkbox__checkmark"></span>
+                                                                                </label>
+                                                                        </div>
+                                                                </td>
+                                                                <td>2001</td>
+                                                                <td>Thomas</td>
+                                                                <td>Analytics</td>
+                                                        </tr>
+                                                </tbody>
+                                        </table>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary">Cancel</button>
+                                <button type="button" class="btn btn-primary">Book</button>
+                        </div>
+                </div>
+        </div>
 </div>

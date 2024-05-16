@@ -1,4 +1,4 @@
-import { Component, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ApiService } from '../services/api.service';
 
@@ -8,20 +8,20 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  @ViewChild('sidemenu') sidemenu!: ElementRef;
+  showFiller = false;
 
   public users: any = [];
 
-  constructor(
-    private renderer: Renderer2,
-    private auth: AuthService,
-    private api: ApiService
-  ) {}
+  constructor(private auth: AuthService, private api: ApiService) {}
 
   ngOnInit() {
     this.api.getUsers().subscribe((res) => {
       this.users = res;
     });
+  }
+
+  addBooking() {
+    // Logic for adding booking
   }
 
   Logout() {
