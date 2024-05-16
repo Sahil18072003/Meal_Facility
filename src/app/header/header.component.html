@@ -25,30 +25,28 @@
                 <li><a routerLink="/reset-password" class="list-items" routerLinkActive="active"
                                 ariaCurrentWhenActive="page">Reset Password</a>
                 </li> -->
-                <button (click)="Logout()" class="btn btn-secondary btn-danger">Logout</button>        
+                <ul *ngIf="let user of users">
+                        <!-- <li>{{user.firstName}}</li> -->
+                </ul>
+                <button (click)="Logout()" class="btn btn-secondary btn-danger">Logout</button>
                 <li><a routerLink="/terms-and-condition" aria-label="Notification" class="list-items"><i
                                         class="fa-sharp fa-regular fa-bell"></i></a></li>
-                <li><a class="list-items" data-toggle="modal" data-target="#sidemenu" (click)="openSidebar()"
-                                aria-label="side menu"><i class="fa fa-bars" aria-hidden="true"></i></a></li>
-        </ul>
-</div>
-
-<div class="modal fade side-modal" id="sidemenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-        <div class="modal-dialog modal-md" role="document">
-                <div class="modal-content">
-                        <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Side Menu</h5>
-                                <button type="button" class="btn-close" data-dismiss="modal"
-                                        aria-label="Close"></button>
+                <li><a class="list-items" data-toggle="modal" data-target="#sidemenu" aria-label="side menu"><i
+                                        class="fa fa-bars" aria-hidden="true"></i></a></li>
+                <div class="sidenav">
+                        <div class="logo-container">
+                                <button class="logo"></button>
+                                <div class="logo-text"></div>
+                                <button class="btn-close"></button>
                         </div>
-                        <div class="modal-body">
-                                <!-- Your modal content goes here -->
-                                <p>This is some placeholder content for your modal.</p>
-                        </div>
-                        <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                        <ul class="sidenav-nav">
+                                <li class="sidenav-nav-item">
+                                        <a href="" class="sidenav-nav-link">
+                                                <i class="sidnav-link-icon"></i>
+                                                <span class="sidenav-link-text"></span>
+                                        </a>
+                                </li>
+                        </ul>
                 </div>
-        </div>
+        </ul>
 </div>
