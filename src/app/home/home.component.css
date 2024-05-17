@@ -4,12 +4,8 @@
 }
 
 .home-page {
-    position: sticky;
-    top: 80px;
     justify-content: center;
     align-items: center;
-    height: auto;
-    background-color: #cbe2fb;
     padding: 2rem;
 }
 
@@ -51,4 +47,16 @@
 
 .today-date .mat-calendar-body-cell-today {
     background-color: red !important;
+}
+
+.mat-calendar-body-cell.today .mat-calendar-body-cell-content::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: green;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    right: 2px;
 }
