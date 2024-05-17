@@ -1,9 +1,0 @@
-/* Initially hide the ng-toast */
-ng-toast {
-    display: none;
-}
-
-/* Show the ng-toast when a message occurs */
-.ng-toast.show {
-    display: block;
-}

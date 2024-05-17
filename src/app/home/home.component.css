@@ -1,0 +1,54 @@
+.demo-inline-calendar-card {
+    width: 500px;
+    margin: auto;
+}
+
+.home-page {
+    position: sticky;
+    top: 80px;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: #cbe2fb;
+    padding: 2rem;
+}
+
+.home-content {
+    width: 100%;
+    display: flex;
+}
+
+.home-left,
+.home-right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.view-booking {
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: red;
+    align-self: center;
+}
+
+.book-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.book-a-meal {
+    margin: 10px;
+    padding: 10px 12px;
+    background-color: red;
+    font-weight: 500;
+}
+
+.today-date .mat-calendar-body-cell-today {
+    background-color: red !important;
+}

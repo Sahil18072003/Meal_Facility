@@ -1,0 +1,11 @@
+.sidebar-modal {
+    position: fixed;
+    top: 80px;
+    left: 80%;
+    margin-right: 0;
+    height: 100vh;
+    width: 400px;
+    background-color: white;
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

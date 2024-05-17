@@ -18,6 +18,7 @@
     background-color: rgb(16, 5, 100);
     color: white;
     font-weight: 600;
+    z-index: 10;
 }
 
 .toolbar img {

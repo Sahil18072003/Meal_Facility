@@ -1,0 +1,27 @@
+<div class="sidebar-modal">
+    <ul class="social">
+        <li><a routerLink="/about" class="list-items" routerLinkActive="active" ariaCurrentWhenActive="page">About</a>
+        </li>
+        <li><a routerLink="/terms-and-condition" class="list-items" routerLinkActive="active"
+                ariaCurrentWhenActive="page">Terms And Condition</a></li>
+        <li><a routerLink="/privacy-policy" class="list-items" routerLinkActive="active"
+                ariaCurrentWhenActive="page">Privacy Policy</a></li>
+        <li><a routerLink="/login" class="list-items" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a>
+        </li>
+        <li><a routerLink="/signup" class="list-items" routerLinkActive="active" ariaCurrentWhenActive="page">Signup</a>
+        </li>
+        <li><a routerLink="/forgot-password" class="list-items" routerLinkActive="active"
+                ariaCurrentWhenActive="page">Forgot Password</a>
+        </li>
+        <li><a routerLink="/change-password" class="list-items" routerLinkActive="active"
+                ariaCurrentWhenActive="page">Change Password</a>
+        </li>
+        <li><a routerLink="/reset-password" class="list-items" routerLinkActive="active"
+                ariaCurrentWhenActive="page">Reset Password</a>
+        </li>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addBookingModal">Add Booking</button>
+        <button (click)="Logout()" class="btn btn-secondary btn-danger">Logout</button>
+        <li><a routerLink="/terms-and-condition" aria-label="Notification" class="list-items"><i
+                    class="fa-sharp fa-regular fa-bell"></i></a></li>
+    </ul>
+</div>

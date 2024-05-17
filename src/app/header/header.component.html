@@ -1,7 +1,6 @@
 <div class="toolbar" role="banner">
         <img width="55" alt="Rise Logo" src="./../../assets/logo-white.svg" />
         <span class="title">Meal Facility</span>
-        <div class="spacer"></div>
         <ul class="social">
                 <!-- <li><a routerLink="/about" class="list-items" routerLinkActive="active"
                                 ariaCurrentWhenActive="page">About</a>
@@ -25,13 +24,12 @@
                 <li><a routerLink="/reset-password" class="list-items" routerLinkActive="active"
                                 ariaCurrentWhenActive="page">Reset Password</a>
                 </li> -->
-                <button (click)="addBooking()" class="btn btn-primary" data-toggle="modal"
-                        data-target="#addBookingModal">Add Booking</button>
-                <button (click)="Logout()" class="btn btn-secondary btn-danger">Logout</button>
+                <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#addBookingModal">Add Booking</button>
+                <button (click)="Logout()" class="btn btn-secondary btn-danger">Logout</button> -->
                 <li><a routerLink="/terms-and-condition" aria-label="Notification" class="list-items"><i
                                         class="fa-sharp fa-regular fa-bell"></i></a></li>
-                <li><a class="list-items" data-toggle="modal" data-target="#sidemenu" aria-label="side menu"><i
-                                        class="fa fa-bars" aria-hidden="true"></i></a></li>
+                <li (click)="openSidebar()"><a class="list-items" data-toggle="modal" data-target="#sidemenu"
+                                aria-label="side menu"><i class="fa fa-bars" aria-hidden="true"></i></a></li>
         </ul>
 </div>
 

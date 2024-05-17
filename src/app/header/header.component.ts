@@ -1,6 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ApiService } from '../services/api.service';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,11 @@ export class HeaderComponent {
 
   public users: any = [];
 
-  constructor(private auth: AuthService, private api: ApiService) {}
+  constructor(
+    private auth: AuthService,
+    private api: ApiService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.api.getUsers().subscribe((res) => {
@@ -20,11 +26,7 @@ export class HeaderComponent {
     });
   }
 
-  addBooking() {
-    // Logic for adding booking
-  }
-
-  Logout() {
-    this.auth.signOut();
+  openSidebar() {
+    this.dialog.open(SidebarComponent);
   }
 }

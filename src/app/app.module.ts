@@ -22,6 +22,10 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { HomeComponent } from './home/home.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { MaterialModule } from './material-module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddBookingComponent } from './add-booking/add-booking.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ViewBookingComponent } from './view-booking/view-booking.component';
 
 @NgModule({
   // components directly define which have parent app
@@ -39,6 +43,9 @@ import { MaterialModule } from './material-module';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     HomeComponent,
+    AddBookingComponent,
+    SidebarComponent,
+    ViewBookingComponent,
   ],
 
   // imports all the modules which have parent app
@@ -51,6 +58,7 @@ import { MaterialModule } from './material-module';
     ToastrModule.forRoot({}),
     NgToastModule,
     MaterialModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

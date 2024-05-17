@@ -1,1 +1,21 @@
-<p>home works!</p>
+<div class="home-page">
+    <div class="home-content">
+        <div class="home-left">
+            <button (click)="openViewBookingDialog()" class="btn btn-danger view-booking">
+                View Booking
+            </button>
+            <mat-card class="demo-inline-calendar-card">
+                <mat-calendar class="calander" [(selected)]="selectedDate" [dateFilter]="preventSelection"
+                    (selectedChange)="updateSelectedTime()"></mat-calendar>
+            </mat-card>
+        </div>
+        <div class=" home-right">
+            <div>hello</div>
+        </div>
+    </div>
+    <div class="book-div">
+        <button (click)="openAddBookingDialog()" class="btn btn-danger book-a-meal">
+            Book a Meal
+        </button>
+    </div>
+</div>
