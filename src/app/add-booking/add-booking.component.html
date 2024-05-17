@@ -1,17 +1,15 @@
-<div class="booking-container">
-    <div class="booking-form" *ngIf="isFormVisible">
-        <h2>Book a Meal</h2>
-        <form [formGroup]="bookingForm">
-            <!-- Select Category -->
-            <div class="form-group">
-                <label>Select Category</label>
-                <mat-radio-group formControlName="category">
-                    <mat-radio-button value="employee">Employees</mat-radio-button>
-                    <mat-radio-button value="nonEmployee">Non Employees</mat-radio-button>
-                    <mat-radio-button value="customBooking">Custom Booking</mat-radio-button>
-                </mat-radio-group>
-            </div>
-
+<div class="add-booking-container">
+    <div class="add-booking-form" *ngIf="isFormVisible">
+        <div class="add-booking-header">
+            <h1>Book a Meal</h1>
+            <button (click)="closeForm()">
+                &#10006;
+            </button>            
+        </div>
+        <div class="new-booking">
+            New booking
+        </div>
+        <form [formGroup]="addbookingForm">
             <div class="form-group">
                 <label>Select Meal Type</label>
                 <mat-radio-group formControlName="mealType">
@@ -21,8 +19,8 @@
             </div>
 
             <div class="form-group">
+                <label>Select Days</label>
                 <mat-form-field class="example-form-field">
-                    <mat-label>First campaign</mat-label>
                     <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker"
                         [comparisonStart]="campaignTwo.value.start" [comparisonEnd]="campaignTwo.value.end">
                         <input matStartDate placeholder="Start date" formControlName="start" />
@@ -33,16 +31,10 @@
                     <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
                 </mat-form-field>
             </div>
-
-            <div class="form-group">
-                <label>Booking Count</label>
-                <input matInput formControlName="bookingCount" placeholder="Enter Booking Count" type="number" />
-            </div>
         </form>
 
         <div class="form-actions">
-            <button mat-button (click)="closeForm()">Cancel</button>
-            <button mat-raised-button color="primary" (click)="bookMeal()">
+            <button class="btn btn-danger" mat-raised-button color="primary" (click)="bookMeal()">
                 Book
             </button>
         </div>

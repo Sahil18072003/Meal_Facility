@@ -22,6 +22,7 @@ export class SignupComponent {
   }
 
   signupForm!: FormGroup;
+
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,

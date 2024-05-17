@@ -52,7 +52,7 @@ export class LoginComponent {
             summary: res.message,
             duration: 3000,
           });
-          this.router.navigate(['home']);
+          this.router.navigate(['dashboard/home']);
         },
         error: (err) => {
           alert(err?.error.message);

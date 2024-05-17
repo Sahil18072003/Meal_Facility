@@ -1,36 +1,53 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
-    padding: 20px;
 }
 
-.booking-container{
+.add-booking-container {
     width: 500px;
+    height: auto;
+    padding: 1rem;
+    border-radius: 10px;
 }
 
-.booking-form {
+.add-booking-form {
     background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
     max-width: 500px;
     margin: 0 auto;
 }
 
-.booking-form h2 {
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
+.add-booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.add-booking-header h1 {
+    text-align: center;
+    font-weight: 700;
+    color: black;
+    margin: 0;
+}
+
+.add-booking-header button {
+    background-color: white;
+    border: none;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+
 .form-group {
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
-    color: #666;
+    margin: 1rem 0;
+    color: black;
+    font-weight: 400;
+    font-size: 18px;
 }
 
 mat-radio-group {
@@ -56,11 +73,11 @@ mat-input-element {
 
 .form-actions {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
 }
 
-button {
+.form-actions button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
@@ -71,14 +88,4 @@ button {
 button[mat-button] {
     background: #e0e0e0;
     color: #666;
-}
-
-button[mat-raised-button] {
-    background: #00796b;
-    color: #fff;
-    transition: background 0.3s ease;
-}
-
-button[mat-raised-button]:hover {
-    background: #004d40;
 }

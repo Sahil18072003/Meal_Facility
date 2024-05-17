@@ -6,10 +6,10 @@
             </button>
             <mat-card class="demo-inline-calendar-card">
                 <mat-calendar class="calander" [(selected)]="selectedDate" [dateFilter]="preventSelection"
-                    (selectedChange)="updateSelectedTime()"></mat-calendar>
+                    (selectedChange)="onDateSelected($event)"></mat-calendar>
             </mat-card>
         </div>
-        <div class=" home-right">
+        <div class="home-right">
             <div>hello</div>
         </div>
     </div>

@@ -8,7 +8,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-booking.component.css'],
 })
 export class AddBookingComponent implements OnInit {
-  bookingForm!: FormGroup;
+  addbookingForm!: FormGroup;
   isFormVisible = true;
 
   campaignOne = new FormGroup({
@@ -27,7 +27,7 @@ export class AddBookingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.bookingForm = this.fb.group({
+    this.addbookingForm = this.fb.group({
       category: [''],
       mealType: [''],
       dates: [''],
@@ -40,8 +40,8 @@ export class AddBookingComponent implements OnInit {
   }
 
   bookMeal(): void {
-    if (this.bookingForm.valid) {
-      console.log(this.bookingForm.value);
+    if (this.addbookingForm.valid) {
+      console.log(this.addbookingForm.value);
       this.closeForm();
     }
   }

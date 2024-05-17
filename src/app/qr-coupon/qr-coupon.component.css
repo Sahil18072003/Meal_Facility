@@ -3,39 +3,38 @@ body {
     background-color: #f5f5f5;
 }
 
-.booking-container {
+.qr-container {
     width: 500px;
     height: auto;
     padding: 1rem;
     border-radius: 10px;
 }
 
-.booking-form {
+.qr-form {
     background: #fff;
     padding: 1.5rem;
     max-width: 500px;
     margin: 0 auto;
 }
 
-.booking-header {
+.qr-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.booking-header h1 {
+.qr-header h1 {
     font-weight: 700;
     color: black;
     margin: 0;
 }
 
-.booking-header button {
+.qr-header button {
     background-color: white;
     border: none;
     font-size: x-large;
     cursor: pointer;
 }
-
 
 .form-group {
     margin: 2px;

@@ -1,12 +1,11 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import {
-  MatCalendarCellClassFunction,
-  MatCalendarCellCssClasses,
-} from '@angular/material/datepicker';
+import { Component } from '@angular/core';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { AuthService } from '../services/auth.service';
 import { ApiService } from '../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBookingComponent } from '../add-booking/add-booking.component';
+import { ViewBookingComponent } from '../view-booking/view-booking.component';
+import { QrCouponComponent } from '../qr-coupon/qr-coupon.component';
 
 @Component({
   selector: 'app-home',
@@ -53,15 +52,6 @@ export class HomeComponent {
     return !this.isWeekend(date) && !this.isCanceled(date) && date >= today;
   };
 
-  // isBooked(date: any): boolean {
-  //   if (!date || !(date instanceof Date)) {
-  //     return false; // If date is undefined or not a Date object, it's not booked
-  //   }
-  //   return this.bookedDates.some((bookedDate) =>
-  //     this.isSameDate(date, bookedDate)
-  //   );
-  // }
-
   isCanceled(date: any): boolean {
     if (!date || !(date instanceof Date)) {
       return false;
@@ -88,14 +78,6 @@ export class HomeComponent {
     );
   }
 
-  updateSelectedTime() {
-    const currentTime = new Date();
-    const hours = currentTime.getHours().toString().padStart(2, '0');
-    const minutes = currentTime.getMinutes().toString().padStart(2, '0');
-    const seconds = currentTime.getSeconds().toString().padStart(2, '0');
-    this.selectedTime = `${hours}:${minutes}:${seconds}`;
-  }
-
   constructor(
     private api: ApiService,
     private auth: AuthService,
@@ -104,12 +86,31 @@ export class HomeComponent {
     this.fillDates();
   }
 
+  onDateSelected(event: MatDatepickerInputEvent<Date>) {
+    const selectedDate = event.value;
+    const currentDate = new Date();
+
+    // Check if the selected date is today
+    if (
+      selectedDate &&
+      selectedDate.toDateString() === currentDate.toDateString()
+    ) {
+      this.dialog.open(QrCouponComponent);
+
+      // Update the selected time
+      const hours = currentDate.getHours().toString().padStart(2, '0');
+      const minutes = currentDate.getMinutes().toString().padStart(2, '0');
+      const seconds = currentDate.getSeconds().toString().padStart(2, '0');
+      this.selectedTime = `${hours}:${minutes}:${seconds}`;
+    }
+  }
+
   openAddBookingDialog() {
     this.dialog.open(AddBookingComponent);
   }
 
   openViewBookingDialog() {
-    this.dialog.open(AddBookingComponent);
+    this.dialog.open(ViewBookingComponent);
   }
 
   ngOnInit() {

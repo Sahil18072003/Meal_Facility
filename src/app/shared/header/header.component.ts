@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { ApiService } from '../services/api.service';
+import { AuthService } from '../../services/auth.service';
+import { ApiService } from '../../services/api.service';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { MatDialog } from '@angular/material/dialog';
 

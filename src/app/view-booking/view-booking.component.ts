@@ -10,6 +10,12 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class ViewBookingComponent {
   bookingForm!: FormGroup;
   isFormVisible = true;
+  selectedDate: any;
+  selectedTime: any;
+  bookedDates: any[] = [];
+  canceledDates: any[] = [];
+  date: any;
+  public users: any = [];
 
   campaignOne = new FormGroup({
     start: new FormControl(new Date()),
@@ -39,10 +45,37 @@ export class ViewBookingComponent {
     this.dialogRef.close();
   }
 
-  bookMeal(): void {
-    if (this.bookingForm.valid) {
-      console.log(this.bookingForm.value);
-      this.closeForm();
+  isCanceled(date: any): boolean {
+    if (!date || !(date instanceof Date)) {
+      return false;
     }
+    return this.canceledDates.some((cancelDate) =>
+      this.isSameDate(date, cancelDate)
+    );
+  }
+
+  isSameDate(date1: any, date2: any): boolean {
+    if (
+      !date1 ||
+      !date2 ||
+      !(date1 instanceof Date) ||
+      !(date2 instanceof Date)
+    ) {
+      return false;
+    }
+
+    return (
+      date1.getFullYear() === date2.getFullYear() &&
+      date1.getMonth() === date2.getMonth() &&
+      date1.getDate() === date2.getDate()
+    );
+  }
+
+  updateSelectedTime() {
+    const currentTime = new Date();
+    const hours = currentTime.getHours().toString().padStart(2, '0');
+    const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+    const seconds = currentTime.getSeconds().toString().padStart(2, '0');
+    this.selectedTime = `${hours}:${minutes}:${seconds}`;
   }
 }
