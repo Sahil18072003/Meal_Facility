@@ -1,7 +1,7 @@
 import { FormGroup, FormControl } from '@angular/forms';
 
 export default class ValidateForm {
-  static validdateAllFromFileds(loginForm: FormGroup<any>) {
+  static validdateAllFromFileds(_loginForm: FormGroup<any>) {
     throw new Error('Method not implemented.');
   }
   private validdateAllFromFileds(formGroup: FormGroup) {

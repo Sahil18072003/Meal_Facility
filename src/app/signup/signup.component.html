@@ -40,6 +40,19 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="control-label">User Name</label>
+                        <div class="input-addon"
+                            [class.error]="signupForm.controls['userName'].dirty && signupForm.hasError('required', 'userName')">
+                            <input formControlName="userName" class="form-control" type="text"
+                                placeholder="Smith18072003" autofocus />
+                            <i class='fa fa-check icon-after icon-green'></i>
+                        </div>
+                        <small
+                            *ngIf="signupForm.controls['userName'].dirty && signupForm.hasError('required', 'userName')"
+                            class="text-danger">*Last name is required</small>
+                    </div>
+
+                    <div class="form-group">
                         <label class="control-label">Email</label>
                         <div class="input-addon"
                             [class.error]="signupForm.controls['email'].dirty && signupForm.hasError('required', 'email')">

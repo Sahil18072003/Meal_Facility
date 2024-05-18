@@ -6,8 +6,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { HomeComponent } from './home/home.component';
-import { AuthGuard } from './guards/auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [

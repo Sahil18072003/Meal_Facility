@@ -19,6 +19,8 @@ export class HomeComponent {
   canceledDates: any[] = [];
   date: any;
   public users: any = [];
+  dateFilter: any;
+  cell!: Date;
 
   fillDates() {
     this.bookedDates = [
@@ -59,6 +61,12 @@ export class HomeComponent {
     return this.canceledDates.some((cancelDate) =>
       this.isSameDate(date, cancelDate)
     );
+  }
+
+  todayDate: Date = new Date();
+
+  isCurrentDate(cellDate: Date): boolean {
+    return cellDate.toDateString() === this.todayDate.toDateString();
   }
 
   isSameDate(date1: any, date2: any): boolean {

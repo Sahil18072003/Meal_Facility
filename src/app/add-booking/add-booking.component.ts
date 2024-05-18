@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { BookService } from '../services/book.service';
 
 @Component({
   selector: 'app-add-booking',
@@ -23,15 +24,15 @@ export class AddBookingComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private book: BookService,
     public dialogRef: MatDialogRef<AddBookingComponent>
   ) {}
 
   ngOnInit(): void {
     this.addbookingForm = this.fb.group({
-      category: [''],
-      mealType: [''],
-      dates: [''],
-      bookingCount: [''],
+      BookingType: [''],
+      BookingStartDate: '',
+      BookingEndDate: '',
     });
   }
 
@@ -42,7 +43,28 @@ export class AddBookingComponent implements OnInit {
   bookMeal(): void {
     if (this.addbookingForm.valid) {
       console.log(this.addbookingForm.value);
-      this.closeForm();
+      this.book.addBooking(this.addbookingForm.value).subscribe({
+        next: (res) => {
+          alert(res.message);
+          this.addbookingForm.reset();
+          // this.toast.success(res.message, 'success');
+          // this.toast.success({
+          //   detail: 'success',
+          //   summary: res.message,
+          //   duration: 3000,
+          // });
+          this.closeForm();
+        },
+        error: (err) => {
+          alert(err?.error.message);
+          // this.toast.error(err?.error.message);
+          // this.toast.error({
+          //   detail: 'error',
+          //   summary: err?.error.message,
+          //   duration: 3000,
+          // });
+        },
+      });
     }
   }
 }
