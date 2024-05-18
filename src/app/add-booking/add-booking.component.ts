@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { BookService } from '../services/book.service';
 
@@ -30,9 +35,9 @@ export class AddBookingComponent implements OnInit {
 
   ngOnInit(): void {
     this.addbookingForm = this.fb.group({
-      BookingType: [''],
-      BookingStartDate: '',
-      BookingEndDate: '',
+      BookingType: new FormControl('', [Validators.required]),
+      BookingStartDate: new FormControl('', [Validators.required]),
+      BookingEndDate: new FormControl('', [Validators.required]),
     });
   }
 
@@ -40,8 +45,27 @@ export class AddBookingComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  get bookingTypeValidator() {
+    return this.addbookingForm.get('BookingType');
+  }
+
+  get bookingStartDateValidator() {
+    return this.addbookingForm.get('BookingStartDate');
+  }
+  get bookingEndDateValidator() {
+    return this.addbookingForm.get('BookingEndDate');
+  }
+
   bookMeal(): void {
-    if (this.addbookingForm.valid) {
+    var startDate = this.addbookingForm.value['BookingStartDate'] as string;
+    var EndDate = this.addbookingForm.value['BookingEndDate'] as string;
+    let MealType = this.addbookingForm.value['BookingType'] as string;
+    // debugger;
+    const jwtToken = localStorage.getItem('token');
+    const empIdfromLocal: any = localStorage.getItem('Empid');
+    const empid: number = empIdfromLocal as number;
+
+    if (jwtToken) {
       console.log(this.addbookingForm.value);
       this.book.addBooking(this.addbookingForm.value).subscribe({
         next: (res) => {

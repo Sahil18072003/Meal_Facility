@@ -59,7 +59,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    LayoutModule
+    LayoutModule,
   ],
   exports: [
     A11yModule,
@@ -104,10 +104,9 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatTabsModule,
     MatTooltipModule,
     MatTreeModule,
-    MatRadioModule
+    MatRadioModule,
   ],
   providers: [],
-  bootstrap: []
-
+  bootstrap: [],
 })
 export class MaterialModule {}
