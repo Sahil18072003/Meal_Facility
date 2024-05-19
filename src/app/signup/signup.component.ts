@@ -11,9 +11,15 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
+  signupForm!: FormGroup;
+
   type: string = 'password';
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
+
+  type1: string = 'password';
+  isText1: boolean = false;
+  eyeIcon1: string = 'fa-eye-slash';
 
   toggleVisibility(): void {
     this.isText = !this.isText;
@@ -21,7 +27,13 @@ export class SignupComponent {
     this.isText ? (this.type = 'text') : (this.type = 'password');
   }
 
-  signupForm!: FormGroup;
+  toggleVisibility1(): void {
+    this.isText1 = !this.isText1;
+    this.isText1
+      ? (this.eyeIcon1 = 'fa-eye')
+      : (this.eyeIcon1 = 'fa-eye-slash');
+    this.isText1 ? (this.type1 = 'text') : (this.type1 = 'password');
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -35,9 +47,16 @@ export class SignupComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       userName: ['', Validators.required],
-      email: ['', Validators.required],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ],
+      ],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
+      // confirmPassword: ['', Validators.required],
     });
   }
 
@@ -69,11 +88,7 @@ export class SignupComponent {
     } else {
       //throw an error using toaster and with required fields
       ValidateForm.validdateAllFromFileds(this.signupForm);
-      this.toast.warning({
-        detail: 'warn',
-        summary: 'Your form is invalid',
-        duration: 3000,
-      });
+      alert('Your form is invalid');
     }
   }
 }

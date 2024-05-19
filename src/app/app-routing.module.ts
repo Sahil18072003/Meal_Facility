@@ -10,6 +10,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent,
+  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
     path: '',
     component: DashboardComponent,
     children: [
@@ -19,18 +24,6 @@ const routes: Routes = [
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
     ],
-  },
-  {
-    path: '',
-    component: LoginComponent,
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
   },
   {
     path: 'forgot-password',

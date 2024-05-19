@@ -83,7 +83,7 @@
                             [class.error]="signupForm.controls['confirmPassword'].dirty && signupForm.hasError('required', 'confirmPassword')">
                             <input formControlName="confirmPassword" id="confirm-password-field" class="form-control"
                                 [type]="type" placeholder="Robert@123" autofocus />
-                            <i (click)="toggleVisibility()" class='fa {{eyeIcon}}'></i>
+                            <i (click)="toggleVisibility1()" class='fa {{eyeIcon}}'></i>
                         </div>
                         <small
                             *ngIf="signupForm.controls['confirmPassword'].dirty && signupForm.hasError('required', 'confirmPassword')"
