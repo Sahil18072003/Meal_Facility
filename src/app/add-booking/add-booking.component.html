@@ -1,7 +1,7 @@
 <div class="add-booking-container">
     <div class="add-booking-form" *ngIf="isFormVisible">
         <div class="add-booking-header">
-            <h1>Book a Meal</h1>
+            <p>Book a Meal</p>
             <button (click)="closeForm()">
                 &#10006;
             </button>
@@ -19,22 +19,38 @@
             </div>
 
             <div class="form-group">
-                <label>Select Days</label>
-                <mat-form-field class="example-form-field">
+                <label>Select Meal Days</label>
+                <!-- <mat-form-field class="example-form-field">
                     <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker"
                         [comparisonStart]="campaignTwo.value.start" [comparisonEnd]="campaignTwo.value.end">
-                        <input matStartDate placeholder="Start date" formControlName="BookingStartDate" />
-                        <input matEndDate placeholder="End date" formControlName="BookingEndDate" />
+                        <input matStartDate placeholder="Start date"
+                            formControlName="BookingStartDate" />
+                        <input matEndDate placeholder="End date"
+                            formControlName="BookingEndDate" />
                     </mat-date-range-input>
-                    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                    <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
                     <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                </mat-form-field> -->
+
+                <mat-form-field>
+                    <mat-label>Select Meal Days</mat-label>
+                    <mat-date-range-input [rangePicker]="admDateRangePicker" formGroupName="admDateRange">
+                        <input matStartDate formControlName="startDate" placeholder="Start date">
+                        <input matEndDate formControlName="endDate" placeholder="End date">
+                        <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="admDateRangePicker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #admDateRangePicker></mat-date-range-picker>
+
+                    <mat-error *ngIf="hasMatStartDateError()">Invalid start date</mat-error>
+                    <mat-error *ngIf="hasMatEndDateError()">Invalid end date</mat-error>
                 </mat-form-field>
             </div>
         </form>
 
         <div class="form-actions">
-            <button class="btn btn-danger" mat-raised-button color="primary" (click)="bookMeal()">
+            <button class="btn btn-danger" mat-raised-button (click)="bookMeal()">
                 Book
             </button>
         </div>

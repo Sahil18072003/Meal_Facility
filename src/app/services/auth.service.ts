@@ -10,6 +10,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   signUp(userObj: any) {
+    console.log(userObj);
     return this.http.post<any>(`${this.baseUrl}register`, userObj);
   }
 

@@ -17,26 +17,26 @@ body {
     margin: 0 auto;
 }
 
+.add-booking-header p {
+    font-weight: 700;
+    color: red;
+    margin: auto;
+    font-size: 2.5rem;
+}
+
 .add-booking-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-.add-booking-header h1 {
-    text-align: center;
-    font-weight: 700;
-    color: black;
-    margin: 0;
-}
-
 .add-booking-header button {
+    color: red;
     background-color: white;
     border: none;
     font-size: x-large;
     cursor: pointer;
+    margin-left: 0;
 }
-
 
 .form-group {
     margin: 20px 0;
@@ -44,7 +44,7 @@ body {
 
 label {
     display: block;
-    margin: 1rem 0;
+    margin: 0 0 1rem 0;
     color: black;
     font-weight: 400;
     font-size: 18px;
@@ -83,9 +83,17 @@ mat-input-element {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    color: white;
+    background-color: red;
 }
 
 button[mat-button] {
     background: #e0e0e0;
     color: #666;
+}
+
+.new-booking {
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding: 2rem 0 0 0;
 }

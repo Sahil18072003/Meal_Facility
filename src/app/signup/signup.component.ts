@@ -52,15 +52,21 @@ export class SignupComponent {
         [
           Validators.required,
           Validators.email,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+          // Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ],
       ],
-      password: ['', Validators.required],
-      // confirmPassword: ['', Validators.required],
+      password: [
+        '',
+        Validators.required,
+        // Validators.minLength(8),
+        // Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/),
+      ],
+      confirmPassword: ['', Validators.required],
     });
   }
 
   onSubmite() {
+    console.log(this.signupForm.valid);
     if (this.signupForm.valid) {
       // Send only necessary fields to the database
       this.auth.signUp(this.signupForm.value).subscribe({
@@ -76,7 +82,7 @@ export class SignupComponent {
           this.router.navigate(['login']);
         },
         error: (err) => {
-          alert(err?.error.message);
+          alert(err?.message);
           // this.toast.error(err?.error.message);
           // this.toast.error({
           //   detail: 'error',

@@ -1,19 +1,17 @@
-<div class="booking-container">
-    <div class="booking-form">
-        <div class="booking-header">
+<div class="view-container">
+    <div class="view-form">
+        <div class="view-header">
             <h1>View Booking</h1>
             <button (click)="closeForm()">
                 &#10006;
             </button>
         </div>
-        <!-- <form [formGroup]="bookingForm"> -->
         <div class="form-group">
             <label>Total Bookings: 10</label>
-            <mat-card class="demo-inline-calendar-card">
-                <mat-calendar class="calander" [(selected)]="selectedDate"
-                    (selectedChange)="updateSelectedTime()"></mat-calendar>
+            <mat-card>
+                <mat-calendar [dateClass]="dateClass()" [selected]="selectedDate"
+                    (selectedChange)="onSelect($event)"></mat-calendar>
             </mat-card>
         </div>
-        <!-- </form> -->
     </div>
 </div>
