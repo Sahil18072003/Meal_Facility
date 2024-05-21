@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +12,13 @@ import ValidateForm from '../helpers/validateform';
 })
 export class ForgotPasswordComponent {
   forgotPasswordForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.forgotPasswordForm = this.fb.group({
@@ -23,14 +28,35 @@ export class ForgotPasswordComponent {
 
   onSubmite() {
     if (this.forgotPasswordForm.valid) {
-      //send data to database
-      console.log(this.forgotPasswordForm.value);
-      alert('Otp sent successfully.');
+      // alert('Otp sent successfully.');
+      this.auth.login(this.forgotPasswordForm.value).subscribe({
+        next: (res) => {
+          this.forgotPasswordForm.reset();
+          this.snackBar.open(res.message, 'Okay', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['success-snackbar'],
+          });
+          this.router.navigate(['dashboard/home']);
+        },
+        error: (err) => {
+          this.snackBar.open(err.message, 'Try again', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['error-snackbar'],
+          });
+        },
+      });
     } else {
-      //throw a error using toaster and with  required fields
-      console.log('Form is not valid');
       ValidateForm.validdateAllFromFileds(this.forgotPasswordForm);
-      alert('Your form is invalid');
+      this.snackBar.open('Your form is invalid', 'Try again', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+        panelClass: ['error-snackbar'],
+      });
     }
   }
 }

@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
+import {
+  MatSnackBar,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-signup',
@@ -39,7 +42,7 @@ export class SignupComponent {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    private toast: NgToastService
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -66,35 +69,35 @@ export class SignupComponent {
   }
 
   onSubmite() {
-    console.log(this.signupForm.valid);
     if (this.signupForm.valid) {
-      // Send only necessary fields to the database
       this.auth.signUp(this.signupForm.value).subscribe({
         next: (res) => {
-          alert(res.message);
           this.signupForm.reset();
-          // this.toast.success(res.message, 'success');
-          // this.toast.success({
-          //   detail: 'success',
-          //   summary: res.message,
-          //   duration: 3000,
-          // });
+          this.snackBar.open(res.message, 'Close', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['success-snackbar'],
+          });
           this.router.navigate(['login']);
         },
         error: (err) => {
-          alert(err?.message);
-          // this.toast.error(err?.error.message);
-          // this.toast.error({
-          //   detail: 'error',
-          //   summary: err?.error.message,
-          //   duration: 3000,
-          // });
+          this.snackBar.open(err.message, 'Close', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['error-snackbar'],
+          });
         },
       });
     } else {
-      //throw an error using toaster and with required fields
       ValidateForm.validdateAllFromFileds(this.signupForm);
-      alert('Your form is invalid');
+      this.snackBar.open('Your form is invalid', 'Close', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+        panelClass: ['error-snackbar'],
+      });
     }
   }
 }

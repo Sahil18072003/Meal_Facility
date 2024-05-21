@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({

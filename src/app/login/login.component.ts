@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-// import { ToastrService } from 'ngx-toastr';
-import { NgToastService } from 'ng-angular-popup';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +26,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    // private toast: ToastrService,
-    private toastr: NgToastService
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -40,39 +38,35 @@ export class LoginComponent {
 
   onLogin() {
     if (this.loginForm.valid) {
-      //Send the obj to database
       this.auth.login(this.loginForm.value).subscribe({
         next: (res) => {
-          alert(res.message);
           this.loginForm.reset();
           this.auth.storeTokan(res.token);
-          // this.toastr.success(res.message, 'success');
-          this.toastr.success({
-            detail: 'success',
-            summary: res.message,
+          this.snackBar.open(res.message, 'Okay', {
             duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['success-snackbar'],
           });
           this.router.navigate(['dashboard/home']);
         },
         error: (err) => {
-          alert(err?.error.message);
-          // this.toast.error(err?.error.message);
-          this.toastr.error({
-            detail: 'error',
-            summary: err?.error.message,
+          this.snackBar.open(err.message, 'Try again', {
             duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['error-snackbar'],
           });
         },
       });
     } else {
-      //throw a error using toaster and with required fields
       ValidateForm.validdateAllFromFileds(this.loginForm);
-      alert('Your form is invalid');
-      // this.toast.warning({
-      //   detail: 'warn',
-      //   summary: 'Your form is invalid',
-      //   duration: 3000,
-      // });
+      this.snackBar.open('Your form is invalid', 'Try again', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+        panelClass: ['error-snackbar'],
+      });
     }
   }
 }

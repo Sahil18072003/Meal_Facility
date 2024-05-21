@@ -386,7 +386,6 @@ input[type='password'] {
     background-color: rgba(214, 3, 3, 0.895);
 }
 
-/* Icon Styles */
 .fa-solid,
 .fa-eye .fa,
 .fa-eye-slash .fa,
@@ -399,3 +398,21 @@ input[type='password'] {
     cursor: pointer;
 }
 
+.success-snackbar {
+    background-color: #4caf50;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.error-snackbar {
+    background-color: #f44336;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.mat-snack-bar-container {
+    padding: 12px 24px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
