@@ -51,12 +51,13 @@ export class LoginComponent {
           this.router.navigate(['dashboard/home']);
         },
         error: (err) => {
-          this.snackBar.open(err.message, 'Try again', {
-            duration: 3000,
-            verticalPosition: 'top',
-            horizontalPosition: 'right',
-            panelClass: ['error-snackbar'],
-          });
+          alert(err.message);
+          // this.snackBar.open(err.message, 'Try again', {
+          //   duration: 3000,
+          //   verticalPosition: 'top',
+          //   horizontalPosition: 'right',
+          //   panelClass: ['error-snackbar'],
+          // });
         },
       });
     } else {

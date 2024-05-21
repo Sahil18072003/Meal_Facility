@@ -28,8 +28,7 @@ export class ForgotPasswordComponent {
 
   onSubmite() {
     if (this.forgotPasswordForm.valid) {
-      // alert('Otp sent successfully.');
-      this.auth.login(this.forgotPasswordForm.value).subscribe({
+      this.auth.forgotPassword(this.forgotPasswordForm.value).subscribe({
         next: (res) => {
           this.forgotPasswordForm.reset();
           this.snackBar.open(res.message, 'Okay', {
@@ -38,15 +37,16 @@ export class ForgotPasswordComponent {
             horizontalPosition: 'right',
             panelClass: ['success-snackbar'],
           });
-          this.router.navigate(['dashboard/home']);
+          this.router.navigate(['otp-verification']);
         },
         error: (err) => {
-          this.snackBar.open(err.message, 'Try again', {
-            duration: 3000,
-            verticalPosition: 'top',
-            horizontalPosition: 'right',
-            panelClass: ['error-snackbar'],
-          });
+          alert(err.message);
+          // this.snackBar.open(err.message, 'Try again', {
+          //   duration: 3000,
+          //   verticalPosition: 'top',
+          //   horizontalPosition: 'right',
+          //   panelClass: ['error-snackbar'],
+          // });
         },
       });
     } else {

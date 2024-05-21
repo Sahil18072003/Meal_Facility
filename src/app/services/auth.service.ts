@@ -23,6 +23,18 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}authenticate`, loginObj);
   }
 
+  forgotPassword(forgotObj: any) {
+    return this.http.post<any>(`${this.baseUrl}forgotPassword`, forgotObj);
+  }
+
+  otpverification(otpObj: any) {
+    return this.http.post<any>(`${this.baseUrl}otp`, otpObj);
+  }
+
+  resetPassword(resetObj: any) {
+    return this.http.post<any>(`${this.baseUrl}resetPassword`, resetObj);
+  }
+
   storeTokan(tokenValue: string) {
     localStorage.setItem('token', tokenValue);
   }

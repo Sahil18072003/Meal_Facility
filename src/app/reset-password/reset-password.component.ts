@@ -6,6 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
+import { AuthService } from '../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +27,12 @@ export class ResetPasswordComponent {
   }
 
   resetPasswordForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.resetPasswordForm = this.fb.group({
@@ -35,14 +43,35 @@ export class ResetPasswordComponent {
 
   onSubmite() {
     if (this.resetPasswordForm.valid) {
-      console.log(this.resetPasswordForm.value);
-      alert('Password reset successfully.');
-      //send data to database
+      this.auth.resetPassword(this.resetPasswordForm.value).subscribe({
+        next: (res) => {
+          this.resetPasswordForm.reset();
+          this.snackBar.open(res.message, 'Okay', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['success-snackbar'],
+          });
+          this.router.navigate(['otp-verification']);
+        },
+        error: (err) => {
+          alert(err.message);
+          // this.snackBar.open(err.message, 'Try again', {
+          //   duration: 3000,
+          //   verticalPosition: 'top',
+          //   horizontalPosition: 'right',
+          //   panelClass: ['error-snackbar'],
+          // });
+        },
+      });
     } else {
-      console.log('Form is not valid');
-      //throw a error using toaster and with  required fileds
       ValidateForm.validdateAllFromFileds(this.resetPasswordForm);
-      alert('Your form is invalid');
+      this.snackBar.open('Your form is invalid', 'Try again', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+        panelClass: ['error-snackbar'],
+      });
     }
   }
 }
