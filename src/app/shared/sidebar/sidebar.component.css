@@ -1,11 +1,91 @@
+/* Basic styles for the sidebar */
 .sidebar-modal {
     position: fixed;
     top: 80px;
-    left: 80%;
-    margin-right: 0;
-    height: 100vh;
-    width: 400px;
-    background-color: white;
-    z-index: 9999;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    left: 1200px; 
+    width: 300px;
+    height: 100%;
+    background-color: #343a40;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Adjust shadow direction */
+    transition: left 0.3s ease-in-out; /* Smooth transition */
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Active class to slide in the sidebar */
+.sidebar-modal.active {
+    left: 0;
+}
+
+/* Styling for the list and items */
+.sidebar-modal ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-modal ul li {
+    margin: 10px 0;
+}
+
+.sidebar-modal ul li a {
+    display: block;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.sidebar-modal ul li a:hover {
+    background-color: #495057;
+}
+
+.sidebar-modal ul li a.active {
+    background-color: #007bff;
+}
+
+.sidebar-modal .btn {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sidebar-modal .btn-secondary {
+    background-color: #6c757d;
+}
+
+.sidebar-modal .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.sidebar-modal .btn-danger {
+    background-color: #dc3545;
+}
+
+.sidebar-modal .btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Add an overlay to cover the rest of the screen when sidebar is open */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.sidebar-overlay.active {
+    display: block;
 }

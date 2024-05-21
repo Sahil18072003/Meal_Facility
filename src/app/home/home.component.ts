@@ -133,4 +133,47 @@ export class HomeComponent {
   signgout() {
     this.auth.signOut();
   }
+
+  dayMenus = {
+    Monday: {
+      lunch: ['Chole', 'Dal Fry', 'Jeera Rice', 'Puri'],
+      dinner: ['Pav Bhaji', 'Biryani', 'Kadhi'],
+    },
+    Tuesday: {
+      lunch: ['Paneer Butter Masala', 'Naan', 'Salad', 'Raita'],
+      dinner: ['Rajma', 'Rice', 'Chapati', 'Gulab Jamun'],
+    },
+    Wednesday: {
+      lunch: ['Aloo Gobi', 'Paratha', 'Dahi', 'Papad'],
+      dinner: ['Dosa', 'Sambar', 'Chutney', 'Kheer'],
+    },
+    Thursday: {
+      lunch: ['Chana Masala', 'Rice', 'Chapati', 'Salad'],
+      dinner: ['Fried Rice', 'Manchurian', 'Soup', 'Ice Cream'],
+    },
+    Friday: {
+      lunch: ['Bhindi Fry', 'Dal Tadka', 'Rice', 'Chapati'],
+      dinner: ['Pizza', 'Pasta', 'Garlic Bread', 'Brownie'],
+    },
+  };
+  currentMenu = { lunch: [], dinner: [] };
+
+  onDateSelected(date: Date): void {
+    this.selectedDate = date;
+    const dayName = this.getDayName(date);
+    this.currentMenu = this.dayMenus[dayName] || { lunch: [], dinner: [] };
+  }
+
+  getDayName(date: Date): string {
+    const days = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
+    return days[date.getDay()];
+  }
 }

@@ -60,3 +60,53 @@
     top: 2px;
     right: 2px;
 }
+
+/* daily meal */
+
+
+
+/* Styling for meal of the day section */
+.today-meal-wrapper {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: rgb(16, 5, 100);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 70%; 
+    margin: 0 auto;
+    color: white;
+    padding-left: 30px;
+  }
+  
+  .today-meal-block {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .today-meal-col {
+    flex: 1;
+  }
+
+  .head h4{
+    padding-left: 16px;
+    /* font-size: 20px; */
+    font-weight: 600;
+  }
+
+  .meal-header h2 {
+    padding-bottom: 10px;
+    font-weight: 700;
+    padding-right: 315px;
+  }
+  
+  .today-meal h4 {
+    margin-bottom: 15px;
+    color: #ffffff; /* White text color */
+    font-size: 34px; /* Larger font size */
+  }
+  
+  .today-meal li {
+    margin-bottom: 10px;
+    color: #fff; /* White text color */
+    font-size: 15px; /* Larger font size */
+  }

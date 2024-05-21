@@ -1,21 +1,49 @@
 <div class="home-page">
-    <div class="home-content">
-        <div class="home-left">
-            <button (click)="openViewBookingDialog()" class="btn btn-danger view-booking">
-                View Booking
-            </button>
-            <mat-card class="demo-inline-calendar-card">
-                <mat-calendar class="calander" [(selected)]="selectedDate" [dateFilter]="preventSelection"
-                    (selectedChange)="onDateSelected($event)"></mat-calendar>
-            </mat-card>
-        </div>
-        <div class="home-right">
-            <div>hello</div>
-        </div>
+  <div class="home-content">
+    <div class="home-left">
+      <button
+        (click)="openViewBookingDialog()"
+        class="btn btn-danger view-booking"
+      >
+        View Booking
+      </button>
+      <mat-card class="demo-inline-calendar-card">
+        <mat-calendar
+          class="calendar"
+          [(selected)]="selectedDate"
+          (selectedChange)="onDateSelected($event)"
+        ></mat-calendar>
+      </mat-card>
     </div>
-    <div class="book-div">
-        <button (click)="openAddBookingDialog()" class="btn btn-danger book-a-meal">
-            Book a Meal
-        </button>
+
+    <div class="home-right">
+      <div class="meal-header"><h2>Meal of the day</h2></div>
+      <div class="today-meal-wrapper" *ngIf="selectedDate">
+        <div class="today-meal-block">
+          <div class="today-meal-col">
+            <div class="head">
+              <h4>Lunch</h4>
+            </div>
+            <ul class="today-meal">
+              <li *ngFor="let item of currentMenu.lunch">{{ item }}</li>
+            </ul>
+          </div>
+          <div class="today-meal-col">
+            <div class="head">
+              <h4>Dinner</h4>
+            </div>
+            <ul class="today-meal">
+              <li *ngFor="let item of currentMenu.dinner">{{ item }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="book-div">
+    <button (click)="openAddBookingDialog()" class="btn btn-danger book-a-meal">
+      Book a Meal
+    </button>
+  </div>
 </div>
