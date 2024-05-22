@@ -1,0 +1,12 @@
+<form>
+  <h2>Logout</h2>
+  <div class="form-group">
+    <p>Are you sure you want to logout?</p>
+  </div>
+  <div class="form-actions">
+    <button mat-button (click)="closeForm()">No</button>
+    <button mat-raised-button color="warn" (click)="Logout()" type="submit">
+      Yes
+    </button>
+  </div>
+</form>

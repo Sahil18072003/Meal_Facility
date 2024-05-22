@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { AuthService } from '../services/auth.service';
 import { ApiService } from '../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBookingComponent } from '../add-booking/add-booking.component';
 import { ViewBookingComponent } from '../view-booking/view-booking.component';
-import { QrCouponComponent } from '../qr-coupon/qr-coupon.component';
 
 @Component({
   selector: 'app-home',
@@ -94,25 +92,6 @@ export class HomeComponent {
     this.fillDates();
   }
 
-  onDateSelected(event: MatDatepickerInputEvent<Date>) {
-    const selectedDate = event.value;
-    const currentDate = new Date();
-
-    // Check if the selected date is today
-    if (
-      selectedDate &&
-      selectedDate.toDateString() === currentDate.toDateString()
-    ) {
-      this.dialog.open(QrCouponComponent);
-
-      // Update the selected time
-      const hours = currentDate.getHours().toString().padStart(2, '0');
-      const minutes = currentDate.getMinutes().toString().padStart(2, '0');
-      const seconds = currentDate.getSeconds().toString().padStart(2, '0');
-      this.selectedTime = `${hours}:${minutes}:${seconds}`;
-    }
-  }
-
   openAddBookingDialog() {
     this.dialog.open(AddBookingComponent);
   }
@@ -134,7 +113,7 @@ export class HomeComponent {
     this.auth.signOut();
   }
 
-  dayMenus = {
+  dayMenus: { [key: string]: { lunch: string[]; dinner: string[] } } = {
     Monday: {
       lunch: ['Chole', 'Dal Fry', 'Jeera Rice', 'Puri'],
       dinner: ['Pav Bhaji', 'Biryani', 'Kadhi'],
@@ -156,7 +135,11 @@ export class HomeComponent {
       dinner: ['Pizza', 'Pasta', 'Garlic Bread', 'Brownie'],
     },
   };
-  currentMenu = { lunch: [], dinner: [] };
+
+  currentMenu: { lunch: string[]; dinner: string[] } = {
+    lunch: [],
+    dinner: [],
+  };
 
   onDateSelected(date: Date): void {
     this.selectedDate = date;

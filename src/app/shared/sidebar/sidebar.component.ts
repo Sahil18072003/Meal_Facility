@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { CancelBookingComponent } from 'src/app/cancel-booking/cancel-booking.component';
+import { LogoutComponent } from 'src/app/logout/logout.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,8 +10,9 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
-  constructor(private auth: AuthService) {}
-  Logout() {
-    this.auth.signOut();
+  constructor(private auth: AuthService, public dialog: MatDialog) {}
+
+  openLogoutDialog() {
+    this.dialog.open(LogoutComponent);
   }
 }

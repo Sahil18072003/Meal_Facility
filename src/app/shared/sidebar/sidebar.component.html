@@ -1,51 +1,22 @@
 <div class="sidebar-modal">
   <ul class="social">
     <li>
-      <a
-        routerLink="/dashboard/change-password"
-        class="list-items"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-        >Change Password</a
-      >
+      <a routerLink="/dashboard/about" class="list-items" routerLinkActive="active"
+        ariaCurrentWhenActive="page">About</a>
     </li>
     <li>
-      <a
-        routerLink="/dashboard/about"
-        class="list-items"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-        >About</a
-      >
+      <a routerLink="/dashboard/terms-and-condition" class="list-items" routerLinkActive="active"
+        ariaCurrentWhenActive="page">Terms And Condition</a>
     </li>
     <li>
-      <a
-        routerLink="/dashboard/terms-and-condition"
-        class="list-items"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-        >Terms And Condition</a
-      >
+      <a routerLink="/dashboard/privacy-policy" class="list-items" routerLinkActive="active"
+        ariaCurrentWhenActive="page">Privacy Policy</a>
     </li>
     <li>
-      <a
-        routerLink="/dashboard/privacy-policy"
-        class="list-items"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-        >Privacy Policy</a
-      >
+      <a routerLink="/change-password" class="list-items" routerLinkActive="active" ariaCurrentWhenActive="page">Change
+        Password</a>
     </li>
-    <li>
-      <a
-        routerLink="/change-password"
-        class="list-items"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-        >Change Password</a
-      >
-    </li>
-    <button (click)="Logout()" class="btn btn-secondary btn-danger">
+    <button (click)="openLogoutDialog()" class="btn btn-secondary btn-danger">
       Logout
     </button>
   </ul>

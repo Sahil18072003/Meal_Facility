@@ -15,6 +15,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AddBookingComponent } from './add-booking/add-booking.component';
 import { ViewBookingComponent } from './view-booking/view-booking.component';
 import { QrCouponComponent } from './qr-coupon/qr-coupon.component';
+import { LogoutComponent } from './logout/logout.component';
+import { CancelBookingComponent } from './cancel-booking/cancel-booking.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { QrCouponComponent } from './qr-coupon/qr-coupon.component';
     AddBookingComponent,
     ViewBookingComponent,
     QrCouponComponent,
+    LogoutComponent,
+    CancelBookingComponent,
   ],
 
   imports: [
