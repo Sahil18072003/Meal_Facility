@@ -1,1 +1,12 @@
-<p>cancel-booking works!</p>
+<form>
+    <h2>Cancel Booking</h2>
+    <div class="form-group">
+        <p>Are you sure you want to cancel your booking?</p>
+    </div>
+    <div class="form-actions">
+        <button mat-button (click)="closeForm()">No</button>
+        <button mat-raised-button color="warn" (click)="Logout()" type="submit">
+            Yes
+        </button>
+    </div>
+</form>

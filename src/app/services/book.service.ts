@@ -7,10 +7,16 @@ import { Router } from '@angular/router';
 })
 export class BookService {
   private baseUrl: string = 'https://localhost:7246/api/Booking/';
+  
   constructor(private http: HttpClient, private router: Router) {}
 
-  addBooking(bookingObj: any) {
-    console.log(bookingObj);
-    return this.http.post<any>(`${this.baseUrl}book`, bookingObj);
+  addBooking(bulkbookingObj: any) {
+    console.log(bulkbookingObj);
+    return this.http.post<any>(`${this.baseUrl}book`, bulkbookingObj);
+  }
+
+  quickBooking(quickbookingObj: any) {
+    console.log(quickbookingObj);
+    return this.http.post<any>(`${this.baseUrl}book`, quickbookingObj);
   }
 }

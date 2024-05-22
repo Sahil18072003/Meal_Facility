@@ -1,0 +1,41 @@
+<div class="quick-booking-container">
+    <div class="quick-booking-form" *ngIf="isFormVisible">
+        <div class="quick-booking-header">
+            <p>Book a Meal</p>
+            <button (click)="closeForm()">
+                &#10006;
+            </button>
+        </div>
+        <div class="new-booking">
+            New booking
+        </div>
+        <form [formGroup]="quickbookingForm">
+            <div class="form-group">
+                <label>Select Meal Type</label>
+                <mat-radio-group formControlName="BookingType">
+                    <mat-radio-button value="lunch">Lunch</mat-radio-button>
+                    <mat-radio-button value="dinner">Dinner</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <div class="form-group">
+                <label>Select Meal Day</label>
+                <mat-form-field appearance="fill">
+                    <input matInput formControlName="selectedDate" [matDatepicker]="picker"
+                        [matDatepickerFilter]="myFilter" placeholder="Select date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="quickbookingForm.get('selectedDate')?.errors?.['dateInvalid']">
+                        Invalid Date: Please select a date starting from tomorrow and not on weekends.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+
+        <div class="form-actions">
+            <button class="btn btn-danger" mat-raised-button (click)="bookMeal()">
+                Book
+            </button>
+        </div>
+    </div>
+</div>

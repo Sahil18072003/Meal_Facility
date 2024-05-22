@@ -1,23 +1,33 @@
 <div class="home-page">
+  <div class="book-div">
+    <button (click)="openAddBookingDialog()" class="btn btn-danger book-a-meal">
+      Book a Meal
+    </button>
+
+    <button (click)="openQuickBookingDialog()" class="btn btn-danger book-a-meal">
+      Quick Booking
+    </button>
+
+    <button (click)="openViewBookingDialog()" class="btn btn-danger book-a-meal">
+      View Booking
+    </button>
+
+    <button (click)="openCancelBookingDialog()" class="btn btn-danger book-a-meal">
+      Cancel Booking
+    </button>
+  </div>
   <div class="home-content">
     <div class="home-left">
-      <button
-        (click)="openViewBookingDialog()"
-        class="btn btn-danger view-booking"
-      >
-        View Booking
-      </button>
       <mat-card class="demo-inline-calendar-card">
-        <mat-calendar
-          class="calendar"
-          [(selected)]="selectedDate"
-          (selectedChange)="onDateSelected($event)"
-        ></mat-calendar>
+        <mat-calendar class="calendar" [(selected)]="selectedDate"
+          (selectedChange)="onDateSelected($event)"></mat-calendar>
       </mat-card>
     </div>
 
     <div class="home-right">
-      <div class="meal-header"><h2>Meal of the day</h2></div>
+      <div class="meal-header">
+        <h2>Meal of the day</h2>
+      </div>
       <div class="today-meal-wrapper" *ngIf="selectedDate">
         <div class="today-meal-block">
           <div class="today-meal-col">
@@ -41,9 +51,5 @@
     </div>
   </div>
 
-  <div class="book-div">
-    <button (click)="openAddBookingDialog()" class="btn btn-danger book-a-meal">
-      Book a Meal
-    </button>
-  </div>
+
 </div>

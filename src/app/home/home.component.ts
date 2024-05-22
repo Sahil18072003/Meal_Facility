@@ -4,6 +4,8 @@ import { ApiService } from '../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBookingComponent } from '../add-booking/add-booking.component';
 import { ViewBookingComponent } from '../view-booking/view-booking.component';
+import { CancelBookingComponent } from '../cancel-booking/cancel-booking.component';
+import { QuickBookingComponent } from '../quick-booking/quick-booking.component';
 
 @Component({
   selector: 'app-home',
@@ -96,8 +98,16 @@ export class HomeComponent {
     this.dialog.open(AddBookingComponent);
   }
 
+  openQuickBookingDialog() {
+    this.dialog.open(QuickBookingComponent);
+  }
+
   openViewBookingDialog() {
     this.dialog.open(ViewBookingComponent);
+  }
+
+  openCancelBookingDialog() {
+    this.dialog.open(CancelBookingComponent);
   }
 
   ngOnInit() {

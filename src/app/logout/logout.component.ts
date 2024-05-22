@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 
@@ -9,19 +8,12 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./logout.component.css'],
 })
 export class LogoutComponent {
-  logoutForm!: FormGroup;
-
   constructor(
-    private fb: FormBuilder,
     private auth: AuthService,
     public dialogRef: MatDialogRef<LogoutComponent>
   ) {}
 
-  ngOnInit(): void {
-    this.logoutForm = this.fb.group({
-      reason: ['', Validators.required],
-    });
-  }
+  ngOnInit(): void {}
 
   Logout() {
     this.auth.signOut();
