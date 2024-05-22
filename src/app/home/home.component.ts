@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ApiService } from '../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,118 +12,14 @@ import { QuickBookingComponent } from '../quick-booking/quick-booking.component'
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
-  selectedDate: any;
-  selectedTime: any;
-  bookedDates: any[] = [];
-  canceledDates: any[] = [];
-  date: any;
-  public users: any = [];
-  dateFilter: any;
-  cell!: Date;
-
-  fillDates() {
-    this.bookedDates = [
-      new Date('2024-05-10'),
-      new Date('2024-05-15'),
-      new Date('2024-05-20'),
-      new Date('2024-05-25'),
-      new Date('2024-05-30'),
-    ];
-
-    this.canceledDates = [
-      new Date('2024-06-02'),
-      new Date('2024-06-07'),
-      new Date('2024-06-12'),
-      new Date('2024-06-17'),
-      new Date('2024-06-22'),
-    ];
-  }
-
-  isWeekend(date: any): boolean {
-    if (!date || !(date instanceof Date)) {
-      return false;
-    }
-    const day = date.getDay();
-    return day === 6 || day === 0;
-  }
-
-  preventSelection = (date: any): boolean => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Reset time to compare only dates
-    return !this.isWeekend(date) && !this.isCanceled(date) && date >= today;
+export class HomeComponent implements OnInit {
+  selectedDate: Date = new Date();
+  currentMenu: { lunch: string[]; dinner: string[] } = {
+    lunch: [],
+    dinner: [],
   };
-
-  isCanceled(date: any): boolean {
-    if (!date || !(date instanceof Date)) {
-      return false;
-    }
-    return this.canceledDates.some((cancelDate) =>
-      this.isSameDate(date, cancelDate)
-    );
-  }
-
-  todayDate: Date = new Date();
-
-  isCurrentDate(cellDate: Date): boolean {
-    return cellDate.toDateString() === this.todayDate.toDateString();
-  }
-
-  isSameDate(date1: any, date2: any): boolean {
-    if (
-      !date1 ||
-      !date2 ||
-      !(date1 instanceof Date) ||
-      !(date2 instanceof Date)
-    ) {
-      return false;
-    }
-
-    return (
-      date1.getFullYear() === date2.getFullYear() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getDate() === date2.getDate()
-    );
-  }
-
-  constructor(
-    private api: ApiService,
-    private auth: AuthService,
-    public dialog: MatDialog
-  ) {
-    this.fillDates();
-  }
-
-  openAddBookingDialog() {
-    this.dialog.open(AddBookingComponent);
-  }
-
-  openQuickBookingDialog() {
-    this.dialog.open(QuickBookingComponent);
-  }
-
-  openViewBookingDialog() {
-    this.dialog.open(ViewBookingComponent);
-  }
-
-  openCancelBookingDialog() {
-    this.dialog.open(CancelBookingComponent);
-  }
-
-  ngOnInit() {
-    this.api.getUsers().subscribe((res) => {
-      this.users = res;
-    });
-  }
-
-  logout() {
-    this.auth.signOut();
-  }
-  signgout() {
-    this.auth.signOut();
-  }
-
   dayMenus: { [key: string]: { lunch: string[]; dinner: string[] } } = {
+    Sunday: { lunch: [], dinner: [] },
     Monday: {
       lunch: ['Chole', 'Dal Fry', 'Jeera Rice', 'Puri'],
       dinner: ['Pav Bhaji', 'Biryani', 'Kadhi'],
@@ -144,12 +40,45 @@ export class HomeComponent {
       lunch: ['Bhindi Fry', 'Dal Tadka', 'Rice', 'Chapati'],
       dinner: ['Pizza', 'Pasta', 'Garlic Bread', 'Brownie'],
     },
+    Saturday: { lunch: [], dinner: [] },
   };
 
-  currentMenu: { lunch: string[]; dinner: string[] } = {
-    lunch: [],
-    dinner: [],
-  };
+  constructor(
+    private api: ApiService,
+    private auth: AuthService,
+    public dialog: MatDialog
+  ) {}
+
+  ngOnInit() {
+    this.onDateSelected(this.selectedDate);
+    this.api.getUsers().subscribe((res) => {
+      // Handle user data retrieval
+    });
+  }
+
+  openAddBookingDialog() {
+    this.dialog.open(AddBookingComponent);
+  }
+
+  openQuickBookingDialog() {
+    this.dialog.open(QuickBookingComponent);
+  }
+
+  openViewBookingDialog() {
+    this.dialog.open(ViewBookingComponent);
+  }
+
+  openCancelBookingDialog() {
+    this.dialog.open(CancelBookingComponent);
+  }
+
+  logout() {
+    this.auth.signOut();
+  }
+
+  signout() {
+    this.auth.signOut();
+  }
 
   onDateSelected(date: Date): void {
     this.selectedDate = date;

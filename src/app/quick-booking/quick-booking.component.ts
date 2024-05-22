@@ -65,14 +65,14 @@ export class QuickBookingComponent implements OnInit {
   dateValidator(control: FormControl): { [key: string]: boolean } | null {
     const selectedDate = new Date(control.value);
     if (!selectedDate) {
-      return null; 
+      return null;
     }
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
     const isWeekend =
-      selectedDate.getDay() === 0 || selectedDate.getDay() === 6; 
+      selectedDate.getDay() === 0 || selectedDate.getDay() === 6;
 
     if (selectedDate <= today || isWeekend) {
       return { dateInvalid: true };

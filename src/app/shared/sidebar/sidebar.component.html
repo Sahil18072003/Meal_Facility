@@ -1,19 +1,20 @@
 <div class="sidebar-modal">
   <ul class="social">
     <li>
-      <a routerLink="/dashboard/about" class="list-items" routerLinkActive="active"
-        ariaCurrentWhenActive="page">About</a>
+      <a routerLink="/dashboard/about" class="list-items" routerLinkActive="active" ariaCurrentWhenActive="page"
+        (click)="onclick()">About</a>
     </li>
     <li>
       <a routerLink="/dashboard/terms-and-condition" class="list-items" routerLinkActive="active"
-        ariaCurrentWhenActive="page">Terms And Condition</a>
+        ariaCurrentWhenActive="page" (click)="onclick()">Terms And Condition</a>
     </li>
     <li>
       <a routerLink="/dashboard/privacy-policy" class="list-items" routerLinkActive="active"
-        ariaCurrentWhenActive="page">Privacy Policy</a>
+        ariaCurrentWhenActive="page" (click)="onclick()">Privacy Policy</a>
     </li>
     <li>
-      <a routerLink="/change-password" class="list-items" routerLinkActive="active" ariaCurrentWhenActive="page">Change
+      <a routerLink="/change-password" class="list-items" routerLinkActive="active" ariaCurrentWhenActive="page"
+        (click)="onclick()">Change
         Password</a>
     </li>
     <button (click)="openLogoutDialog()" class="btn btn-secondary btn-danger">
