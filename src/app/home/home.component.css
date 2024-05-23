@@ -1,64 +1,64 @@
 .demo-inline-calendar-card {
-    width: 500px;
-    margin: auto;
+  width: 500px;
+  margin: auto;
 }
 
 .home-page {
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
 .home-content {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
 .home-left,
 .home-right {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
 }
 
 .view-booking {
-    margin-bottom: 20px;
-    padding: 12px;
-    background-color: red;
-    align-self: center;
+  margin-bottom: 20px;
+  padding: 12px;
+  background-color: red;
+  align-self: center;
 }
 
 .book-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .book-a-meal {
-    margin: 10px;
-    padding: 10px 12px;
-    background-color: red;
-    font-weight: 500;
+  margin: 10px;
+  padding: 10px 12px;
+  background-color: red;
+  font-weight: 500;
 }
 
 .today-date .mat-calendar-body-cell-today {
-    background-color: red !important;
+  background-color: red !important;
 }
 
 .mat-calendar-body-cell.today .mat-calendar-body-cell-content::after {
-    content: '';
-    display: block;
-    width: 8px;
-    height: 8px;
-    background-color: green;
-    border-radius: 50%;
-    position: absolute;
-    top: 2px;
-    right: 2px;
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: green;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  right: 2px;
 }
 
 /* daily meal */
@@ -67,46 +67,46 @@
 
 /* Styling for meal of the day section */
 .today-meal-wrapper {
-    margin-bottom: 30px;
-    padding: 20px;
-    background-color: rgb(16, 5, 100);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: 70%; 
-    margin: 0 auto;
-    color: white;
-    padding-left: 30px;
-  }
-  
-  .today-meal-block {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .today-meal-col {
-    flex: 1;
-  }
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: rgb(16, 5, 100);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  margin: 0 auto;
+  color: white;
+  padding-left: 30px;
+}
 
-  .head h4{
-    padding-left: 16px;
-    /* font-size: 20px; */
-    font-weight: 600;
-  }
+.today-meal-block {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .meal-header h2 {
-    padding-bottom: 10px;
-    font-weight: 700;
-    padding-right: 315px;
-  }
-  
-  .today-meal h4 {
-    margin-bottom: 15px;
-    color: #ffffff; /* White text color */
-    font-size: 34px; /* Larger font size */
-  }
-  
-  .today-meal li {
-    margin-bottom: 10px;
-    color: #fff; /* White text color */
-    font-size: 15px; /* Larger font size */
-  }
+.today-meal-col {
+  flex: 1;
+}
+
+.head p {
+  padding: 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.meal-header h2 {
+  padding-bottom: 10px;
+  font-weight: 700;
+  padding-right: 315px;
+}
+
+.today-meal h4 {
+  margin-bottom: 15px;
+  color: #ffffff;
+  font-size: 34px;
+}
+
+.today-meal li {
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 16px;
+}

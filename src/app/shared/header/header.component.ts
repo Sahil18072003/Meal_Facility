@@ -1,25 +1,27 @@
-import { Component } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { SidebarComponent } from '../sidebar/sidebar.component';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 import { NotificationComponent } from 'src/app/notification/notification.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   showFiller = false;
+  name: string | null = null;
 
-  public users: any = [];
-
-  constructor(private api: ApiService, public dialog: MatDialog) {}
+  constructor(private auth: AuthService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.api.getUsers().subscribe((res) => {
-      this.users = res;
-    });
+    const storedName = localStorage.getItem('name');
+    if (storedName) {
+      this.name = storedName;
+    } else {
+      this.name = 'Guest';
+    }
   }
 
   openSidebar() {

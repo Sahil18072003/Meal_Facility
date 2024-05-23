@@ -39,6 +39,15 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}changePassword`, changeObj);
   }
 
+  storeName(nameValue: string) {
+    localStorage.setItem('name', nameValue);
+    console.log(nameValue);
+  }
+
+  getName() {
+    return localStorage.getItem('name');
+  }
+
   storeTokan(tokenValue: string) {
     localStorage.setItem('token', tokenValue);
   }

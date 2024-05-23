@@ -34,24 +34,6 @@
     align-items: center;
 }
 
-.terminal {
-    position: relative;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 6px;
-    padding-top: 45px;
-    margin-top: 8px;
-    overflow: hidden;
-    background-color: rgb(15, 15, 16);
-}
-
-.terminal pre {
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-    color: white;
-    padding: 0 1rem 1rem;
-    margin: 0;
-}
-
 a,
 a:visited,
 a:hover {
@@ -133,4 +115,8 @@ a:hover {
 
 .toolbar .social a:last-child {
     margin-right: 0;
+}
+
+.name {
+    font-size: 20px;
 }

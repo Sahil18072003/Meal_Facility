@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  loginForm!: FormGroup;
   type: string = 'password';
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
@@ -21,7 +22,6 @@ export class LoginComponent {
     this.isText ? (this.type = 'text') : (this.type = 'password');
   }
 
-  loginForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
@@ -41,17 +41,22 @@ export class LoginComponent {
       this.auth.login(this.loginForm.value).subscribe({
         next: (res) => {
           this.loginForm.reset();
-          this.auth.storeTokan(res.token);
+
+          this.auth.storeTokan(res.user.token);
+
+          this.auth.storeName(res.user.firstName);
+
           this.snackBar.open(res.message, 'Okay', {
             duration: 3000,
             verticalPosition: 'top',
             horizontalPosition: 'right',
             panelClass: ['success-snackbar'],
           });
+
           this.router.navigate(['dashboard/home']);
         },
         error: (err) => {
-          console.log("error: ",err);
+          console.log('error: ', err);
           // alert(err.error.message);
           this.snackBar.open(err, 'Try again', {
             duration: 3000,
