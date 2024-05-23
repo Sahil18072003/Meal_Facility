@@ -33,26 +33,27 @@ export class OtpVerificationComponent {
 
   onSubmite() {
     if (this.otpVerificationForm.valid) {
-      console.log(this.otpVerificationForm.value)
+      console.log(this.otpVerificationForm.value);
       this.auth.otpverification(this.otpVerificationForm.value).subscribe({
         next: (res) => {
           this.otpVerificationForm.reset();
+
           this.snackBar.open(res.message, 'Okay', {
             duration: 3000,
             verticalPosition: 'top',
             horizontalPosition: 'right',
             panelClass: ['success-snackbar'],
           });
+
           this.router.navigate(['reset-password']);
         },
         error: (err) => {
-          alert(err.message);
-          // this.snackBar.open(err.message, 'Try again', {
-          //   duration: 3000,
-          //   verticalPosition: 'top',
-          //   horizontalPosition: 'right',
-          //   panelClass: ['error-snackbar'],
-          // });
+          this.snackBar.open(err, 'Try again', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['error-snackbar'],
+          });
         },
       });
     } else {

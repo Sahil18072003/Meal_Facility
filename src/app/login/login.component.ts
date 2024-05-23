@@ -57,7 +57,6 @@ export class LoginComponent {
         },
         error: (err) => {
           console.log('error: ', err);
-          // alert(err.error.message);
           this.snackBar.open(err, 'Try again', {
             duration: 3000,
             verticalPosition: 'top',

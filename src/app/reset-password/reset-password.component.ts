@@ -46,22 +46,23 @@ export class ResetPasswordComponent {
       this.auth.resetPassword(this.resetPasswordForm.value).subscribe({
         next: (res) => {
           this.resetPasswordForm.reset();
+
           this.snackBar.open(res.message, 'Okay', {
             duration: 3000,
             verticalPosition: 'top',
             horizontalPosition: 'right',
             panelClass: ['success-snackbar'],
           });
+
           this.router.navigate(['otp-verification']);
         },
         error: (err) => {
-          alert(err.message);
-          // this.snackBar.open(err.message, 'Try again', {
-          //   duration: 3000,
-          //   verticalPosition: 'top',
-          //   horizontalPosition: 'right',
-          //   panelClass: ['error-snackbar'],
-          // });
+          this.snackBar.open(err, 'Try again', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['error-snackbar'],
+          });
         },
       });
     } else {

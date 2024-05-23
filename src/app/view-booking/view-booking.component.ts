@@ -9,6 +9,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class ViewBookingComponent {
   selectedDate: any;
+  minDate: Date;
+  myFilter: (d: Date | null) => boolean;
 
   // Assuming start and end dates
   startDate = new Date('2024-05-25T18:30:00.000Z');
@@ -19,7 +21,22 @@ export class ViewBookingComponent {
     this.endDate
   );
 
-  constructor(public dialogRef: MatDialogRef<ViewBookingComponent>) {}
+  constructor(public dialogRef: MatDialogRef<ViewBookingComponent>) {
+    const today = new Date();
+    this.minDate = new Date(today.setDate(today.getDate() + 1));
+
+    this.myFilter = (d: Date | null): boolean => {
+      if (!d) return false;
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const day = d.getDay();
+      const isWeekend = day === 0 || day === 6;
+
+      return d > today && !isWeekend;
+    };
+  }
 
   ngOnInit() {}
 
