@@ -35,6 +35,10 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}resetPassword`, resetObj);
   }
 
+  changePassword(changeObj: any) {
+    return this.http.post<any>(`${this.baseUrl}changePassword`, changeObj);
+  }
+
   storeTokan(tokenValue: string) {
     localStorage.setItem('token', tokenValue);
   }

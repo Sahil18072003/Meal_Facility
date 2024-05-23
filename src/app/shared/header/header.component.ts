@@ -1,8 +1,8 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { MatDialog } from '@angular/material/dialog';
+import { NotificationComponent } from 'src/app/notification/notification.component';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +14,7 @@ export class HeaderComponent {
 
   public users: any = [];
 
-  constructor(
-    private auth: AuthService,
-    private api: ApiService,
-    public dialog: MatDialog
-  ) {}
+  constructor(private api: ApiService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.api.getUsers().subscribe((res) => {
@@ -28,5 +24,9 @@ export class HeaderComponent {
 
   openSidebar() {
     this.dialog.open(SidebarComponent);
+  }
+
+  openNotification() {
+    this.dialog.open(NotificationComponent);
   }
 }

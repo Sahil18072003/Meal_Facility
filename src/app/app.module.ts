@@ -18,6 +18,7 @@ import { QrCouponComponent } from './qr-coupon/qr-coupon.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CancelBookingComponent } from './cancel-booking/cancel-booking.component';
 import { QuickBookingComponent } from './quick-booking/quick-booking.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { QuickBookingComponent } from './quick-booking/quick-booking.component';
     LogoutComponent,
     CancelBookingComponent,
     QuickBookingComponent,
+    NotificationComponent,
   ],
 
   imports: [

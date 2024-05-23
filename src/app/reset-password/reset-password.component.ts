@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -16,6 +15,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./reset-password.component.css'],
 })
 export class ResetPasswordComponent {
+  resetPasswordForm!: FormGroup;
+  
   type: string = 'password';
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
@@ -26,7 +27,6 @@ export class ResetPasswordComponent {
     this.isText ? (this.type = 'text') : (this.type = 'password');
   }
 
-  resetPasswordForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,

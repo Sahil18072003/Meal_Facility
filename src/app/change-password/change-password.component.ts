@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +11,8 @@ import ValidateForm from '../helpers/validateform';
   styleUrls: ['./change-password.component.css'],
 })
 export class ChangePasswordComponent {
+  changePasswordForm!: FormGroup;
+
   type: string = 'password';
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
@@ -23,8 +23,12 @@ export class ChangePasswordComponent {
     this.isText ? (this.type = 'text') : (this.type = 'password');
   }
 
-  changePasswordForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.changePasswordForm = this.fb.group({
@@ -35,14 +39,35 @@ export class ChangePasswordComponent {
 
   onSubmite() {
     if (this.changePasswordForm.valid) {
-      console.log(this.changePasswordForm.value);
-      alert('Password change successfully.');
-      //send data to database
+      this.auth.changePassword(this.changePasswordForm.value).subscribe({
+        next: (res) => {
+          this.changePasswordForm.reset();
+          this.snackBar.open(res.message, 'Okay', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['success-snackbar'],
+          });
+          this.router.navigate(['otp-verification']);
+        },
+        error: (err) => {
+          alert(err.message);
+          // this.snackBar.open(err.message, 'Try again', {
+          //   duration: 3000,
+          //   verticalPosition: 'top',
+          //   horizontalPosition: 'right',
+          //   panelClass: ['error-snackbar'],
+          // });
+        },
+      });
     } else {
-      console.log('Form is not valid');
-      //throw a error using toaster and with  required fileds
       ValidateForm.validdateAllFromFileds(this.changePasswordForm);
-      alert('Your form is invalid');
+      this.snackBar.open('Your form is invalid', 'Try again', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+        panelClass: ['error-snackbar'],
+      });
     }
   }
 }
