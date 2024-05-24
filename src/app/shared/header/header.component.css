@@ -72,8 +72,9 @@ a:hover {
     }
 }
 
-.title {
-    font-size: xx-large
+.title a {
+    font-size: xx-large;
+    color: white
 }
 
 .list-items {

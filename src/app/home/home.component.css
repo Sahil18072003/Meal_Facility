@@ -3,6 +3,13 @@
   margin: auto;
 }
 
+::ng-deep.special-date-home {
+  background-color: greenyellow;
+  border-radius: 100%;
+  padding: 2px;
+  color: white;
+}
+
 .home-page {
   justify-content: center;
   align-items: center;
@@ -60,10 +67,6 @@
   top: 2px;
   right: 2px;
 }
-
-/* daily meal */
-
-
 
 /* Styling for meal of the day section */
 .today-meal-wrapper {

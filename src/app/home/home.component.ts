@@ -6,6 +6,7 @@ import { AddBookingComponent } from '../add-booking/add-booking.component';
 import { ViewBookingComponent } from '../view-booking/view-booking.component';
 import { CancelBookingComponent } from '../cancel-booking/cancel-booking.component';
 import { QuickBookingComponent } from '../quick-booking/quick-booking.component';
+import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +15,21 @@ import { QuickBookingComponent } from '../quick-booking/quick-booking.component'
 })
 export class HomeComponent implements OnInit {
   selectedDate: Date = new Date();
+
+  // Assuming start and end dates
+  startDate = new Date('2024-05-20T18:30:00.000Z');
+  endDate = new Date('2024-05-28T18:30:00.000Z');
+
+  datesToHighlight: string[] = this.generateDatesInRange(
+    this.startDate,
+    this.endDate
+  );
+
   currentMenu: { lunch: string[]; dinner: string[] } = {
     lunch: [],
     dinner: [],
   };
+
   dayMenus: { [key: string]: { lunch: string[]; dinner: string[] } } = {
     Sunday: { lunch: [], dinner: [] },
     Monday: {
@@ -50,7 +62,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onDateSelected(this.selectedDate);
+    // this.onDateSelected(this.selectedDate);
     this.api.getUsers().subscribe((res) => {
       // Handle user data retrieval
     });
@@ -72,15 +84,7 @@ export class HomeComponent implements OnInit {
     this.dialog.open(CancelBookingComponent);
   }
 
-  logout() {
-    this.auth.signOut();
-  }
-
-  signout() {
-    this.auth.signOut();
-  }
-
-  onDateSelected(date: Date): void {
+  onDateSelected(date: Date) {
     this.selectedDate = date;
     const dayName = this.getDayName(date);
     this.currentMenu = this.dayMenus[dayName] || { lunch: [], dinner: [] };
@@ -97,5 +101,35 @@ export class HomeComponent implements OnInit {
       'Saturday',
     ];
     return days[date.getDay()];
+  }
+
+  // Function to generate dates between start and end date
+  generateDatesInRange(startDate: Date, endDate: Date): string[] {
+    const dates: string[] = [];
+    let currentDate = startDate;
+    while (currentDate <= endDate) {
+      dates.push(currentDate.toISOString());
+      currentDate = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000); // Add one day
+    }
+    return dates;
+  }
+
+  dateClass() {
+    return (date: Date): MatCalendarCellCssClasses => {
+      if (date.getDay() === 0 || date.getDay() === 6) {
+        return '';
+      }
+
+      const highlightDate = this.datesToHighlight
+        .map((strDate) => new Date(strDate))
+        .some(
+          (d) =>
+            d.getDate() === date.getDate() &&
+            d.getMonth() === date.getMonth() &&
+            d.getFullYear() === date.getFullYear()
+        );
+
+      return highlightDate ? 'special-date-home' : '';
+    };
   }
 }

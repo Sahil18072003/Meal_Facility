@@ -8,15 +8,11 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./cancel-booking.component.css'],
 })
 export class CancelBookingComponent {
-  constructor(
-    private auth: AuthService,
-    public dialogRef: MatDialogRef<CancelBookingComponent>
-  ) {}
+  constructor(public dialogRef: MatDialogRef<CancelBookingComponent>) {}
 
   ngOnInit(): void {}
 
-  Logout() {
-    this.auth.signOut();
+  cancelBooking() {
     this.closeForm();
   }
 
