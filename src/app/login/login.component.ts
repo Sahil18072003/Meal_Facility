@@ -44,7 +44,7 @@ export class LoginComponent {
 
           this.auth.storeTokan(res.user.token);
 
-          this.auth.storeName(res.user.firstName);
+          this.auth.storeUser(res.user);
 
           this.snackBar.open(res.message, 'Okay', {
             duration: 3000,
@@ -56,12 +56,11 @@ export class LoginComponent {
           this.router.navigate(['dashboard/home']);
         },
         error: (err) => {
-          console.log('error: ', err);
           this.snackBar.open(err, 'Try again', {
             duration: 3000,
             verticalPosition: 'top',
             horizontalPosition: 'right',
-            panelClass: ['warning-snackbar'],
+            panelClass: ['error-snackbar'],
           });
         },
       });

@@ -19,4 +19,9 @@ export class BookService {
     console.log(quickbookingObj);
     return this.http.post<any>(`${this.baseUrl}book`, quickbookingObj);
   }
+
+  cancelBooking(cancelbookingObj: any) {
+    console.log(cancelbookingObj);
+    return this.http.post<any>(`${this.baseUrl}book`, cancelbookingObj);
+  }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
 import { ApiService } from '../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBookingComponent } from '../add-booking/add-booking.component';
@@ -7,6 +6,7 @@ import { ViewBookingComponent } from '../view-booking/view-booking.component';
 import { CancelBookingComponent } from '../cancel-booking/cancel-booking.component';
 import { QuickBookingComponent } from '../quick-booking/quick-booking.component';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
+import { QrCouponComponent } from '../qr-coupon/qr-coupon.component';
 
 @Component({
   selector: 'app-home',
@@ -14,21 +14,13 @@ import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  selectedDate: Date = new Date();
-
-  // Assuming start and end dates
-  startDate = new Date('2024-05-20T18:30:00.000Z');
-  endDate = new Date('2024-05-28T18:30:00.000Z');
-
-  datesToHighlight: string[] = this.generateDatesInRange(
-    this.startDate,
-    this.endDate
-  );
+  selectedDate: any;
 
   currentMenu: { lunch: string[]; dinner: string[] } = {
     lunch: [],
     dinner: [],
   };
+  datesToHighlight: Date[] = [];
 
   dayMenus: { [key: string]: { lunch: string[]; dinner: string[] } } = {
     Sunday: { lunch: [], dinner: [] },
@@ -55,17 +47,15 @@ export class HomeComponent implements OnInit {
     Saturday: { lunch: [], dinner: [] },
   };
 
-  constructor(
-    private api: ApiService,
-    private auth: AuthService,
-    public dialog: MatDialog
-  ) {}
+  constructor(private api: ApiService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    // this.onDateSelected(this.selectedDate);
     this.api.getUsers().subscribe((res) => {
       // Handle user data retrieval
     });
+
+    this.updateMenu();
+    this.generateDatesToHighlight();
   }
 
   openAddBookingDialog() {
@@ -84,52 +74,47 @@ export class HomeComponent implements OnInit {
     this.dialog.open(CancelBookingComponent);
   }
 
-  onDateSelected(date: Date) {
-    this.selectedDate = date;
-    const dayName = this.getDayName(date);
-    this.currentMenu = this.dayMenus[dayName] || { lunch: [], dinner: [] };
+  openQrDialog() {
+    this.dialog.open(QrCouponComponent);
   }
 
-  getDayName(date: Date): string {
-    const days = [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-    ];
-    return days[date.getDay()];
-  }
-
-  // Function to generate dates between start and end date
-  generateDatesInRange(startDate: Date, endDate: Date): string[] {
-    const dates: string[] = [];
-    let currentDate = startDate;
-    while (currentDate <= endDate) {
-      dates.push(currentDate.toISOString());
-      currentDate = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000); // Add one day
+  updateMenu() {
+    if (this.selectedDate) {
+      const dayOfWeek = this.selectedDate.toLocaleDateString('en-US', {
+        weekday: 'long',
+      });
+      this.currentMenu = this.dayMenus[dayOfWeek] || { lunch: [], dinner: [] };
     }
-    return dates;
+  }
+
+  onSelect(event: any) {
+    this.selectedDate = event;
+    this.updateMenu();
+  }
+
+  generateDatesToHighlight() {
+    const startDate = new Date('2024-05-20T18:30:00.000Z');
+    const endDate = new Date('2024-05-28T18:30:00.000Z');
+    const currentDate = new Date(startDate);
+
+    while (currentDate <= endDate) {
+      if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
+        this.datesToHighlight.push(new Date(currentDate));
+      }
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
   }
 
   dateClass() {
     return (date: Date): MatCalendarCellCssClasses => {
-      if (date.getDay() === 0 || date.getDay() === 6) {
-        return '';
-      }
+      const highlightDate = this.datesToHighlight.some(
+        (d) =>
+          d.getDate() === date.getDate() &&
+          d.getMonth() === date.getMonth() &&
+          d.getFullYear() === date.getFullYear()
+      );
 
-      const highlightDate = this.datesToHighlight
-        .map((strDate) => new Date(strDate))
-        .some(
-          (d) =>
-            d.getDate() === date.getDate() &&
-            d.getMonth() === date.getMonth() &&
-            d.getFullYear() === date.getFullYear()
-        );
-
-      return highlightDate ? 'special-date-home' : '';
+      return highlightDate ? 'highlight-date' : '';
     };
   }
 }

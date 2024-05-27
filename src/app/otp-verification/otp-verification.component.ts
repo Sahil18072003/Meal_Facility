@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,6 +12,7 @@ import ValidateForm from '../helpers/validateform';
 })
 export class OtpVerificationComponent {
   otpVerificationForm!: FormGroup;
+  userEmail: string | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -26,15 +22,23 @@ export class OtpVerificationComponent {
   ) {}
 
   ngOnInit(): void {
+    const user = this.auth.getUser();
+    this.userEmail = user.email;
+
     this.otpVerificationForm = this.fb.group({
-      otp: ['', Validators.required],
+      email: [this.userEmail, Validators.required], // Set email field with user's email
+      EnteredOTP: ['', Validators.required],
     });
   }
 
-  onSubmite() {
+  onSubmit() {
     if (this.otpVerificationForm.valid) {
-      console.log(this.otpVerificationForm.value);
-      this.auth.otpverification(this.otpVerificationForm.value).subscribe({
+      const otpVerificationDto = {
+        email: this.userEmail, // Use userEmail instead of trying to access from form value
+        EnteredOTP: this.otpVerificationForm.value.otp,
+      };
+
+      this.auth.otpVerification(otpVerificationDto).subscribe({
         next: (res) => {
           this.otpVerificationForm.reset();
 

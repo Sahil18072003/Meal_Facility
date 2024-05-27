@@ -10,7 +10,6 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   signUp(userObj: any) {
-    console.log(userObj);
     return this.http.post<any>(`${this.baseUrl}register`, userObj);
   }
 
@@ -27,8 +26,8 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}forgotPassword`, forgotObj);
   }
 
-  otpverification(otpObj: any) {
-    return this.http.post<any>(`${this.baseUrl}otp`, otpObj);
+  otpVerification(otpObj: any) {
+    return this.http.post<any>(`${this.baseUrl}verifyOTP`, otpObj);
   }
 
   resetPassword(resetObj: any) {
@@ -39,13 +38,13 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}changePassword`, changeObj);
   }
 
-  storeName(nameValue: string) {
-    localStorage.setItem('name', nameValue);
-    console.log(nameValue);
+  storeUser(user: any) {
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getName() {
-    return localStorage.getItem('name');
+  getUser() {
+    const userString = localStorage.getItem('user');
+    return userString ? JSON.parse(userString) : null;
   }
 
   storeTokan(tokenValue: string) {

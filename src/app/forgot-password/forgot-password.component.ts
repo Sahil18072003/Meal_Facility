@@ -46,7 +46,7 @@ export class ForgotPasswordComponent {
             duration: 3000,
             verticalPosition: 'top',
             horizontalPosition: 'right',
-            panelClass: ['warning-snackbar'],
+            panelClass: ['error-snackbar'],
           });
         },
       });

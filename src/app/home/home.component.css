@@ -3,7 +3,7 @@
   margin: auto;
 }
 
-::ng-deep.special-date-home {
+::ng-deep.highlight-date {
   background-color: greenyellow;
   border-radius: 100%;
   padding: 2px;
@@ -51,6 +51,14 @@
   background-color: red;
   font-weight: 500;
 }
+
+.qr-coupon {
+  margin: 30px 10px 0 10px;
+  padding: 10px 12px;
+  background-color: red;
+  font-weight: 500;
+}
+
 
 .today-date .mat-calendar-body-cell-today {
   background-color: red !important;

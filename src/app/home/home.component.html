@@ -19,8 +19,14 @@
   <div class="home-content">
     <div class="home-left">
       <mat-card class="demo-inline-calendar-card">
-        <mat-calendar class="calendar" [dateClass]="dateClass()" [(selected)]="selectedDate"></mat-calendar>
+        <mat-calendar class="calendar" [dateClass]="dateClass()" [(selected)]="selectedDate"
+          (selectedChange)="onSelect($event)">
+        </mat-calendar>
       </mat-card>
+
+      <button (click)="openQrDialog()" class="btn btn-danger qr-coupon">
+        Generate QR code
+      </button>
     </div>
 
     <div class="home-right">

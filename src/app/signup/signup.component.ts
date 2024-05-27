@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
-import {
-  MatSnackBar,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../services/auth.service';
+import { confirmpasswordvalidator } from './../helpers/confirmPassword';
 import { Router } from '@angular/router';
 
 @Component({
@@ -46,26 +44,31 @@ export class SignupComponent {
   ) {}
 
   ngOnInit(): void {
-    this.signupForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      userName: ['', Validators.required],
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.email,
-          // Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+    this.signupForm = this.fb.group(
+      {
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        userName: ['', Validators.required],
+        email: [
+          '',
+          [
+            Validators.required,
+            Validators.email,
+            // Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+          ],
         ],
-      ],
-      password: [
-        '',
-        Validators.required,
-        // Validators.minLength(8),
-        // Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/),
-      ],
-      confirmPassword: ['', Validators.required],
-    });
+        password: [
+          '',
+          Validators.required,
+          // Validators.minLength(8),
+          // Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/),
+        ],
+        confirmPassword: ['', Validators.required],
+      },
+      {
+        validator: confirmpasswordvalidator('password', 'ConfirmPassword'),
+      }
+    );
   }
 
   onSubmite() {
@@ -73,22 +76,23 @@ export class SignupComponent {
       this.auth.signUp(this.signupForm.value).subscribe({
         next: (res) => {
           this.signupForm.reset();
+
           this.snackBar.open(res.message, 'Close', {
             duration: 3000,
             verticalPosition: 'top',
             horizontalPosition: 'right',
             panelClass: ['success-snackbar'],
           });
+
           this.router.navigate(['login']);
         },
         error: (err) => {
-          alert(err.message);
-          // this.snackBar.open(err.message, 'Try again', {
-          //   duration: 3000,
-          //   verticalPosition: 'top',
-          //   horizontalPosition: 'right',
-          //   panelClass: ['error-snackbar'],
-          // });
+          this.snackBar.open(err, 'Try again', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['error-snackbar'],
+          });
         },
       });
     } else {

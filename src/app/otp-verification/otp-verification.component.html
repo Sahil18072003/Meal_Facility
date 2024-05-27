@@ -14,18 +14,18 @@
                     <div class="form-group">
                         <label class="control-label">Enter Otp</label>
                         <div class="input-addon"
-                            [class.error]="otpVerificationForm.controls['otp'].dirty && otpVerificationForm.hasError('required', 'otp')">
-                            <input formControlName="otp" class="form-control" type="text" placeholder="Enter Otp"
+                            [class.error]="otpVerificationForm.controls['EnteredOTP'].dirty && otpVerificationForm.hasError('required', 'EnteredOTP')">
+                            <input formControlName="EnteredOTP" class="form-control" type="text" placeholder="Enter Otp"
                                 autofocus />
                             <i class='fa fa-check icon-after icon-green'></i>
                         </div>
                         <small
-                            *ngIf="otpVerificationForm.controls['otp'].dirty && otpVerificationForm.hasError('required', 'otp')"
+                            *ngIf="otpVerificationForm.controls['EnteredOTP'].dirty && otpVerificationForm.hasError('required', 'EnteredOTP')"
                             class="text-danger">*Otp is required</small>
                     </div>
 
                     <div class="form-group btn-container">
-                        <button class="btn btn-xl btn-otp" (click)="onSubmite()">Submit</button>
+                        <button class="btn btn-xl btn-otp" (click)="onSubmit()">Submit</button>
                     </div>
                 </form>
             </div>

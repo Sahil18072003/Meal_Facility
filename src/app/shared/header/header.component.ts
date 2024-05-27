@@ -16,9 +16,9 @@ export class HeaderComponent implements OnInit {
   constructor(private auth: AuthService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    const storedName = localStorage.getItem('name');
-    if (storedName) {
-      this.name = storedName;
+    const user = this.auth.getUser();
+    if (user) {
+      this.name = user.firstName;
     } else {
       this.name = 'Guest';
     }
