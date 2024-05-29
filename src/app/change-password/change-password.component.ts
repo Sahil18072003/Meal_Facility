@@ -17,10 +17,22 @@ export class ChangePasswordComponent {
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
 
+  type1: string = 'password';
+  isText1: boolean = false;
+  eyeIcon1: string = 'fa-eye-slash';
+
   toggleVisibility(): void {
     this.isText = !this.isText;
     this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
     this.isText ? (this.type = 'text') : (this.type = 'password');
+  }
+
+  toggleVisibility1(): void {
+    this.isText1 = !this.isText1;
+    this.isText1
+      ? (this.eyeIcon1 = 'fa-eye')
+      : (this.eyeIcon1 = 'fa-eye-slash');
+    this.isText1 ? (this.type1 = 'text') : (this.type1 = 'password');
   }
 
   constructor(

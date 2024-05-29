@@ -60,19 +60,20 @@ export class SignupComponent {
         password: [
           '',
           Validators.required,
-          // Validators.minLength(8),
+          // Validators.min-Length(8),
           // Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/),
         ],
         confirmPassword: ['', Validators.required],
-      },
-      {
-        validator: confirmpasswordvalidator('password', 'ConfirmPassword'),
       }
+      // {
+      //   validator: confirmpasswordvalidator('password', 'ConfirmPassword'),
+      // }
     );
   }
 
   onSubmite() {
     if (this.signupForm.valid) {
+      console.log(this.signupForm.value);
       this.auth.signUp(this.signupForm.value).subscribe({
         next: (res) => {
           this.signupForm.reset();

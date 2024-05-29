@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
 import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,15 +12,28 @@ import { Router } from '@angular/router';
 })
 export class ResetPasswordComponent {
   resetPasswordForm!: FormGroup;
-  
+  email: any;
+
   type: string = 'password';
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
+
+  type1: string = 'password';
+  isText1: boolean = false;
+  eyeIcon1: string = 'fa-eye-slash';
 
   toggleVisibility(): void {
     this.isText = !this.isText;
     this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
     this.isText ? (this.type = 'text') : (this.type = 'password');
+  }
+
+  toggleVisibility1(): void {
+    this.isText1 = !this.isText1;
+    this.isText1
+      ? (this.eyeIcon1 = 'fa-eye')
+      : (this.eyeIcon1 = 'fa-eye-slash');
+    this.isText1 ? (this.type1 = 'text') : (this.type1 = 'password');
   }
 
   constructor(
@@ -35,6 +44,7 @@ export class ResetPasswordComponent {
   ) {}
 
   ngOnInit(): void {
+    this.email = localStorage.getItem('email');
     this.resetPasswordForm = this.fb.group({
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
@@ -43,7 +53,12 @@ export class ResetPasswordComponent {
 
   onSubmite() {
     if (this.resetPasswordForm.valid) {
-      this.auth.resetPassword(this.resetPasswordForm.value).subscribe({
+      const formData = {
+        email: this.email,
+        password: this.resetPasswordForm.value.password,
+      };
+
+      this.auth.resetPassword(formData).subscribe({
         next: (res) => {
           this.resetPasswordForm.reset();
 
@@ -54,7 +69,7 @@ export class ResetPasswordComponent {
             panelClass: ['success-snackbar'],
           });
 
-          this.router.navigate(['otp-verification']);
+          this.router.navigate(['login']);
         },
         error: (err) => {
           this.snackBar.open(err, 'Try again', {

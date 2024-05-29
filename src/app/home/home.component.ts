@@ -47,13 +47,9 @@ export class HomeComponent implements OnInit {
     Saturday: { lunch: [], dinner: [] },
   };
 
-  constructor(private api: ApiService, public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.api.getUsers().subscribe((res) => {
-      // Handle user data retrieval
-    });
-
     this.updateMenu();
     this.generateDatesToHighlight();
   }

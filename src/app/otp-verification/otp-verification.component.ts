@@ -12,7 +12,7 @@ import ValidateForm from '../helpers/validateform';
 })
 export class OtpVerificationComponent {
   otpVerificationForm!: FormGroup;
-  userEmail: string | undefined;
+  email: any;
 
   constructor(
     private fb: FormBuilder,
@@ -22,23 +22,20 @@ export class OtpVerificationComponent {
   ) {}
 
   ngOnInit(): void {
-    const user = this.auth.getUser();
-    this.userEmail = user.email;
-
+    this.email = localStorage.getItem('email');
     this.otpVerificationForm = this.fb.group({
-      email: [this.userEmail, Validators.required], // Set email field with user's email
       EnteredOTP: ['', Validators.required],
     });
   }
 
   onSubmit() {
     if (this.otpVerificationForm.valid) {
-      const otpVerificationDto = {
-        email: this.userEmail, // Use userEmail instead of trying to access from form value
-        EnteredOTP: this.otpVerificationForm.value.otp,
+      const formData = {
+        email: this.email,
+        EnteredOTP: this.otpVerificationForm.value.EnteredOTP,
       };
 
-      this.auth.otpVerification(otpVerificationDto).subscribe({
+      this.auth.otpVerification(formData).subscribe({
         next: (res) => {
           this.otpVerificationForm.reset();
 
@@ -48,7 +45,7 @@ export class OtpVerificationComponent {
             horizontalPosition: 'right',
             panelClass: ['success-snackbar'],
           });
-
+          
           this.router.navigate(['reset-password']);
         },
         error: (err) => {

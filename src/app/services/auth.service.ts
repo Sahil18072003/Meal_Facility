@@ -23,6 +23,7 @@ export class AuthService {
   }
 
   forgotPassword(forgotObj: any) {
+    localStorage.setItem('email', forgotObj.email);
     return this.http.post<any>(`${this.baseUrl}forgotPassword`, forgotObj);
   }
 
