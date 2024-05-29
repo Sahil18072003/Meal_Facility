@@ -90,6 +90,11 @@
                             class="text-danger">*Enter Password again</small>
                     </div>
 
+                    <div class="text-danger"
+                        *ngIf="signupForm.hasError('confirmpasswordvalidator') && signupForm.dirty">
+                        Password and Confirm Password do not match.
+                    </div>
+
                     <div class="form-group btn-container">
                         <button class="btn btn-xl btn-signup" (click)="onSubmite()">Sign Up</button>
                     </div>

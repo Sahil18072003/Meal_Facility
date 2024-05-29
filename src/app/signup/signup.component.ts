@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../services/auth.service';
-import { confirmpasswordvalidator } from './../helpers/confirmPassword';
+import { confirmpasswordvalidator } from '../helpers/confirmPassword.validator';
 import { Router } from '@angular/router';
 
 @Component({
@@ -64,16 +64,15 @@ export class SignupComponent {
           // Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/),
         ],
         confirmPassword: ['', Validators.required],
+      },
+      {
+        validator: confirmpasswordvalidator('password', 'confirmPassword'),
       }
-      // {
-      //   validator: confirmpasswordvalidator('password', 'ConfirmPassword'),
-      // }
     );
   }
 
   onSubmite() {
     if (this.signupForm.valid) {
-      console.log(this.signupForm.value);
       this.auth.signUp(this.signupForm.value).subscribe({
         next: (res) => {
           this.signupForm.reset();
@@ -84,6 +83,8 @@ export class SignupComponent {
             horizontalPosition: 'right',
             panelClass: ['success-snackbar'],
           });
+
+          localStorage.clear();
 
           this.router.navigate(['login']);
         },
@@ -98,7 +99,7 @@ export class SignupComponent {
       });
     } else {
       ValidateForm.validdateAllFromFileds(this.signupForm);
-      this.snackBar.open('Your form is invalid', 'Close', {
+      this.snackBar.open('Your form is invalid', 'Try again', {
         duration: 3000,
         verticalPosition: 'top',
         horizontalPosition: 'right',

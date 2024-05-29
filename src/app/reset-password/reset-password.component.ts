@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import ValidateForm from '../helpers/validateform';
+import { confirmpasswordvalidator } from '../helpers/confirmPassword.validator';
 import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import ValidateForm from '../helpers/validateform';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css'],
 })
-export class ResetPasswordComponent {
+export class ResetPasswordComponent implements OnInit {
   resetPasswordForm!: FormGroup;
   email: any;
 
@@ -21,6 +22,27 @@ export class ResetPasswordComponent {
   type1: string = 'password';
   isText1: boolean = false;
   eyeIcon1: string = 'fa-eye-slash';
+
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
+
+  ngOnInit(): void {
+    this.email = localStorage.getItem('email');
+
+    this.resetPasswordForm = this.fb.group(
+      {
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+      },
+      {
+        validator: confirmpasswordvalidator('password', 'confirmPassword'),
+      }
+    );
+  }
 
   toggleVisibility(): void {
     this.isText = !this.isText;
@@ -36,22 +58,7 @@ export class ResetPasswordComponent {
     this.isText1 ? (this.type1 = 'text') : (this.type1 = 'password');
   }
 
-  constructor(
-    private fb: FormBuilder,
-    private auth: AuthService,
-    private router: Router,
-    private snackBar: MatSnackBar
-  ) {}
-
-  ngOnInit(): void {
-    this.email = localStorage.getItem('email');
-    this.resetPasswordForm = this.fb.group({
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-    });
-  }
-
-  onSubmite() {
+  onSubmite(): void {
     if (this.resetPasswordForm.valid) {
       const formData = {
         email: this.email,
@@ -60,6 +67,7 @@ export class ResetPasswordComponent {
 
       this.auth.resetPassword(formData).subscribe({
         next: (res) => {
+          localStorage.clear();
           this.resetPasswordForm.reset();
 
           this.snackBar.open(res.message, 'Okay', {
