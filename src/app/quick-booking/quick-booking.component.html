@@ -20,10 +20,9 @@
 
             <div class="form-group">
                 <label>Select Meal Day</label>
-                <mat-form-field appearance="fill">
-                    <input matInput formControlName="selectedDate" [matDatepicker]="picker"
-                        [matDatepickerFilter]="myFilter" placeholder="Select date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-form-field >
+                    <input matInput formControlName="BookingDate" [matDatepicker]="picker" placeholder="Select date">
+                    <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                     <mat-error *ngIf="quickbookingForm.get('selectedDate')?.errors?.['dateInvalid']">
                         Invalid Date: Please select a date starting from tomorrow and not on weekends.
@@ -34,7 +33,7 @@
 
         <div class="form-actions">
             <button class="btn btn-danger" mat-raised-button (click)="bookMeal()">
-                Book
+                Quick Booking
             </button>
         </div>
     </div>

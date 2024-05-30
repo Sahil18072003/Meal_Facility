@@ -8,14 +8,14 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   constructor(
     private auth: AuthService,
-    private toast: NgToastService,
+    private snackBar: MatSnackBar,
     private router: Router
   ) {}
 
@@ -34,16 +34,21 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((err: any) => {
         if (err instanceof HttpErrorResponse) {
           if (err.status == 401) {
-            alert('Token is expired, Please Login Again');
-            // this.toast.warning({
-            //   detail: 'Warning',
-            //   summary: 'Token is expired, Please Login Again',
-            // });
+            this.snackBar.open(
+              'Token is expired, Please Login Again',
+              'Login again',
+              {
+                duration: 3000,
+                verticalPosition: 'top',
+                horizontalPosition: 'right',
+                panelClass: ['error-snackbar'],
+              }
+            );
             this.router.navigate([`login`]);
           }
         }
-        // console.log(err)
-        return throwError(() => new Error(err.error.message));
+        console.log(err.error)
+        return throwError(() => new Error(err.error));
       })
     );
   }

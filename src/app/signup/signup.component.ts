@@ -65,9 +65,9 @@ export class SignupComponent {
         ],
         confirmPassword: ['', Validators.required],
       },
-      {
-        validator: confirmpasswordvalidator('password', 'confirmPassword'),
-      }
+      // {
+      //   validator: confirmpasswordvalidator('password', 'confirmPassword'),
+      // }
     );
   }
 

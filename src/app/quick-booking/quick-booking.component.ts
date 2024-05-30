@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { BookService } from '../services/book.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-quick-booking',
@@ -15,69 +16,75 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class QuickBookingComponent implements OnInit {
   quickbookingForm!: FormGroup;
+  user: any;
+
   isFormVisible = true;
+
   minDate: Date;
-  myFilter: (d: Date | null) => boolean;
+  BookingDate: Date;
 
   constructor(
     private fb: FormBuilder,
     private book: BookService,
-    public dialogRef: MatDialogRef<QuickBookingComponent>
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<QuickBookingComponent>,
+    private authService: AuthService
   ) {
-    const today = new Date();
-    this.minDate = new Date(today.setDate(today.getDate() + 1));
+    this.minDate = new Date();
+    this.BookingDate = new Date();
 
-    this.myFilter = (d: Date | null): boolean => {
-      if (!d) return false;
-
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-
-      const day = d.getDay();
-      const isWeekend = day === 0 || day === 6;
-
-      return d > today && !isWeekend;
-    };
+    this.quickbookingForm = this.fb.group({
+      BookingType: ['', Validators.required],
+      BookingDate: ['', Validators.required],
+    });
   }
 
   ngOnInit(): void {
-    this.quickbookingForm = this.fb.group({
-      category: ['', Validators.required],
-      mealType: ['', Validators.required],
-      selectedDate: [
-        null,
-        [Validators.required, this.dateValidator.bind(this)],
-      ],
-    });
+    this.user = this.authService.getUser();
   }
+
+  myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    return day !== 0 && day !== 6;
+  };
 
   closeForm() {
     this.dialogRef.close();
   }
 
   bookMeal(): void {
+    const jwtToken = localStorage.getItem('token');
+
     if (this.quickbookingForm.valid) {
-      console.log(this.quickbookingForm.value);
-      this.closeForm();
+      const formData = {
+        UserId: this.user.id,
+        BookingType: this.quickbookingForm.value.BookingType,
+        BookingDate: this.quickbookingForm.value.BookingDate,
+      };
+
+      this.book.quickBooking(formData).subscribe({
+        next: (res) => {
+          this.quickbookingForm.reset();
+
+          this.snackBar.open(res.message, 'Close', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['success-snackbar'],
+          });
+
+          this.closeForm();
+        },
+        error: (err) => {
+          this.snackBar.open(err, 'Try again', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            panelClass: ['error-snackbar'],
+          });
+        },
+      });
     }
-  }
-
-  dateValidator(control: FormControl): { [key: string]: boolean } | null {
-    const selectedDate = new Date(control.value);
-    if (!selectedDate) {
-      return null;
-    }
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const isWeekend =
-      selectedDate.getDay() === 0 || selectedDate.getDay() === 6;
-
-    if (selectedDate <= today || isWeekend) {
-      return { dateInvalid: true };
-    }
-    return null;
   }
 
   isAfterEightPM(): boolean {
