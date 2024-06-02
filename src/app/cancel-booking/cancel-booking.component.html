@@ -1,12 +1,23 @@
-<form>
-    <h2>Cancel Booking</h2>
-    <div class="form-group">
-        <p>Are you sure you want to cancel your booking?</p>
+<div class="cancel-container">
+    <div class="cancel-form">
+        <div class="cancel-header">
+            <h1>Cancel Booking</h1>
+            <button (click)="closeForm()">
+                &#10006;
+            </button>
+        </div>
+        <div class="form-group">
+            <label>Total Bookings: 10</label>
+            <mat-card>
+                <mat-calendar [selected]="selectedDate" (selectedChange)="onSelect($event)"></mat-calendar>
+            </mat-card>
+        </div>
+        <div class="form-group">
+            <p>Are you sure you want to cancel your booking?</p>
+        </div>
+        <div class="form-actions">
+            <button mat-button (click)="closeForm()">No</button>
+            <button mat-raised-button color="warn" (click)="cancelBooking()" type="submit">Yes</button>
+        </div>
     </div>
-    <div class="form-actions">
-        <button mat-button (click)="closeForm()">No</button>
-        <button mat-raised-button color="warn" (click)="cancelBooking()" type="submit">
-            Yes
-        </button>
-    </div>
-</form>
+</div>

@@ -1,13 +1,13 @@
 <div class="view-container">
     <div class="view-form">
         <div class="view-header">
-            <h1>View Booking</h1>
+            <p>View Booking</p>
             <button (click)="closeForm()">
                 &#10006;
             </button>
         </div>
         <div class="form-group">
-            <label>Total Bookings: 10</label>
+            <label>Total Active Bookings: {{ getActiveBookingsCount() }}</label>
             <mat-card>
                 <mat-calendar [dateClass]="dateClass()" [selected]="selectedDate"
                     (selectedChange)="onSelect($event)"></mat-calendar>

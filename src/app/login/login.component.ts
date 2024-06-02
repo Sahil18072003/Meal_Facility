@@ -56,7 +56,6 @@ export class LoginComponent {
           this.router.navigate(['dashboard/home']);
         },
         error: (err) => {
-          console.log(err)
           this.snackBar.open(err, 'Try again', {
             duration: 3000,
             verticalPosition: 'top',

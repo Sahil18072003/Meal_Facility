@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatDialogRef } from '@angular/material/dialog';
+import { AuthService } from '../services/auth.service';
+import { BookService } from '../services/book.service';
 
 @Component({
   selector: 'app-view-booking',
@@ -9,15 +11,23 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class ViewBookingComponent {
   selectedDate: any;
+  user: any;
+  bookings: any[] = [];
 
-  // Assuming start and end dates
-  startDate = new Date('2024-05-20T18:30:00.000Z');
-  endDate = new Date('2024-05-28T18:30:00.000Z');
+  constructor(
+    public dialogRef: MatDialogRef<ViewBookingComponent>,
+    private authService: AuthService,
+    private bookService: BookService
+  ) {}
 
-  datesToHighlight: string[] = this.generateDatesInRange(
-    this.startDate,
-    this.endDate
-  );
+  ngOnInit() {
+    this.user = this.authService.getUser();
+    if (this.user && this.user.id) {
+      this.bookService.viewUserBooking(this.user.id).subscribe((data) => {
+        this.bookings = data;
+      });
+    }
+  }
 
   onSelect(event: any) {
     this.selectedDate = event;
@@ -29,33 +39,36 @@ export class ViewBookingComponent {
         return '';
       }
 
-      const highlightDate = this.datesToHighlight
-        .map((strDate) => new Date(strDate))
-        .some(
-          (d) =>
-            d.getDate() === date.getDate() &&
-            d.getMonth() === date.getMonth() &&
-            d.getFullYear() === date.getFullYear()
+      const booking = this.bookings.find((b: any) => {
+        const bookingDate = new Date(b.bookingDate);
+        return (
+          bookingDate.getDate() === date.getDate() &&
+          bookingDate.getMonth() === date.getMonth() &&
+          bookingDate.getFullYear() === date.getFullYear()
         );
+      });
 
-      return highlightDate ? 'special-date' : '';
+      if (booking) {
+        return booking.status === 'Cancelled' ? 'cancel-date' : 'booking-date';
+      }
+
+      return '';
     };
   }
 
-  // Function to generate dates between start and end date
+  getActiveBookingsCount(): number {
+    return this.bookings.filter((b: any) => b.status !== 'Cancelled').length;
+  }
+
   generateDatesInRange(startDate: Date, endDate: Date): string[] {
     const dates: string[] = [];
     let currentDate = startDate;
     while (currentDate <= endDate) {
       dates.push(currentDate.toISOString());
-      currentDate = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000); // Add one day
+      currentDate = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000);
     }
     return dates;
   }
-
-  constructor(public dialogRef: MatDialogRef<ViewBookingComponent>) {}
-
-  ngOnInit() {}
 
   closeForm() {
     this.dialogRef.close();

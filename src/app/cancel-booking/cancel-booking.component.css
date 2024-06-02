@@ -34,3 +34,61 @@ form {
     padding-top: 2px;
     margin-left: 10px;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+::ng-deep.special-date {
+    background-color: yellow;
+    border-radius: 100%;
+    padding: 2px;
+    color: white;
+}
+
+.cancel-container {
+    width: 500px;
+    height: auto;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.cancel-form {
+    background: #fff;
+    padding: 1.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.cancel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cancel-header h1 {
+    font-weight: 700;
+    color: black;
+    margin: 0;
+}
+
+.cancel-header button {
+    background-color: white;
+    border: none;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+
+.form-group {
+    margin: 2px;
+}
+
+label {
+    display: block;
+    margin: 1rem 0;
+    color: black;
+    font-weight: 400;
+    font-size: 18px;
+}
