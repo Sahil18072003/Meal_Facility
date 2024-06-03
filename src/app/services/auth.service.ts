@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private baseUrl: string = 'https://localhost:7246/api/User/';
+
   constructor(private http: HttpClient, private router: Router) {}
 
   signUp(userObj: any) {
@@ -48,7 +49,7 @@ export class AuthService {
     return userString ? JSON.parse(userString) : null;
   }
 
-  storeTokan(tokenValue: string) {
+  storeToken(tokenValue: string) {
     localStorage.setItem('token', tokenValue);
   }
 

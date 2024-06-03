@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBookingComponent } from '../add-booking/add-booking.component';
 import { ViewBookingComponent } from '../view-booking/view-booking.component';
@@ -7,6 +6,8 @@ import { CancelBookingComponent } from '../cancel-booking/cancel-booking.compone
 import { QuickBookingComponent } from '../quick-booking/quick-booking.component';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { QrCouponComponent } from '../qr-coupon/qr-coupon.component';
+import { AuthService } from '../services/auth.service';
+import { BookService } from '../services/book.service';
 
 @Component({
   selector: 'app-home',
@@ -15,12 +16,12 @@ import { QrCouponComponent } from '../qr-coupon/qr-coupon.component';
 })
 export class HomeComponent implements OnInit {
   selectedDate: any;
-
   currentMenu: { lunch: string[]; dinner: string[] } = {
     lunch: [],
     dinner: [],
   };
-  datesToHighlight: Date[] = [];
+  bookings: any[] = [];
+  user: any;
 
   dayMenus: { [key: string]: { lunch: string[]; dinner: string[] } } = {
     Sunday: { lunch: [], dinner: [] },
@@ -47,11 +48,26 @@ export class HomeComponent implements OnInit {
     Saturday: { lunch: [], dinner: [] },
   };
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private authService: AuthService,
+    private bookService: BookService
+  ) {}
 
   ngOnInit() {
+    this.selectedDate = new Date();
     this.updateMenu();
-    this.generateDatesToHighlight();
+
+    this.user = this.authService.getUser();
+    if (this.user && this.user.id) {
+      this.fetchBookings();
+    }
+  }
+
+  fetchBookings() {
+    this.bookService.viewUserBooking(this.user.id).subscribe((data) => {
+      this.bookings = data;
+    });
   }
 
   openAddBookingDialog() {
@@ -63,7 +79,9 @@ export class HomeComponent implements OnInit {
   }
 
   openViewBookingDialog() {
-    this.dialog.open(ViewBookingComponent);
+    this.dialog.open(ViewBookingComponent, {
+      data: { bookings: this.bookings },
+    });
   }
 
   openCancelBookingDialog() {
@@ -88,29 +106,34 @@ export class HomeComponent implements OnInit {
     this.updateMenu();
   }
 
-  generateDatesToHighlight() {
-    const startDate = new Date('2024-05-20T18:30:00.000Z');
-    const endDate = new Date('2024-05-28T18:30:00.000Z');
-    const currentDate = new Date(startDate);
-
-    while (currentDate <= endDate) {
-      if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
-        this.datesToHighlight.push(new Date(currentDate));
-      }
-      currentDate.setDate(currentDate.getDate() + 1);
-    }
-  }
-
   dateClass() {
     return (date: Date): MatCalendarCellCssClasses => {
-      const highlightDate = this.datesToHighlight.some(
-        (d) =>
-          d.getDate() === date.getDate() &&
-          d.getMonth() === date.getMonth() &&
-          d.getFullYear() === date.getFullYear()
-      );
+      if (date.getDay() === 0 || date.getDay() === 6) {
+        return '';
+      }
 
-      return highlightDate ? 'highlight-date' : '';
+      const booking = this.bookings.find((b: any) => {
+        const bookingDate = new Date(b.bookingDate);
+        return (
+          bookingDate.getDate() === date.getDate() &&
+          bookingDate.getMonth() === date.getMonth() &&
+          bookingDate.getFullYear() === date.getFullYear()
+        );
+      });
+
+      if (booking) {
+        return booking.status === 'Cancelled' ? 'cancel-date' : 'booking-date';
+      }
+
+      return '';
     };
   }
+  
+  dateFilter = (date: Date | null): boolean => {
+    if (!date) {
+      return false;
+    }
+    const day = date.getDay();
+    return day !== 0 && day !== 6;
+  };
 }

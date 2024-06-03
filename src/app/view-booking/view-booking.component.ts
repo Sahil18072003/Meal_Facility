@@ -1,31 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
-import { MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
-import { BookService } from '../services/book.service';
 
 @Component({
   selector: 'app-view-booking',
   templateUrl: './view-booking.component.html',
   styleUrls: ['./view-booking.component.css'],
 })
-export class ViewBookingComponent {
+export class ViewBookingComponent implements OnInit {
   selectedDate: any;
   user: any;
   bookings: any[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<ViewBookingComponent>,
-    private authService: AuthService,
-    private bookService: BookService
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     this.user = this.authService.getUser();
-    if (this.user && this.user.id) {
-      this.bookService.viewUserBooking(this.user.id).subscribe((data) => {
-        this.bookings = data;
-      });
+    if (this.data.bookings) {
+      this.bookings = this.data.bookings;
     }
   }
 
@@ -73,4 +70,12 @@ export class ViewBookingComponent {
   closeForm() {
     this.dialogRef.close();
   }
+
+  dateFilter = (date: Date | null): boolean => {
+    if (!date) {
+      return false;
+    }
+    const day = date.getDay();
+    return day !== 0 && day !== 6;
+  };
 }

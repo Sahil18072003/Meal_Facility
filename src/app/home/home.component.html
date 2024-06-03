@@ -20,7 +20,7 @@
     <div class="home-left">
       <mat-card class="demo-inline-calendar-card">
         <mat-calendar class="calendar" [dateClass]="dateClass()" [(selected)]="selectedDate"
-          (selectedChange)="onSelect($event)">
+          (selectedChange)="onSelect($event)" [dateFilter]="dateFilter">
         </mat-calendar>
       </mat-card>
 

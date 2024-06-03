@@ -16,12 +16,6 @@ export class LoginComponent {
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
 
-  toggleVisibility(): void {
-    this.isText = !this.isText;
-    this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
-    this.isText ? (this.type = 'text') : (this.type = 'password');
-  }
-
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
@@ -36,14 +30,19 @@ export class LoginComponent {
     });
   }
 
+  toggleVisibility(): void {
+    this.isText = !this.isText;
+    this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
+    this.isText ? (this.type = 'text') : (this.type = 'password');
+  }
+
   onLogin() {
     if (this.loginForm.valid) {
       this.auth.login(this.loginForm.value).subscribe({
         next: (res) => {
           this.loginForm.reset();
 
-          this.auth.storeTokan(res.user.token);
-
+          this.auth.storeToken(res.user.token);
           this.auth.storeUser(res.user);
 
           this.snackBar.open(res.message, 'Okay', {

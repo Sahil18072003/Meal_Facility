@@ -3,8 +3,15 @@
   margin: auto;
 }
 
-::ng-deep.highlight-date {
-  background-color: greenyellow;
+::ng-deep.booking-date {
+  background-color: yellow;
+  border-radius: 100%;
+  padding: 2px;
+  color: white;
+}
+
+::ng-deep.cancel-date {
+  background-color: red;
   border-radius: 100%;
   padding: 2px;
   color: white;

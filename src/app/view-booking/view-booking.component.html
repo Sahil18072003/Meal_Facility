@@ -10,7 +10,7 @@
             <label>Total Active Bookings: {{ getActiveBookingsCount() }}</label>
             <mat-card>
                 <mat-calendar [dateClass]="dateClass()" [selected]="selectedDate"
-                    (selectedChange)="onSelect($event)"></mat-calendar>
+                    (selectedChange)="onSelect($event)" [dateFilter]="dateFilter"></mat-calendar>
             </mat-card>
         </div>
     </div>

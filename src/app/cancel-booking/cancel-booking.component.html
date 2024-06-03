@@ -7,9 +7,10 @@
             </button>
         </div>
         <div class="form-group">
-            <label>Total Bookings: 10</label>
+            <label>Total Active Bookings: {{ getActiveBookingsCount() }}</label>
             <mat-card>
-                <mat-calendar [selected]="selectedDate" (selectedChange)="onSelect($event)"></mat-calendar>
+                <mat-calendar [dateClass]="dateClass()" [selected]="selectedDate" (selectedChange)="onSelect($event)"
+                    [dateFilter]="dateFilter"></mat-calendar>
             </mat-card>
         </div>
         <div class="form-group">
