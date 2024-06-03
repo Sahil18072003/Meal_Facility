@@ -26,24 +26,52 @@ export class HomeComponent implements OnInit {
   dayMenus: { [key: string]: { lunch: string[]; dinner: string[] } } = {
     Sunday: { lunch: [], dinner: [] },
     Monday: {
-      lunch: ['Chole', 'Dal Fry', 'Jeera Rice', 'Puri'],
-      dinner: ['Pav Bhaji', 'Biryani', 'Kadhi'],
+      lunch: ['Chole', 'Dal Fry', 'Jeera Rice', 'Puri', 'Salad', 'Raita'],
+      dinner: [
+        'Pav Bhaji',
+        'Biryani',
+        'Kadhi',
+        'Paneer Tikka',
+        'Soup',
+        'Dessert',
+      ],
     },
     Tuesday: {
-      lunch: ['Paneer Butter Masala', 'Naan', 'Salad', 'Raita'],
-      dinner: ['Rajma', 'Rice', 'Chapati', 'Gulab Jamun'],
+      lunch: [
+        'Paneer Butter Masala',
+        'Naan',
+        'Salad',
+        'Raita',
+        'Soup',
+        'Fruit Salad',
+      ],
+      dinner: ['Rajma', 'Rice', 'Chapati', 'Gulab Jamun', 'Pickle', 'Curd'],
     },
     Wednesday: {
-      lunch: ['Aloo Gobi', 'Paratha', 'Dahi', 'Papad'],
-      dinner: ['Dosa', 'Sambar', 'Chutney', 'Kheer'],
+      lunch: ['Aloo Gobi', 'Paratha', 'Dahi', 'Papad', 'Rice', 'Dal'],
+      dinner: ['Dosa', 'Sambar', 'Chutney', 'Kheer', 'Vada', 'Samosa'],
     },
     Thursday: {
-      lunch: ['Chana Masala', 'Rice', 'Chapati', 'Salad'],
-      dinner: ['Fried Rice', 'Manchurian', 'Soup', 'Ice Cream'],
+      lunch: ['Chana Masala', 'Rice', 'Chapati', 'Salad', 'Lassi', 'Soup'],
+      dinner: [
+        'Fried Rice',
+        'Manchurian',
+        'Soup',
+        'Ice Cream',
+        'Spring Roll',
+        'Paneer Chilli',
+      ],
     },
     Friday: {
-      lunch: ['Bhindi Fry', 'Dal Tadka', 'Rice', 'Chapati'],
-      dinner: ['Pizza', 'Pasta', 'Garlic Bread', 'Brownie'],
+      lunch: ['Bhindi Fry', 'Dal Tadka', 'Rice', 'Chapati', 'Salad', 'Raita'],
+      dinner: [
+        'Pizza',
+        'Pasta',
+        'Garlic Bread',
+        'Brownie',
+        'Caesar Salad',
+        'Soup',
+      ],
     },
     Saturday: { lunch: [], dinner: [] },
   };
@@ -128,7 +156,7 @@ export class HomeComponent implements OnInit {
       return '';
     };
   }
-  
+
   dateFilter = (date: Date | null): boolean => {
     if (!date) {
       return false;

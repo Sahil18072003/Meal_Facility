@@ -64,7 +64,7 @@ export class SignupComponent {
           // Validators.pattern(/^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/),
         ],
         confirmPassword: ['', Validators.required],
-      },
+      }
       // {
       //   validator: confirmpasswordvalidator('password', 'confirmPassword'),
       // }
