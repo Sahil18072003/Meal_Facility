@@ -44,7 +44,6 @@ import { QRCodeModule } from 'angularx-qrcode';
     MaterialModule,
     MatDialogModule,
     ReactiveFormsModule,
-    QRCodeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
