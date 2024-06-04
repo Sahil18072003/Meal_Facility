@@ -3,18 +3,24 @@
   margin: auto;
 }
 
+/* ::ng-deep.mat-calendar-body-cell-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} */
+
+::ng-deep.booking-date,
+::ng-deep.cancel-date {
+  border-radius: 50%;
+}
+
 ::ng-deep.booking-date {
   background-color: yellow;
-  border-radius: 100%;
-  padding: 2px;
-  color: white;
 }
 
 ::ng-deep.cancel-date {
   background-color: red;
-  border-radius: 100%;
-  padding: 2px;
-  color: white;
 }
 
 .home-page {

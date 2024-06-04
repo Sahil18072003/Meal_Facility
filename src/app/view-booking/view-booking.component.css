@@ -3,27 +3,23 @@ body {
     background-color: #f5f5f5;
 }
 
-::ng-deep.mat-calendar-body-cell-content {
+/* ::ng-deep.mat-calendar-body-cell-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
+} */
 
-::ng-deep.booking-date::after,
-::ng-deep.cancel-date::after {
-    content: '';
-    display: block;
-    width: 10px;
-    height: 10px;
+::ng-deep.booking-date,
+::ng-deep.cancel-date {
     border-radius: 50%;
 }
 
-::ng-deep.booking-date::after {
+::ng-deep.booking-date {
     background-color: yellow;
 }
 
-::ng-deep.cancel-date::after {
+::ng-deep.cancel-date {
     background-color: red;
 }
 

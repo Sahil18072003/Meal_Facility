@@ -1,18 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CouponService {
-
   private baseUrl: string = 'https://localhost:7246/api/Coupon/';
-  
-  constructor(private http: HttpClient, private router: Router) {}
 
-  coupon(couponObj: any) {
-    console.log(couponObj);
-    return this.http.post<any>(`${this.baseUrl}coupon`, couponObj);
+  constructor(private http: HttpClient) {}
+
+  createCoupon(userId: number): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}createCoupon`, { userId });
+  }
+
+  getCoupon(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}${id}`);
   }
 }

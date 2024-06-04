@@ -23,10 +23,6 @@
           (selectedChange)="onSelect($event)" [dateFilter]="dateFilter">
         </mat-calendar>
       </mat-card>
-
-      <button (click)="openQrDialog()" class="btn btn-danger qr-coupon">
-        Generate QR code
-      </button>
     </div>
 
     <div class="home-right">
@@ -53,6 +49,9 @@
           </div>
         </div>
       </div>
+      <button (click)="openQrDialog()" class="btn btn-danger qr-coupon">
+        Generate QR code
+      </button>
     </div>
   </div>
 </div>

@@ -45,6 +45,8 @@ export class ViewBookingComponent implements OnInit {
         );
       });
 
+      console.log(booking);
+
       if (booking) {
         return booking.status === 'Cancelled' ? 'cancel-date' : 'booking-date';
       }

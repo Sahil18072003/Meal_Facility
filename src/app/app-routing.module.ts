@@ -7,6 +7,8 @@ import { OtpVerificationComponent } from './otp-verification/otp-verification.co
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { QrCouponComponent } from './qr-coupon/qr-coupon.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
