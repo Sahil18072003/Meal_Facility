@@ -3,24 +3,9 @@
   margin: auto;
 }
 
-/* ::ng-deep.mat-calendar-body-cell-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-} */
-
-::ng-deep.booking-date,
-::ng-deep.cancel-date {
-  border-radius: 50%;
-}
-
 ::ng-deep.booking-date {
+  border-radius: 50%;
   background-color: yellow;
-}
-
-::ng-deep.cancel-date {
-  background-color: red;
 }
 
 .home-page {
@@ -49,6 +34,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 2rem;
 }
 
@@ -126,7 +112,7 @@
 
 .meal-header p {
   font-weight: 700;
-  padding: 2rem;
+  padding: 2rem 1rem;
   text-align: center;
   font-size: 2.5rem;
   color: red;

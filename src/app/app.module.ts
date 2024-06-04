@@ -20,6 +20,11 @@ import { CancelBookingComponent } from './cancel-booking/cancel-booking.componen
 import { QuickBookingComponent } from './quick-booking/quick-booking.component';
 import { NotificationComponent } from './notification/notification.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import {
+  NgxUiLoaderHttpModule,
+  NgxUiLoaderModule,
+  NgxUiLoaderRouterModule,
+} from 'ngx-ui-loader';
 
 @NgModule({
   declarations: [
@@ -44,6 +49,10 @@ import { QRCodeModule } from 'angularx-qrcode';
     MaterialModule,
     MatDialogModule,
     ReactiveFormsModule,
+    QRCodeModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
+    NgxUiLoaderRouterModule.forRoot({ showForeground: true }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

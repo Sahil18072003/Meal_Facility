@@ -47,6 +47,7 @@ const routes: Routes = [
     path: 'change-password',
     component: ChangePasswordComponent,
   },
+  { path: 'qrcode', component: QrCouponComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

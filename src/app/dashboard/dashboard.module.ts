@@ -15,6 +15,7 @@ import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.compone
 import { TermsAndConditionComponent } from '../terms-and-condition/terms-and-condition.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ProfileCardComponent } from '../profile-card/profile-card.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SharedModule } from '../shared/shared.module';
     ContactUsComponent,
     PrivacyPolicyComponent,
     TermsAndConditionComponent,
+    ProfileCardComponent,
   ],
   imports: [
     CommonModule,

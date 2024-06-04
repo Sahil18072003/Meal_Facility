@@ -1,0 +1,19 @@
+<div class="profile-container" id="{{id}}">
+    <div class="profile-card">
+        <div class="profile-card__border">
+            <img src="{{image}}" alt="card image" class="profile-card__img" />
+        </div>
+        <h3 class="profile-card__name">{{name}}</h3>
+        <h3 class="profile-card__profession">{{role}}</h3>
+        <div class="profile-card__social" [ngClass]="{'animation': isSocialVisible, 'down-animation': !isSocialVisible}">
+            <ul class="profile-card__social-list">
+                <li><a href="{{github}}" target="_blank" class="profile-card__social-link"><i
+                            class="fa-brands fa-github"></i></a></li>
+                <li><a href="{{linkedIn}}" target="_blank" class="profile-card__social-link"><i
+                            class="fa-brands fa-linkedin-in"></i></a></li>
+                <li><a href="{{instagram}}" target="_blank" class="profile-card__social-link"><i
+                            class="fa-brands fa-instagram"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>

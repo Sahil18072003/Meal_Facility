@@ -23,6 +23,9 @@ export class HomeComponent implements OnInit {
   bookings: any[] = [];
   user: any;
 
+  canCancelBooking: boolean = false;
+  canGenerateQr: boolean = false;
+
   dayMenus: { [key: string]: { lunch: string[]; dinner: string[] } } = {
     Sunday: { lunch: [], dinner: [] },
     Monday: {
@@ -68,11 +71,14 @@ export class HomeComponent implements OnInit {
     if (this.user && this.user.id) {
       this.fetchBookings();
     }
+
+    this.updateButtonStates();
   }
 
   fetchBookings() {
     this.bookService.viewUserBooking(this.user.id).subscribe((data) => {
       this.bookings = data;
+      this.updateButtonStates();
     });
   }
 
@@ -110,6 +116,7 @@ export class HomeComponent implements OnInit {
   onSelect(event: any) {
     this.selectedDate = event;
     this.updateMenu();
+    this.updateButtonStates();
   }
 
   dateClass() {
@@ -128,7 +135,7 @@ export class HomeComponent implements OnInit {
       });
 
       if (booking) {
-        return booking.status === 'Cancelled' ? 'cancel-date' : 'booking-date';
+        return booking.status === 'Cancelled' ? '' : 'booking-date';
       }
 
       return '';
@@ -152,4 +159,24 @@ export class HomeComponent implements OnInit {
       date.getDay() !== 6
     );
   };
+
+  private updateButtonStates() {
+    const today = new Date();
+    const startOfToday = new Date(today.setHours(0, 0, 0, 0));
+
+    this.canGenerateQr =
+      this.selectedDate &&
+      this.selectedDate.getTime() === startOfToday.getTime();
+
+    this.canCancelBooking =
+      this.selectedDate &&
+      this.bookings.some((b: any) => {
+        const bookingDate = new Date(b.bookingDate);
+        return (
+          bookingDate.getDate() === this.selectedDate.getDate() &&
+          bookingDate.getMonth() === this.selectedDate.getMonth() &&
+          bookingDate.getFullYear() === this.selectedDate.getFullYear()
+        );
+      });
+  }
 }

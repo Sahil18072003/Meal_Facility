@@ -26,7 +26,7 @@ const routes: Routes = [
     component: PrivacyPolicyComponent,
   },
   {
-    path: 'Contact-us',
+    path: 'contact-us',
     component: ContactUsComponent,
   },
 ];
