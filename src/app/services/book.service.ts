@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class BookService {
   private baseUrl: string = 'https://localhost:7246/api/Booking/';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient) {}
 
   bulkBooking(bulkbookingObj: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}bulkBooking`, bulkbookingObj);

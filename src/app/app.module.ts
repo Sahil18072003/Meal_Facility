@@ -19,6 +19,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { CancelBookingComponent } from './cancel-booking/cancel-booking.component';
 import { QuickBookingComponent } from './quick-booking/quick-booking.component';
 import { NotificationComponent } from './notification/notification.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [

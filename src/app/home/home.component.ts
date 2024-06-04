@@ -26,52 +26,30 @@ export class HomeComponent implements OnInit {
   dayMenus: { [key: string]: { lunch: string[]; dinner: string[] } } = {
     Sunday: { lunch: [], dinner: [] },
     Monday: {
-      lunch: ['Chole', 'Dal Fry', 'Jeera Rice', 'Puri', 'Salad', 'Raita'],
-      dinner: [
-        'Pav Bhaji',
-        'Biryani',
-        'Kadhi',
-        'Paneer Tikka',
-        'Soup',
-        'Dessert',
-      ],
+      lunch: ['Chole', 'Dal Fry', 'Jeera Rice', 'Puri', 'Salad'],
+      dinner: ['Pav Bhaji', 'Biryani', 'Kadhi', 'Paneer Tikka', 'Dessert'],
     },
     Tuesday: {
-      lunch: [
-        'Paneer Butter Masala',
-        'Naan',
-        'Salad',
-        'Raita',
-        'Soup',
-        'Fruit Salad',
-      ],
-      dinner: ['Rajma', 'Rice', 'Chapati', 'Gulab Jamun', 'Pickle', 'Curd'],
+      lunch: ['Paneer Butter Masala', 'Naan', 'Salad', 'Raita', 'Soup'],
+      dinner: ['Rajma', 'Rice', 'Chapati', 'Gulab Jamun', 'Curd'],
     },
     Wednesday: {
-      lunch: ['Aloo Gobi', 'Paratha', 'Dahi', 'Papad', 'Rice', 'Dal'],
-      dinner: ['Dosa', 'Sambar', 'Chutney', 'Kheer', 'Vada', 'Samosa'],
+      lunch: ['Aloo Gobi', 'Paratha', 'Dahi', 'Papad', 'Rice'],
+      dinner: ['Dosa', 'Sambar', 'Chutney', 'Kheer', 'Vada'],
     },
     Thursday: {
-      lunch: ['Chana Masala', 'Rice', 'Chapati', 'Salad', 'Lassi', 'Soup'],
+      lunch: ['Chana Masala', 'Rice', 'Chapati', 'Salad', 'Lassi'],
       dinner: [
         'Fried Rice',
         'Manchurian',
         'Soup',
         'Ice Cream',
-        'Spring Roll',
         'Paneer Chilli',
       ],
     },
     Friday: {
-      lunch: ['Bhindi Fry', 'Dal Tadka', 'Rice', 'Chapati', 'Salad', 'Raita'],
-      dinner: [
-        'Pizza',
-        'Pasta',
-        'Garlic Bread',
-        'Brownie',
-        'Caesar Salad',
-        'Soup',
-      ],
+      lunch: ['Bhindi Fry', 'Dal Tadka', 'Rice', 'Chapati', 'Salad'],
+      dinner: ['Pizza', 'Pasta', 'Garlic Bread', 'Brownie', 'Soup'],
     },
     Saturday: { lunch: [], dinner: [] },
   };
@@ -161,7 +139,17 @@ export class HomeComponent implements OnInit {
     if (!date) {
       return false;
     }
-    const day = date.getDay();
-    return day !== 0 && day !== 6;
+
+    const today = new Date();
+    const startOfToday = new Date(today.setHours(0, 0, 0, 0));
+    const threeMonthsFromToday = new Date();
+    threeMonthsFromToday.setMonth(threeMonthsFromToday.getMonth() + 3);
+
+    return (
+      date.getTime() >= startOfToday.getTime() &&
+      date.getTime() <= threeMonthsFromToday.getTime() &&
+      date.getDay() !== 0 &&
+      date.getDay() !== 6
+    );
   };
 }
