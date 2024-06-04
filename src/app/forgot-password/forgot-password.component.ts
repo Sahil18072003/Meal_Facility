@@ -38,7 +38,7 @@ export class ForgotPasswordComponent {
             horizontalPosition: 'right',
             panelClass: ['success-snackbar'],
           });
-          
+
           this.router.navigate(['otp-verification']);
         },
         error: (err) => {

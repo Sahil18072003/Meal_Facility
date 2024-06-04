@@ -5,6 +5,7 @@ import { TermsAndConditionComponent } from '../terms-and-condition/terms-and-con
 import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.component';
 import { HomeComponent } from '../home/home.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { ContactUsComponent } from '../contact-us/contact-us.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'privacy-policy',
     component: PrivacyPolicyComponent,
+  },
+  {
+    path: 'Contact-us',
+    component: ContactUsComponent,
   },
 ];
 

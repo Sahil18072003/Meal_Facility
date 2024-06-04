@@ -26,6 +26,7 @@
 .home-content {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .home-left {
@@ -72,7 +73,6 @@
   background-color: red;
   font-weight: 500;
 }
-
 
 .today-date .mat-calendar-body-cell-today {
   background-color: red !important;
@@ -137,4 +137,18 @@
   color: #fff;
   font-size: 16px;
   padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .home-content {
+    flex-direction: column;
+  }
+
+  .home-left {
+    width: 100%;
+  }
+
+  .home-right {
+    width: 100%;
+  }
 }

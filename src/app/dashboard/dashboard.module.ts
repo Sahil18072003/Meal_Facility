@@ -10,6 +10,7 @@ import { OtpVerificationComponent } from '../otp-verification/otp-verification.c
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { AboutComponent } from '../about/about.component';
+import { ContactUsComponent } from '../contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.component';
 import { TermsAndConditionComponent } from '../terms-and-condition/terms-and-condition.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -25,6 +26,7 @@ import { SharedModule } from '../shared/shared.module';
     ResetPasswordComponent,
     ChangePasswordComponent,
     AboutComponent,
+    ContactUsComponent,
     PrivacyPolicyComponent,
     TermsAndConditionComponent,
   ],

@@ -42,7 +42,7 @@ import { NotificationComponent } from './notification/notification.component';
     NgToastModule,
     MaterialModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
