@@ -6,8 +6,8 @@
         </div>
         <div class="py-2 px-3 align-center justify-center">
             <div *ngIf="showQRCode">
-                <qrcode [width]="250" (qrCodeURL)="onChange($event)" [qrdata]="qrdata" [allowEmptyString]="true"
-                    class="px-5">
+                <qrcode [width]="300" (qrCodeURL)="onChange($event)" [qrdata]="qrdata" [allowEmptyString]="true"
+                    class="">
                 </qrcode>
                 <!-- Expiration message -->
                 <p *ngIf="!isExpired" class="text-red">Seconds Left: {{ secondsLeft }}</p>
@@ -16,8 +16,8 @@
                 </div>
                 <p *ngIf="!isExpired">Coupon Id: {{ qrdata }}</p>
             </div>
-            <div class="d-flex py-8" *ngIf="showBtn">
-                <button (click)="onClick()" class="btn btn-success mx-auto">Generate Coupon Code</button>
+            <div class="d-flex qr-code" *ngIf="showBtn">
+                <button (click)="onClick()" class="btn btn-danger mx-auto">Generate Coupon Code</button>
             </div>
         </div>
     </div>
