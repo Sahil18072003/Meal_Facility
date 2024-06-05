@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { AuthService } from '../services/auth.service';
+import { BookService } from '../services/book.service';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-view-booking',
@@ -15,15 +17,35 @@ export class ViewBookingComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ViewBookingComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private authService: AuthService
+    private bookService: BookService,
+    private authService: AuthService,
+    private dateAdapter: DateAdapter<Date>
   ) {}
 
   ngOnInit() {
     this.user = this.authService.getUser();
-    if (this.data.bookings) {
-      this.bookings = this.data.bookings;
+    if (this.user && this.user.id) {
+      this.fetchBookings();
     }
+  }
+
+  fetchBookings(): void {
+    this.bookService.viewUserBooking().subscribe({
+      next: (res) => {
+        if (res.length > 0) {
+          this.bookings = res;
+          this.refreshCalendar();
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  refreshCalendar() {
+    this.selectedDate = new Date(this.selectedDate!.getTime());
+    this.dateAdapter.setLocale('en-US');
   }
 
   onSelect(event: any) {

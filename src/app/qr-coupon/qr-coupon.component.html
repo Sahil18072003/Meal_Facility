@@ -1,12 +1,12 @@
 <div class="qr-container">
     <div class="qr-form" *ngIf="isFormVisible">
         <div class="qr-header">
-            <h1>View QR CODE</h1>
+            <p>Scan QR CODE</p>
             <button (click)="closeForm()">&#10006;</button>
         </div>
-        <div class="py-2 px-3">
+        <div class="py-2 px-3 align-center justify-center">
             <div *ngIf="showQRCode">
-                <qrcode [width]="200" (qrCodeURL)="onChange($event)" [qrdata]="qrdata" [allowEmptyString]="true"
+                <qrcode [width]="250" (qrCodeURL)="onChange($event)" [qrdata]="qrdata" [allowEmptyString]="true"
                     class="px-5">
                 </qrcode>
                 <!-- Expiration message -->
@@ -16,7 +16,7 @@
                 </div>
                 <p *ngIf="!isExpired">Coupon Id: {{ qrdata }}</p>
             </div>
-            <div class="d-flex py-2" *ngIf="showBtn">
+            <div class="d-flex py-8" *ngIf="showBtn">
                 <button (click)="onClick()" class="btn btn-success mx-auto">Generate Coupon Code</button>
             </div>
         </div>

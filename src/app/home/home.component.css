@@ -4,8 +4,8 @@
 }
 
 ::ng-deep.booking-date {
-  border-radius: 50%;
-  background-color: yellow;
+  border-radius: 50% !important;
+  background-color: yellow !important;
 }
 
 .home-page {

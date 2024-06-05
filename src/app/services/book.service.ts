@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class BookService {
   private baseUrl: string = 'https://localhost:7246/api/Booking/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   bulkBooking(bulkbookingObj: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}bulkBooking`, bulkbookingObj);
@@ -19,8 +19,13 @@ export class BookService {
     return this.http.post<any>(`${this.baseUrl}quickBooking`, quickbookingObj);
   }
 
-  viewUserBooking(userId: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}viewUserBookings/${userId}`);
+  viewUserBooking(): Observable<any> {
+    const user = this.auth.getUser();
+    if (!user) {
+      throw new Error('User not found in localStorage');
+    }
+    const params = new HttpParams().set('userId', user.id);
+    return this.http.get<any>(`${this.baseUrl}viewUserBookings`, { params });
   }
 
   cancelBooking(cancelBookingObj: any): Observable<any> {

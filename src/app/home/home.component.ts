@@ -8,6 +8,8 @@ import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { QrCouponComponent } from '../qr-coupon/qr-coupon.component';
 import { AuthService } from '../services/auth.service';
 import { BookService } from '../services/book.service';
+import { DateAdapter } from '@angular/material/core';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -60,44 +62,81 @@ export class HomeComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
-    private bookService: BookService
+    private bookService: BookService,
+    private dateAdapter: DateAdapter<Date>
   ) {}
 
-  ngOnInit() {
-    this.selectedDate = new Date();
-    this.updateMenu();
+ngOnInit() {
+  this.selectedDate = new Date();
+  this.updateMenu();
+  this.fetchBookings();
 
-    this.user = this.authService.getUser();
-    if (this.user && this.user.id) {
-      this.fetchBookings();
-    }
-
-    this.updateButtonStates();
+  this.user = this.authService.getUser();
+  if (this.user && this.user.id) {
+    this.fetchBookings();
   }
 
-  fetchBookings() {
-    this.bookService.viewUserBooking(this.user.id).subscribe((data) => {
-      this.bookings = data;
-      this.updateButtonStates();
+  this.updateButtonStates();
+}
+
+
+  fetchBookings(): void {
+    this.bookService.viewUserBooking().subscribe({
+      next: (res) => {
+        this.bookings = res;
+        this.updateButtonStates();
+        this.refreshCalendar();
+        console.log(this.user);
+      },
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
 
+  refreshCalendar() {
+    this.selectedDate = new Date(this.selectedDate!.getTime());
+    this.dateAdapter.setLocale('en-US');
+  }
+
   openAddBookingDialog() {
-    this.dialog.open(AddBookingComponent);
+    const dialog = this.dialog.open(AddBookingComponent);
+    dialog.afterClosed().subscribe((result) => {
+      if (result) {
+        this.fetchBookings();
+      }
+    });
   }
 
   openQuickBookingDialog() {
-    this.dialog.open(QuickBookingComponent);
+    const dialog = this.dialog.open(QuickBookingComponent);
+    dialog.afterClosed().subscribe((result) => {
+      if (result) {
+        this.fetchBookings();
+      }
+    });
   }
 
   openViewBookingDialog() {
-    this.dialog.open(ViewBookingComponent, {
+    const dialog = this.dialog.open(ViewBookingComponent, {
       data: { bookings: this.bookings },
+    });
+    dialog.afterClosed().subscribe((result) => {
+      if (result) {
+        this.fetchBookings();
+      }
     });
   }
 
   openCancelBookingDialog() {
-    this.dialog.open(CancelBookingComponent);
+    const dialog = this.dialog.open(CancelBookingComponent, {
+      data: { selectedDate: this.selectedDate },
+    });
+    dialog.afterClosed().subscribe((result) => {
+      if (result) {
+        this.fetchBookings();
+      }
+    });
   }
 
   openQrDialog() {

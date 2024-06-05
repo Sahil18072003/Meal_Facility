@@ -4,36 +4,43 @@ body {
 }
 
 .qr-container {
-    width: 500px;
+    width: 100%;
     height: auto;
     padding: 1rem;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .qr-form {
     background: #fff;
     padding: 1.5rem;
     max-width: 500px;
-    margin: 0 auto;
 }
 
 .qr-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
-.qr-header h1 {
+.qr-header p {
     font-weight: 700;
-    color: black;
-    margin: 0;
+    color: red;
+    margin: auto;
+    font-size: 1.8rem;
 }
 
 .qr-header button {
+    color: red;
     background-color: white;
     border: none;
     font-size: x-large;
     cursor: pointer;
+    margin-left: 0;
 }
 
 .form-group {

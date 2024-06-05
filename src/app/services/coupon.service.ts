@@ -14,8 +14,4 @@ export class CouponService {
   createCoupon(userId: number): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}createCoupon`, { userId });
   }
-
-  getCoupon(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}${id}`);
-  }
 }
