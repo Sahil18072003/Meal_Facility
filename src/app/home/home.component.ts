@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddBookingComponent } from '../add-booking/add-booking.component';
 import { ViewBookingComponent } from '../view-booking/view-booking.component';
 import { CancelBookingComponent } from '../cancel-booking/cancel-booking.component';
@@ -9,7 +9,8 @@ import { QrCouponComponent } from '../qr-coupon/qr-coupon.component';
 import { AuthService } from '../services/auth.service';
 import { BookService } from '../services/book.service';
 import { DateAdapter } from '@angular/material/core';
-import { ChangeDetectorRef } from '@angular/core';
+import { CouponService } from '../services/coupon.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,17 @@ export class HomeComponent implements OnInit {
 
   canCancelBooking: boolean = false;
   canGenerateQr: boolean = false;
+  isExpired: boolean = false;
+  showQRCode: boolean = false;
+  showBtn: boolean = true;
+
+  uniqueId: number | null = null;
+  secondsLeft: number = 0;
+  expirationInterval: any;
+  expirationTimeout: any;
+
+  public qrdata: string = '';
+  public userId: any;
 
   dayMenus: { [key: string]: { lunch: string[]; dinner: string[] } } = {
     Sunday: { lunch: [], dinner: [] },
@@ -63,22 +75,24 @@ export class HomeComponent implements OnInit {
     public dialog: MatDialog,
     private authService: AuthService,
     private bookService: BookService,
-    private dateAdapter: DateAdapter<Date>
+    private couponService: CouponService,
+    private dateAdapter: DateAdapter<Date>,
+    public dialogRef: MatDialogRef<QrCouponComponent>,
+    private snackBar: MatSnackBar
   ) {}
 
-ngOnInit() {
-  this.selectedDate = new Date();
-  this.updateMenu();
-  this.fetchBookings();
-
-  this.user = this.authService.getUser();
-  if (this.user && this.user.id) {
+  ngOnInit() {
+    this.selectedDate = new Date();
+    this.updateMenu();
     this.fetchBookings();
+
+    this.user = this.authService.getUser();
+    if (this.user && this.user.id) {
+      this.fetchBookings();
+    }
+
+    this.updateButtonStates();
   }
-
-  this.updateButtonStates();
-}
-
 
   fetchBookings(): void {
     this.bookService.viewUserBooking().subscribe({
@@ -141,6 +155,65 @@ ngOnInit() {
 
   openQrDialog() {
     this.dialog.open(QrCouponComponent);
+    const user = this.authService.getUser();
+    if (user) {
+      this.uniqueId = parseInt(user.id, 10);
+      console.log(this.uniqueId);
+      this.couponService.createCoupon(this.uniqueId).subscribe((res) => {
+        console.log(res);
+        this.qrdata = res.coupon.couponCode;
+        console.log(this.qrdata);
+        this.userId = res.coupon.userId;
+        console.log(this.userId);
+        this.showQRCode = true;
+        this.showBtn = false;
+        console.log(res.coupon.expirationTime);
+        console.log(res.coupon.createdTime);
+
+        const currentTime = new Date().getTime();
+        const expirationTime = new Date(res.coupon.expirationTime).getTime();
+        const expirationDuration = expirationTime - currentTime;
+
+        // Set the expiration timer
+        this.setExpirationTimer(expirationDuration);
+
+        // Calculate seconds left instead of minutes
+        this.secondsLeft = Math.ceil(expirationDuration / 1000);
+
+        this.expirationInterval = setInterval(() => {
+          this.secondsLeft--;
+          if (this.secondsLeft <= 0) {
+            clearInterval(this.expirationInterval);
+            this.isExpired = true;
+            this.dialogRef.close();
+
+            this.snackBar.open('QR Code has expired', 'Okay', {
+              duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'right',
+              panelClass: ['error-snackbar'],
+            });
+          }
+        }, 1000);
+      });
+    }
+  }
+
+  setExpirationTimer(duration: number) {
+    if (this.expirationTimeout) {
+      clearTimeout(this.expirationTimeout);
+    }
+    this.expirationTimeout = setTimeout(() => {
+      this.showQRCode = false;
+      this.isExpired = true;
+
+      this.snackBar.open('QR Code has expired', 'Okay', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+        panelClass: ['error-snackbar'],
+      });
+    }, duration);
   }
 
   updateMenu() {
