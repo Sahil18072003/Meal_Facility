@@ -1,23 +1,20 @@
 <div class="home-page">
-  <div class="book-div">
-    <button (click)="openAddBookingDialog()" class="btn btn-danger book-a-meal">
-      Book a Meal
-    </button>
-
-    <button (click)="openQuickBookingDialog()" class="btn btn-danger book-a-meal">
-      Quick Booking
-    </button>
-
-    <button (click)="openViewBookingDialog()" class="btn btn-danger book-a-meal">
-      View Booking
-    </button>
-
-    <button (click)="openCancelBookingDialog()" class="btn btn-danger book-a-meal" [disabled]="!canCancelBooking">
-      Cancel Booking
-    </button>
-  </div>
   <div class="home-content">
     <div class="home-left">
+      <div class="book-div">
+        <button (click)="openAddBookingDialog()" class="btn btn-danger book-a-meal">
+          Book a Meal
+        </button>
+
+        <button (click)="openQuickBookingDialog()" class="btn btn-danger book-a-meal">
+          Quick Booking
+        </button>
+
+        <button (click)="openViewBookingDialog()" class="btn btn-danger book-a-meal">
+          View Booking
+        </button>
+      </div>
+
       <mat-card class="demo-inline-calendar-card">
         <mat-calendar class="calendar" [dateClass]="dateClass()" [(selected)]="selectedDate"
           (selectedChange)="onSelect($event)" [dateFilter]="dateFilter">
@@ -49,9 +46,15 @@
           </div>
         </div>
       </div>
-      <button (click)="openQrDialog()" class="btn btn-danger qr-coupon" [disabled]="!canGenerateQr">
-        Generate QR code
-      </button>
+
+      <div class="book-div">
+        <button (click)="openQrDialog()" class="btn btn-danger qr-coupon" [disabled]="!canGenerateQr">
+          Generate QR code
+        </button>
+        <button (click)="openCancelBookingDialog()" class="btn btn-danger book-a-meal" [disabled]="!canCancelBooking">
+          Cancel Booking
+        </button>
+      </div>
     </div>
   </div>
 </div>
