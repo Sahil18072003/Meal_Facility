@@ -8,6 +8,7 @@
 }
 
 .toolbar {
+    list-style: none;
     position: sticky;
     top: 0;
     left: 0;
@@ -79,6 +80,8 @@ a:hover {
 
 .list-items {
     color: white;
+    padding-right: 40px;
+    list-style: none;
 }
 
 .toolbar .social {
